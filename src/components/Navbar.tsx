@@ -278,7 +278,7 @@ export default function Navbar() {
               About
             </Link>
             <Link
-              href="#contact"
+              href="/contact"
               onClick={toggleMobileMenu}
               className="block text-[#000000] hover:text-[#008ac1] px-4 py-3 rounded-lg text-base font-medium transition-all hover:bg-gray-50"
             >

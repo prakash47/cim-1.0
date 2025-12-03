@@ -190,13 +190,13 @@ export default function Navbar() {
               </div>
 
               <Link
-                href="#about"
+                href="/about"
                 className="text-[#000000] hover:text-[#008ac1] px-4 py-2 rounded-lg text-md font-medium transition-all hover:bg-gray-50"
               >
                 About
               </Link>
               <Link
-                href="#contact"
+                href="/contact"
                 className="text-[#000000] hover:text-[#008ac1] px-4 py-2 rounded-lg text-md font-medium transition-all hover:bg-gray-50"
               >
                 Contact
@@ -271,7 +271,7 @@ export default function Navbar() {
             </div>
 
             <Link
-              href="#about"
+              href="/about"
               onClick={toggleMobileMenu}
               className="block text-[#000000] hover:text-[#008ac1] px-4 py-3 rounded-lg text-base font-medium transition-all hover:bg-gray-50"
             >

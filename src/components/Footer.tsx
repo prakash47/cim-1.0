@@ -121,19 +121,24 @@ export default function Footer() {
                             <ul className="space-y-4">
                                 <li className="flex items-start text-gray-600 text-sm">
                                     <Mail className="h-5 w-5 mr-3 mt-0.5 text-[#008ac1] flex-shrink-0" />
-                                    <a href="mailto:info@cim.com" className="hover:text-[#008ac1] transition-colors">
-                                        info@cim.com
+                                    <a href="mailto:contact@cinuteinfomedia.com" className="hover:text-[#008ac1] transition-colors">
+                                        contact@cinuteinfomedia.com
                                     </a>
                                 </li>
                                 <li className="flex items-start text-gray-600 text-sm">
                                     <Phone className="h-5 w-5 mr-3 mt-0.5 text-[#00b5ca] flex-shrink-0" />
-                                    <a href="tel:+15551234567" className="hover:text-[#008ac1] transition-colors">
-                                        +1 (555) 123-4567
-                                    </a>
+                                    <div className="flex flex-col">
+                                        <a href="tel:+919004988859" className="hover:text-[#008ac1] transition-colors">
+                                            +91 9004988859
+                                        </a>
+                                        <a href="tel:+917700995410" className="hover:text-[#008ac1] transition-colors">
+                                            +91 7700995410
+                                        </a>
+                                    </div>
                                 </li>
                                 <li className="flex items-start text-gray-600 text-sm">
                                     <MapPin className="h-5 w-5 mr-3 mt-0.5 text-[#bc3feb] flex-shrink-0" />
-                                    <span>123 Tech Street, Digital City, DC 12345</span>
+                                    <span>Office #3, Ashley Tower, Beverly Park, Mira Road (E), Mumbai, 401107</span>
                                 </li>
                             </ul>
 

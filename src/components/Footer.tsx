@@ -73,7 +73,7 @@ export default function Footer() {
                         {/* Brand Column */}
                         <div className="lg:col-span-1">
                             <Link href="/" className="inline-block mb-4">
-                                <Image src="/images/cim_Logo.png" alt="CIM Logo" height={80} width={180} className="lg:h-[75px] lg:w-[175px]" />
+                                <Image src={isDark ? "/images/cim_Logo_white.png" : "/images/cim_Logo.png"} alt="CIM Logo" height={80} width={180} className="lg:h-[75px] lg:w-[175px]" />
                             </Link>
                             <p className="text-sm leading-relaxed mb-6" style={styles.text}>
                                 Empowering businesses with cutting-edge digital solutions. From web design to AI automation, we are your partner in growth.

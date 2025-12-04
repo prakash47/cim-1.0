@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
     return (
-        <div className="relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24 lg:pb-32">
+        <div className="relative bg-white overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24 lg:pb-32">
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
                 <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-8">
                     Transform Your <br className="hidden sm:block" />
@@ -29,13 +29,6 @@ export default function Hero() {
                         View Services
                     </Link>
                 </div>
-            </div>
-
-            {/* Background decoration */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -z-10 w-full h-full overflow-hidden opacity-30 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
-                <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
-                <div className="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-500/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
             </div>
         </div>
     );

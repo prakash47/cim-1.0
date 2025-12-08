@@ -107,11 +107,18 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative overflow-hidden rounded-lg transition-transform group-hover:scale-105">
-                <Image src={isDark ? "/images/cim_Logo_white.png" : "/images/cim_Logo.png"} alt="CIM Logo" height={80} width={180} className="lg:h-[75px] lg:w-[175px]" />
+              <div className="h-20 w-[180px] flex items-center justify-center overflow-hidden rounded-lg transition-transform group-hover:scale-105">
+                <Image
+                  src={isDark ? "/images/cim_Logo_white.png" : "/images/cim_Logo.png"}
+                  alt="CIM Logo"
+                  height={80}
+                  width={180}
+                  className={`object-contain ${isDark ? "pt-1" : ""}`}
+                />
               </div>
             </Link>
           </div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden lg:block">

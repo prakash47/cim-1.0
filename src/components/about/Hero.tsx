@@ -40,7 +40,7 @@ export default function Hero() {
                 />
             </div>
 
-            <div className="mx-auto py-20 px-6 md:px-12 xl:px-16 relative">
+            <div className="mx-auto px-6 md:px-12 xl:px-20 py-28 relative">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                     {/* LEFT CONTENT */}

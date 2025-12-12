@@ -40,7 +40,7 @@ export default function Hero() {
                 />
             </div>
 
-            <div className="mx-auto px-6 md:px-12 xl:px-20 py-28 relative">
+            <div className="mx-auto px-6 md:px-12 xl:px-20 py-6 relative">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                     {/* LEFT CONTENT */}
@@ -50,7 +50,7 @@ export default function Hero() {
                     >
                         {/* Badge */}
                         <div
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 border transition-colors"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4 border transition-colors"
                             style={{
                                 background:
                                     "linear-gradient(90deg, color-mix(in srgb, var(--brand-blue) 8%, transparent), color-mix(in srgb, var(--brand-teal) 8%, transparent))",

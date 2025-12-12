@@ -196,7 +196,7 @@ export default function Hero() {
     // Render
     return (
         <section
-            className="relative px-6 md:px-12 xl:px-20 py-28 overflow-hidden"
+            className="relative px-6 md:px-12 xl:px-20 py-12 overflow-hidden"
             style={{ background: "var(--background)", color: "var(--foreground)" }}
         >
             {/* Animated background orbs */}
@@ -218,7 +218,7 @@ export default function Hero() {
             <div className="mx-auto relative">
                 {/* Badge */}
                 <div
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border transition-colors mb-8"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border transition-colors mb-4"
                     style={{
                         background:
                             "linear-gradient(90deg, color-mix(in srgb, var(--brand-blue) 8%, transparent), color-mix(in srgb, var(--brand-teal) 8%, transparent))",

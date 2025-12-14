@@ -20,11 +20,11 @@ export default function Footer() {
     ];
 
     const quickLinks = [
-        { name: "About Us", href: "#about" },
-        { name: "Our Services", href: "#services" },
+        { name: "About Us", href: "/about" },
+        { name: "Our Services", href: "/services" },
         { name: "Contact Us", href: "/contact" },
-        { name: "Privacy Policy", href: "/privacy" },
-        { name: "Terms of Service", href: "/terms" },
+        { name: "Privacy Policy", href: "/privacy-policy" },
+        { name: "Terms of Service", href: "/terms-of-service" },
     ];
 
     // next-themes
@@ -209,12 +209,16 @@ export default function Footer() {
                             © {year} CIM. All rights reserved.
                         </p>
                         <div className="flex items-center space-x-6 text-sm">
-                            <Link href="/privacy" className="hover:underline" style={styles.link}>
+                            <Link href="/privacy-policy" className="hover:underline" style={styles.link}>
                                 Privacy Policy
                             </Link>
                             <span style={{ color: "var(--border-color)" }}>|</span>
-                            <Link href="/terms" className="hover:underline" style={styles.link}>
+                            <Link href="/terms-of-service" className="hover:underline" style={styles.link}>
                                 Terms of Service
+                            </Link>
+                            <span style={{ color: "var(--border-color)" }}>|</span>
+                            <Link href="/cookies-policy" className="hover:underline" style={styles.link}>
+                                Cookies Policy
                             </Link>
                             <span style={{ color: "var(--border-color)" }}>|</span>
                             <Link href="/sitemap" className="hover:underline" style={styles.link}>

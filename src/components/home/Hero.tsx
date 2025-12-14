@@ -40,7 +40,7 @@ export default function Hero() {
                 <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.02), transparent)" }} />
             </div>
 
-            <div className="relative z-10 mx-auto px-6 md:px-12 xl:px-20 py-28">
+            <div className="relative z-10 mx-auto px-6 md:px-12 xl:px-20 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     {/* Left Content */}
                     <div className={`lg:col-span-7 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -209,11 +209,6 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-                <div style={{ width: 36, height: 56, borderRadius: 999, border: "2px solid var(--border-color)", display: "flex", alignItems: "flex-start", justifyContent: "center", padding: 8 }}>
-                    <div style={{ width: 4, height: 12, background: "var(--brand-blue)", borderRadius: 999, animation: "scroll 1.5s ease-in-out infinite" }} />
-                </div>
-            </div>
         </section>
     );
 }

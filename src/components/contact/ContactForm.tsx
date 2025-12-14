@@ -1,445 +1,286 @@
 // components/about/ContactForm.tsx
 "use client";
 
-import { useState, useRef } from "react";
-import {
-    Send,
-    CheckCircle2,
-    Loader2,
-    Phone,
-    Mail,
-    MapPin,
-    Paperclip,
-    Calendar,
-    Clock,
-    DollarSign,
-    X,
-    Info
-} from "lucide-react";
-
-type FormState = {
-    name: string;
-    email: string;
-    phone: string;
-    subject: string;
-    message: string;
-    budget: string;
-    timeframe: string;
-    preferredDate?: string;
-    consent: boolean;
-    fileName?: string | null;
-};
+import { useState, useEffect } from "react";
+import { Users, Send, CheckCircle, Star, TrendingUp, Phone, Mail, MapPin } from "lucide-react";
 
 export default function ContactForm() {
-    const [form, setForm] = useState<FormState>({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-        budget: "",
-        timeframe: "",
-        preferredDate: "",
-        consent: false,
-        fileName: null
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false);
-    const [errors, setErrors] = useState<Record<string, string>>({});
-    const [charCount, setCharCount] = useState(0);
-    const fileRef = useRef<HTMLInputElement | null>(null);
+    // Mobile mockup state
+    const [messageIndex, setMessageIndex] = useState(0);
+    const [particles, setParticles] = useState<Array<{ x: number; y: number; delay: number }>>([]);
 
-    const validate = () => {
-        const e: Record<string, string> = {};
-        if (!form.name.trim()) e.name = "Name is required.";
-        if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Valid email is required.";
-        if (!form.subject) e.subject = "Please select a topic.";
-        if (!form.message.trim() || form.message.trim().length < 20) e.message = "Please enter at least 20 characters.";
-        if (!form.consent) e.consent = "Please allow us to contact you.";
-        setErrors(e);
-        return Object.keys(e).length === 0;
-    };
+    useEffect(() => {
+        const msgInterval = setInterval(() => {
+            setMessageIndex((prev) => (prev + 1) % 3);
+        }, 4000);
+        return () => clearInterval(msgInterval);
+    }, []);
 
-    const handleChange = (k: keyof FormState, v: any) => {
-        setForm(prev => ({ ...prev, [k]: v }));
-        if (k === "message") {
-            setCharCount(String(v ?? "").length);
-        }
-        setErrors(prev => ({ ...prev, [k]: "" }));
-    };
+    useEffect(() => {
+        const newParticles = Array.from({ length: 12 }, (_, i) => ({ x: Math.random() * 100, y: Math.random() * 100, delay: i * 0.15 }));
+        setParticles(newParticles);
+    }, []);
 
-    const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            // small client-side check
-            if (file.size > 5 * 1024 * 1024) {
-                setErrors(prev => ({ ...prev, file: "File must be smaller than 5MB." }));
-                return;
-            }
-            handleChange("fileName", file.name);
-            setErrors(prev => ({ ...prev, file: "" }));
-        }
-    };
+    const messages = [
+        { text: "Hello! Need help with your project?", from: "Team", time: "2m ago" },
+        { text: "We're here to help you grow!", from: "Team", time: "1m ago" },
+        { text: "Let's discuss your requirements!", from: "Team", time: "Just now" },
+    ];
 
-    const resetForm = () =>
-        setForm({
-            name: "",
-            email: "",
-            phone: "",
-            subject: "",
-            message: "",
-            budget: "",
-            timeframe: "",
-            preferredDate: "",
-            consent: false,
-            fileName: null
-        });
+    const features = [
+        { icon: CheckCircle, text: "Fast Response", colorVar: "--brand-teal" },
+        { icon: Star, text: "Expert Team", colorVar: "--brand-yellow" },
+        { icon: TrendingUp, text: "Proven Results", colorVar: "--brand-blue" },
+    ];
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!validate()) return;
-        setIsSubmitting(true);
-        // simulate API
-        await new Promise(resolve => setTimeout(resolve, 1400));
-        setIsSubmitting(false);
-        setIsSuccess(true);
-    };
-
-    if (isSuccess) {
-        return (
-            <section id="contact-form" className="py-12 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-                <div className="max-w-3xl mx-auto px-4">
-                    <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 text-center">
-                        <div className="mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center mb-6">
-                            <CheckCircle2 className="w-12 h-12 text-green-600" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">Thanks — we'll be in touch!</h3>
-                        <p className="text-gray-600 mb-6">We received your message and will respond within 24 hours.</p>
-                        <div className="flex justify-center gap-3">
-                            <button
-                                onClick={() => {
-                                    setIsSuccess(false);
-                                    resetForm();
-                                }}
-                                className="px-6 py-2 bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition"
-                            >
-                                Send another
-                            </button>
-                            <a
-                                href="/"
-                                className="px-6 py-2 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-50 transition inline-flex items-center gap-2"
-                            >
-                                Back to site
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        );
-    }
+    const gradient = (startVar: string, endVar: string, angle = "135deg") =>
+        `linear-gradient(${angle}, var(${startVar}), var(${endVar}))`;
 
     return (
-        <section id="contact-form" className="py-12 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+        <section className="py-12 lg:py-20" style={{ background: "var(--background)", color: "var(--foreground)" }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Form Card */}
-                    <div className="lg:col-span-2">
-                        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-                            <div className="p-8 md:p-12">
-                                <div className="text-center mb-8">
-                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Send us a message</h2>
-                                    <p className="text-gray-600 max-w-2xl mx-auto">
-                                        Fill the form and we’ll respond within <strong>24 hours</strong>. Prefer a call? add your phone and preferred time.
-                                    </p>
+                {/* Grid: mobile mockup (left) + sidebar (right on lg) */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    {/* RIGHT COLUMN - Enhanced Visual Animation */}
+                    <div className="relative lg:h-[600px] flex items-start mt-6 justify-center animate-fadeInUp" style={{ animationDelay: "0.3s" }}>
+                        <div className="relative w-full max-w-lg">
+                            {/* Main 3D Card Stack */}
+                            <div className="relative h-[500px]">
+                                {/* Floating Device Mockup */}
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    {/* Phone Frame */}
+                                    <div
+                                        className="relative w-72 h-[500px] rounded-[3rem] shadow-2xl p-3 hover:scale-105 transition-transform duration-500"
+                                        style={{ background: "black", border: `1px solid var(--border-color)` }}
+                                    >
+                                        {/* Screen */}
+                                        <div className="w-full h-full rounded-[2.5rem] overflow-hidden relative" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,1))" }}>
+                                            {/* Status Bar */}
+                                            <div className="h-8 flex items-center justify-between px-6 text-xs" style={{ background: gradient("--brand-blue", "--brand-teal", "90deg"), color: "#fff" }}>
+                                                <span>9:41</span>
+                                                <div className="flex gap-1">
+                                                    <div className="w-1 h-1 rounded-full" style={{ background: "rgba(255,255,255,0.9)" }} />
+                                                    <div className="w-1 h-1 rounded-full" style={{ background: "rgba(255,255,255,0.9)" }} />
+                                                    <div className="w-1 h-1 rounded-full" style={{ background: "rgba(255,255,255,0.9)" }} />
+                                                </div>
+                                            </div>
+
+                                            {/* Chat Interface */}
+                                            <div className="h-full p-4 space-y-4 overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(250,250,250,1), rgba(255,255,255,1))" }}>
+                                                {/* Header */}
+                                                <div className="flex items-center gap-3 pb-3 border-b" style={{ borderColor: "var(--border-color)" }}>
+                                                    <div className="relative">
+                                                        <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: `linear-gradient(135deg, var(--brand-blue), var(--brand-teal))` }}>
+                                                            <Users className="w-5 h-5 text-white" />
+                                                        </div>
+                                                        <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full" style={{ background: "var(--brand-teal)", border: `2px solid var(--card-bg)` }} />
+                                                    </div>
+                                                    <div>
+                                                        <h3 className="font-semibold text-black">
+                                                            Support Team
+                                                        </h3>
+                                                        <p className="text-xs flex items-center gap-1" style={{ color: "var(--brand-teal)" }}>
+                                                            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "var(--brand-teal)" }} />
+                                                            Online
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                {/* Messages */}
+                                                <div className="space-y-3">
+                                                    {messages.map((msg, idx) => (
+                                                        <div key={idx} className={`transform transition-all duration-500 ${messageIndex === idx ? "opacity-100 translate-y-0" : "opacity-40 -translate-y-2"}`}>
+                                                            <div className="flex gap-2 items-end">
+                                                                <div className="flex-1">
+                                                                    <div className="rounded-2xl rounded-bl-sm p-3 shadow-md" style={{ background: "var(--card-bg)", border: `1px solid var(--border-color)` }}>
+                                                                        <p className="text-sm" style={{ color: "var(--foreground)" }}>
+                                                                            {msg.text}
+                                                                        </p>
+                                                                    </div>
+                                                                    <p className="text-xs mt-1 ml-2" style={{ color: "var(--secondary-text)" }}>
+                                                                        {msg.time}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+
+                                                </div>
+
+                                                {/* Input Area */}
+                                                <div className="absolute py-4 px-4 left-0 right-0 bottom-3">
+                                                    <div className="flex gap-2 rounded-full p-2 border" style={{ background: "var(--card-bg)", borderColor: "var(--border-color)", boxShadow: "0 6px 18px rgba(0,0,0,0.06)" }}>
+                                                        <input type="text" placeholder="Type your message..." className="flex-1 px-4 py-2 text-sm bg-transparent outline-none w-[80%]" readOnly style={{ color: "var(--foreground)" }} />
+                                                        <button className="w-10 h-10 rounded-full flex items-center justify-center transition-transform" style={{ background: gradient("--brand-blue", "--brand-teal", "135deg") }}>
+                                                            <Send className="w-5 h-5 text-white" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Notch */}
+                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 rounded-b-2xl" style={{ background: "black" }} />
+                                    </div>
                                 </div>
 
-                                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label htmlFor="name" className="text-sm font-medium text-gray-700">
-                                                Full name
-                                            </label>
-                                            <input
-                                                id="name"
-                                                name="name"
-                                                value={form.name}
-                                                onChange={e => handleChange("name", e.target.value)}
-                                                type="text"
-                                                required
-                                                aria-invalid={!!errors.name}
-                                                aria-describedby={errors.name ? "name-error" : undefined}
-                                                className={`w-full mt-2 px-4 py-3 rounded-xl border ${errors.name ? "border-red-300" : "border-gray-200"} focus:border-[#008ac1] focus:ring-2 focus:ring-[#008ac1]/20 outline-none transition bg-gray-50 placeholder:text-gray-500`}
-                                                placeholder="John Doe"
-                                            />
-                                            {errors.name && <p id="name-error" className="text-sm text-red-600 mt-2">{errors.name}</p>}
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                                                Email
-                                            </label>
-                                            <input
-                                                id="email"
-                                                name="email"
-                                                value={form.email}
-                                                onChange={e => handleChange("email", e.target.value)}
-                                                type="email"
-                                                required
-                                                aria-invalid={!!errors.email}
-                                                aria-describedby={errors.email ? "email-error" : undefined}
-                                                className={`w-full mt-2 px-4 py-3 rounded-xl border ${errors.email ? "border-red-300" : "border-gray-200"} focus:border-[#008ac1] focus:ring-2 focus:ring-[#008ac1]/20 outline-none transition bg-gray-50 placeholder:text-gray-500`}
-                                                placeholder="john@example.com"
-                                            />
-                                            {errors.email && <p id="email-error" className="text-sm text-red-600 mt-2">{errors.email}</p>}
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                                                Phone (optional)
-                                            </label>
-                                            <input
-                                                id="phone"
-                                                name="phone"
-                                                value={form.phone}
-                                                onChange={e => handleChange("phone", e.target.value)}
-                                                type="tel"
-                                                className="w-full mt-2 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#008ac1] focus:ring-2 focus:ring-[#008ac1]/20 outline-none transition bg-gray-50 placeholder:text-gray-500"
-                                                placeholder="+91 98765 43210"
-                                                aria-label="phone number"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="subject" className="text-sm font-medium text-gray-700">
-                                                Topic
-                                            </label>
-                                            <select
-                                                id="subject"
-                                                name="subject"
-                                                value={form.subject}
-                                                onChange={e => handleChange("subject", e.target.value)}
-                                                required
-                                                aria-invalid={!!errors.subject}
-                                                className={`w-full mt-2 px-4 py-3 rounded-xl border ${errors.subject ? "border-red-300" : "border-gray-200"} focus:border-[#008ac1] focus:ring-2 focus:ring-[#008ac1]/20 outline-none transition bg-gray-50 text-gray-500`}
-                                            >
-                                                <option value="">Select topic</option>
-                                                <option value="web">Website / Web App</option>
-                                                <option value="app">Mobile App</option>
-                                                <option value="marketing">Digital Marketing</option>
-                                                <option value="seo">SEO & Growth</option>
-                                                <option value="ai">AI / Automation</option>
-                                                <option value="other">Other</option>
-                                            </select>
-                                            {errors.subject && <p className="text-sm text-red-600 mt-2">{errors.subject}</p>}
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        <div>
-                                            <label className="text-sm font-medium text-gray-700">Budget (est.)</label>
-                                            <div className="mt-2 relative text-gray-500">
-                                                <select
-                                                    value={form.budget}
-                                                    onChange={e => handleChange("budget", e.target.value)}
-                                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#008ac1] focus:ring-2 focus:ring-[#008ac1]/20 outline-none bg-gray-50 placeholder:text-gray-500"
-                                                >
-                                                    <option value="">Select budget</option>
-                                                    <option value="under-5k">Under ₹5,000</option>
-                                                    <option value="5k-25k">₹5k - ₹25k</option>
-                                                    <option value="25k-1l">₹25k - ₹1L</option>
-                                                    <option value="1l-plus">₹1L+</option>
-                                                </select>
-                                                <div className="absolute right-3 top-3 text-gray-400"><DollarSign className="w-4 h-4" /></div>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label className="text-sm font-medium text-gray-700">Timeframe</label>
-                                            <div className="mt-2 text-gray-500">
-                                                <select
-                                                    value={form.timeframe}
-                                                    onChange={e => handleChange("timeframe", e.target.value)}
-                                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#008ac1] focus:ring-2 focus:ring-[#008ac1]/20 outline-none bg-gray-50 placeholder:text-gray-500"
-                                                >
-                                                    <option value="">Select timeframe</option>
-                                                    <option value="1-2w">1 - 2 weeks</option>
-                                                    <option value="1-2m">1 - 2 months</option>
-                                                    <option value="2-6m">2 - 6 months</option>
-                                                    <option value="ongoing">Ongoing / Retainer</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label className="text-sm font-medium text-gray-700">Preferred contact</label>
-                                            <div className="mt-2 relative text-gray-500">
-                                                <input
-                                                    type="date"
-                                                    value={form.preferredDate}
-                                                    onChange={e => handleChange("preferredDate", e.target.value)}
-                                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#008ac1] focus:ring-2 focus:ring-[#008ac1]/20 outline-none bg-gray-50 placeholder:text-gray-500"
-                                                />
-                                                <div className="absolute right-3 top-3 text-gray-400"><Calendar className="w-4 h-4" /></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                                            Message
-                                        </label>
-                                        <textarea
-                                            id="message"
-                                            name="message"
-                                            value={form.message}
-                                            onChange={e => handleChange("message", e.target.value)}
-                                            rows={6}
-                                            required
-                                            aria-invalid={!!errors.message}
-                                            aria-describedby={errors.message ? "msg-error" : undefined}
-                                            className={`w-full mt-2 px-4 py-3 rounded-xl border ${errors.message ? "border-red-300" : "border-gray-200"} focus:border-[#008ac1] focus:ring-2 focus:ring-[#008ac1]/20 outline-none transition bg-gray-50 placeholder:text-gray-500 resize-none`}
-                                            placeholder="Tell us about your project, goals and timeline..."
-                                        />
-                                        <div className="flex justify-between items-center mt-2 text-xs text-gray-500">
-                                            <div className="inline-flex items-center gap-1">
-                                                <Info className="w-4 h-4 text-gray-400" />
-                                                <span>Try to include target audience & outcome.</span>
-                                            </div>
-                                            <div>{charCount}/1000</div>
-                                        </div>
-                                        {errors.message && <p id="msg-error" className="text-sm text-red-600 mt-2">{errors.message}</p>}
-                                    </div>
-
-                                    <div className="flex items-center gap-3">
-                                        <label className="relative inline-flex items-center cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                checked={form.consent}
-                                                onChange={e => handleChange("consent", e.target.checked)}
-                                                className="sr-only"
-                                                aria-checked={form.consent}
-                                            />
-                                            <span className={`w-11 h-6 inline-block rounded-full transition-colors ${form.consent ? "bg-[#008ac1]" : "bg-gray-200"}`}></span>
-                                            <span className={`absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${form.consent ? "translate-x-5" : ""}`} />
-                                        </label>
-
-                                        <div className="text-sm text-gray-600">
-                                            I give permission to contact me about my inquiry. <span className="text-xs text-gray-400 block">You can unsubscribe anytime.</span>
-                                            {errors.consent && <p className="text-sm text-red-600 mt-1">{errors.consent}</p>}
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-center gap-4">
-                                        <label className="inline-flex items-center gap-2 cursor-pointer">
-                                            <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600">
-                                                <Paperclip className="w-5 h-5" />
-                                            </div>
-                                            <span className="text-sm text-gray-700">Attach brief or file</span>
-                                            <input
-                                                ref={fileRef}
-                                                type="file"
-                                                accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
-                                                onChange={handleFile}
-                                                className="sr-only"
-                                            />
-                                        </label>
-
-                                        <div className="text-sm text-gray-500">
-                                            {form.fileName ? (
-                                                <div className="inline-flex items-center gap-2 bg-gray-50 px-3 py-1 rounded-full border border-gray-100">
-                                                    <span className="text-xs">{form.fileName}</span>
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => {
-                                                            handleChange("fileName", null);
-                                                            if (fileRef.current) fileRef.current.value = "";
-                                                        }}
-                                                        className="p-1 rounded-full hover:bg-gray-100"
-                                                        aria-label="Remove file"
-                                                    >
-                                                        <X className="w-4 h-4 text-gray-400" />
-                                                    </button>
-                                                </div>
-                                            ) : (
-                                                <span className="text-xs">Max 5MB • .pdf, .doc, .png</span>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <button
-                                            type="submit"
-                                            disabled={isSubmitting}
-                                            className="w-full py-4 bg-gradient-to-r from-[#008ac1] to-[#00b5ca] hover:from-[#0077a6] hover:to-[#009db0] text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-transform hover:scale-[1.01] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-                                            aria-busy={isSubmitting}
+                                {/* Floating Feature Cards (hidden on small screens) */}
+                                {features.map((feature, idx) => {
+                                    const Icon = feature.icon;
+                                    return (
+                                        <div
+                                            key={idx}
+                                            className="absolute hidden md:block rounded-xl p-3 shadow-xl border cursor-pointer"
+                                            style={{
+                                                top: `${20 + idx * 30}%`,
+                                                right: idx === 1 ? "auto" : "-10%",
+                                                left: idx === 1 ? "-10%" : "auto",
+                                                animationDelay: `${idx * 0.5}s`,
+                                                background: "var(--card-bg)",
+                                                borderColor: "var(--border-color)",
+                                            }}
                                         >
-                                            {isSubmitting ? (
-                                                <>
-                                                    <Loader2 className="w-5 h-5 animate-spin" />
-                                                    Sending...
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Send className="w-5 h-5" />
-                                                    Send Message
-                                                </>
-                                            )}
-                                        </button>
+                                            <div className="flex items-center gap-2">
+                                                <Icon className="w-5 h-5" style={{ color: `var(${feature.colorVar})` }} />
+                                                <span className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>
+                                                    {feature.text}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+
+                                {/* Particle Animation Background */}
+                                <div className="absolute inset-0 -z-10 overflow-hidden rounded-3xl">
+                                    {particles.map((particle, idx) => (
+                                        <div
+                                            key={idx}
+                                            style={{
+                                                position: "absolute",
+                                                width: 4,
+                                                height: 4,
+                                                borderRadius: 9999,
+                                                left: `${particle.x}%`,
+                                                top: `${particle.y}%`,
+                                                background: "var(--brand-blue)",
+                                                opacity: 0.35,
+                                                animationDelay: `${particle.delay}s`,
+                                                animationName: "particle",
+                                                animationDuration: "4s",
+                                                animationTimingFunction: "ease-in-out",
+                                                animationIterationCount: "infinite",
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+
+                                {/* Glow Effects */}
+                                <div
+                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl animate-pulse -z-20"
+                                    style={{
+                                        width: 384,
+                                        height: 384,
+                                        background:
+                                            "radial-gradient(circle at center, rgba(0,138,193,0.08), rgba(188,63,235,0.03) 40%, rgba(0,239,214,0.02) 70%)",
+                                    }}
+                                />
+                            </div>
+
+                            {/* Bottom Notification Card */}
+                            <div
+                                className="hidden md:block absolute -bottom-14 left-1/2 -translate-x-2/3 rounded-2xl p-4 shadow-2xl border w-80"
+                                style={{ background: "var(--card-bg)", borderColor: "var(--border-color)" }}
+                            >
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: `linear-gradient(135deg, var(--brand-teal), var(--brand-blue))` }}>
+                                        <CheckCircle className="w-6 h-6 text-white" />
                                     </div>
-                                </form>
+                                    <div className="flex-1">
+                                        <h4 className="font-semibold" style={{ color: "var(--foreground)" }}>
+                                            Message Sent!
+                                        </h4>
+                                        <p className="text-sm" style={{ color: "var(--secondary-text)" }}>
+                                            We'll respond within 24 hours
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Sidebar with quick contact info */}
+                    {/* RIGHT: Sidebar with quick contact info */}
                     <aside className="hidden lg:block">
-                        <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 sticky top-20">
-                            <h4 className="text-lg font-semibold mb-4 text-black">Quick Contact</h4>
+                        <div
+                            className="rounded-3xl p-6 sticky top-20"
+                            style={{
+                                background: "var(--card-bg)",
+                                border: `1px solid var(--border-color)`,
+                                boxShadow: "var(--card-shadow, 0 10px 30px rgba(0,0,0,0.04))",
+                            }}
+                        >
+                            <h4 className="text-lg font-semibold mb-4" style={{ color: "var(--foreground)" }}>
+                                Quick Contact
+                            </h4>
 
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#008ac1] to-[#00b5ca] flex items-center justify-center text-white">
-                                    <Phone className="w-5 h-5" />
+                                <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: gradient("--brand-blue", "--brand-teal") }}>
+                                    <Phone className="w-5 h-5" style={{ color: "white" }} />
                                 </div>
                                 <div>
-                                    <div className="text-sm text-gray-600">Phone</div>
-                                    <a href="tel:+919004988859" className="text-gray-900 font-medium">+91 90049 88859</a>
-                                    <br />
-                                    <a href="tel:+917700995410" className="text-gray-900 font-medium">+91 77009 95410</a>
+                                    <div className="text-sm" style={{ color: "var(--secondary-text)" }}>
+                                        Phone
+                                    </div>
+                                    <a href="tel:+919004988859" style={{ color: "var(--foreground)", fontWeight: 600, display: "block" }}>
+                                        +91 90049 88859
+                                    </a>
+                                    <a href="tel:+917700995410" style={{ color: "var(--foreground)", fontWeight: 600, display: "block" }}>
+                                        +91 77009 95410
+                                    </a>
                                 </div>
                             </div>
 
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#bc3feb] to-[#fab900] flex items-center justify-center text-white">
-                                    <Mail className="w-5 h-5" />
+                                <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: gradient("--brand-purple", "--brand-yellow") }}>
+                                    <Mail className="w-5 h-5" style={{ color: "white" }} />
                                 </div>
                                 <div>
-                                    <div className="text-sm text-gray-600">Email</div>
-                                    <a href="mailto:contact@cinuteinfomedia.com" className="text-gray-900 font-medium">contact@cinuteinfomedia.com</a>
+                                    <div className="text-sm" style={{ color: "var(--secondary-text)" }}>
+                                        Email
+                                    </div>
+                                    <a href="mailto:contact@cinuteinfomedia.com" style={{ color: "var(--foreground)", fontWeight: 600, display: "block" }}>
+                                        contact@cinuteinfomedia.com
+                                    </a>
                                 </div>
                             </div>
 
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="w-20 h-10 rounded-lg bg-gradient-to-br from-[#00efd6] to-[#00b5ca] flex items-center justify-center text-white">
-                                    <MapPin className="w-5 h-5" />
+                                <div className="w-12 h-10 rounded-lg flex items-center justify-center" style={{ background: gradient("--brand-cyan", "--brand-teal") }}>
+                                    <MapPin className="w-5 h-5" style={{ color: "white" }} />
                                 </div>
                                 <div>
-                                    <div className="text-sm text-gray-600">Address</div>
-                                    <a href="https://maps.app.goo.gl/Lk3iaPrxyzPYeh3y9" target="_blank" rel="noreferrer" className="text-gray-900 font-medium block">
+                                    <div className="text-sm" style={{ color: "var(--secondary-text)" }}>
+                                        Address
+                                    </div>
+                                    <a
+                                        href="https://maps.app.goo.gl/Lk3iaPrxyzPYeh3y9"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        style={{ color: "var(--foreground)", fontWeight: 600, display: "block" }}
+                                    >
                                         Office #3, Ashley Tower, Beverly Park, Mira Road (E), Mumbai, 401107
                                     </a>
                                 </div>
                             </div>
 
-                            <div className="mt-6 text-sm text-gray-600">
-                                <strong>Availability:</strong> Mon - Fri, 9:30 AM - 6:30 PM
+                            <div className="mt-6 text-sm" style={{ color: "var(--secondary-text)" }}>
+                                <strong style={{ color: "var(--foreground)" }}>Availability:</strong> Mon - Fri, 9:30 AM - 6:30 PM
                             </div>
 
                             <div className="mt-6">
                                 <a
                                     href="/contact"
-                                    className="block text-center px-4 py-2 rounded-lg bg-[#008ac1] text-white font-semibold hover:bg-[#0077a6] transition"
+                                    className="block text-center px-4 py-2 rounded-lg font-semibold transition"
+                                    style={{ background: "var(--brand-blue)", color: "white" }}
                                 >
                                     Request a Call
                                 </a>
@@ -448,6 +289,51 @@ export default function ContactForm() {
                     </aside>
                 </div>
             </div>
+
+            <style jsx>{`
+        @keyframes particle {
+          0% {
+            opacity: 0;
+            transform: translateY(0) scale(0);
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-100px) scale(1);
+          }
+        }
+        .animate-pulse {
+          animation: pulse 2.5s infinite;
+        }
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.03);
+            opacity: 0.85;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+        .animate-bounce {
+          animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-4px);
+          }
+        }
+      `}</style>
         </section>
     );
 }

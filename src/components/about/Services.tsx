@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
     Globe,
     Palette,
@@ -6,102 +9,249 @@ import {
     BarChart3,
     Zap,
     MessageSquare,
-    Headphones
-} from 'lucide-react';
+    Headphones,
+    ArrowRight,
+    Check
+} from "lucide-react";
 
 export default function Services() {
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
     const services = [
         {
-            icon: Globe,
-            title: 'Websites & Web Apps',
-            description: 'Fast, conversion-ready, and responsive digital experiences',
-            color: 'from-[#008ac1] to-[#00b5ca]'
+            Icon: Globe,
+            title: "Websites & Web Apps",
+            description: "Fast, conversion-ready, and responsive digital experiences",
+            badgeGrad: "from-[var(--brand-blue)] to-[var(--brand-teal)]",
+            brandText: "var(--brand-blue)",
+            details: [
+                "Custom Web Development",
+                "High-Converting Landing Pages",
+                "E-commerce Stores",
+                "API Development & Integrations",
+                "Performance Optimization",
+                "SSL & Security"
+            ]
         },
         {
-            icon: Palette,
-            title: 'Brand Identity & Creative Design',
-            description: 'Designs that help brands stand out and communicate value',
-            color: 'from-[#bc3feb] to-[#fab900]'
+            Icon: Palette,
+            title: "Brand Identity & Creative Design",
+            description: "Designs that help brands stand out and communicate value",
+            badgeGrad: "from-[var(--brand-purple)] to-[var(--brand-yellow)]",
+            brandText: "var(--brand-purple)",
+            details: [
+                "Logo & Brand Kits",
+                "UI/UX Design",
+                "Graphic Design",
+                "Video Editing & Motion Graphics",
+                "Brand Guidelines",
+                "Marketing Collateral"
+            ]
         },
         {
-            icon: Share2,
-            title: 'Social Media Marketing',
-            description: 'Content, community-building, and brand presence',
-            color: 'from-[#00efd6] to-[#00b5ca]'
+            Icon: Share2,
+            title: "Social Media Marketing",
+            description: "Content, community-building, and brand presence",
+            badgeGrad: "from-[var(--brand-cyan)] to-[var(--brand-teal)]",
+            brandText: "var(--brand-cyan)",
+            details: [
+                "Social Strategy & Content Calendar",
+                "Short/Long Form Video Planning",
+                "Static & Carousel Post Design",
+                "Community Management",
+                "Creator & Influencer Partnerships",
+                "Social Listening & Insights"
+            ]
         },
         {
-            icon: Search,
-            title: 'Organic Growth & SEO',
-            description: 'Data-driven strategies to improve visibility and ranking',
-            color: 'from-[#008ac1] to-[#bc3feb]'
+            Icon: Search,
+            title: "Organic Growth & SEO",
+            description: "Data-driven strategies to improve visibility and ranking",
+            badgeGrad: "from-[var(--brand-blue)] to-[var(--brand-purple)]",
+            brandText: "var(--brand-blue)",
+            details: [
+                "Website Audits",
+                "On-Page Optimization",
+                "Keyword Research",
+                "Backlink Building",
+                "Local SEO & GMB",
+                "E-commerce SEO"
+            ]
         },
         {
-            icon: BarChart3,
-            title: 'Performance Marketing & Ads',
-            description: 'Meta, Google & LinkedIn campaigns focused on leads',
-            color: 'from-[#ee6500] to-[#fab900]'
+            Icon: BarChart3,
+            title: "Performance Marketing & Ads",
+            description: "Meta, Google & LinkedIn campaigns focused on leads",
+            badgeGrad: "from-[var(--brand-orange)] to-[var(--brand-yellow)]",
+            brandText: "var(--brand-orange)",
+            details: [
+                "Meta, Google, LinkedIn Ads",
+                "Retargeting",
+                "Lead Funnel Strategy",
+                "Pixel/Analytics Setup",
+                "Campaign Performance Reports",
+                "A/B Testing & Optimization"
+            ]
         },
         {
-            icon: Zap,
-            title: 'AI Workflows & Automations',
-            description: 'CRM, reporting, nurturing & operational automation',
-            color: 'from-[#fab900] to-[#ee6500]'
+            Icon: Zap,
+            title: "AI Workflows & Automations",
+            description: "CRM, reporting, nurturing & operational automation",
+            badgeGrad: "from-[var(--brand-yellow)] to-[var(--brand-orange)]",
+            brandText: "var(--brand-yellow)",
+            details: [
+                "Setup & Integration",
+                "Full-Funnel Lead Nurturing",
+                "Meta DPA Automations",
+                "Google Apps Script",
+                "WhatsApp (WACA) Automations",
+                "Reporting Dashboards"
+            ]
         },
         {
-            icon: MessageSquare,
-            title: 'AI-Powered Chatbots',
-            description: '24/7 smart assistants for lead generation & support',
-            color: 'from-[#00b5ca] to-[#00efd6]'
+            Icon: MessageSquare,
+            title: "AI-Powered Chatbots",
+            description: "24/7 smart assistants for lead generation & support",
+            badgeGrad: "from-[var(--brand-teal)] to-[var(--brand-cyan)]",
+            brandText: "var(--brand-teal)",
+            details: [
+                "AI Sales Agents",
+                "Multilingual Chatbots",
+                "AI Surveys & Feedback",
+                "Lead Enrichment Bots",
+                "Custom Training",
+                "Platform Integration"
+            ]
         },
         {
-            icon: Headphones,
-            title: 'Additional Support Services',
-            description: 'Analytics, virtual assistance & backend operations',
-            color: 'from-[#00efd6] to-[#bc3feb]'
+            Icon: Headphones,
+            title: "Additional Support Services",
+            description: "Analytics, virtual assistance & backend operations",
+            badgeGrad: "from-[var(--brand-cyan)] to-[var(--brand-purple)]",
+            brandText: "var(--brand-cyan)",
+            details: [
+                "Data Processing & Analysis",
+                "Virtual Assistance",
+                "Customer Support",
+                "Administrative Tasks",
+                "Research & Documentation",
+                "Quality Assurance"
+            ]
         }
     ];
 
     return (
-        <section className="py-12 lg:py-16 bg-gradient-to-b from-gray-50/50 to-white">
+        <section className="py-16 lg:py-24 transition-colors duration-300 bg-[var(--background)]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Header */}
                 <div className="text-center mb-20">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                    <div
+                        className="
+              inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border
+              bg-[linear-gradient(90deg,rgba(188,63,235,0.08),rgba(250,185,0,0.06))]
+              border-[rgba(188,63,235,0.12)]
+              text-[var(--brand-purple)]
+            "
+                    >
+                        <Zap className="w-4 h-4" />
+                        <span className="text-sm font-semibold">Our Services</span>
+                    </div>
+
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--foreground)]">
                         What We Do
                     </h2>
-                    <div className="w-28 h-1.5 bg-gradient-to-r from-[#bc3feb] to-[#fab900] mx-auto mb-6 rounded-full"></div>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+
+                    <div
+                        className="w-28 h-1.5 mx-auto mb-6 rounded-full bg-[linear-gradient(90deg,var(--brand-purple),var(--brand-yellow))]"
+                    />
+
+                    <p className="text-xl text-[var(--secondary-text)] max-w-3xl mx-auto">
                         Full-spectrum marketing and technology services under one roof
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {services.map((service, index) => {
-                        const Icon = service.icon;
-                        return (
-                            <div
-                                key={index}
-                                className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-transparent overflow-hidden"
-                                style={{
-                                    animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
-                                }}
-                            >
-                                {/* Hover Gradient Background */}
-                                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+                {/* Services Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {services.map((svc, idx) => {
+                        const { Icon, title, description, badgeGrad, brandText, details } = svc;
+                        const isHovered = hoveredIndex === idx;
 
-                                <div className="relative">
-                                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.color} p-4 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
-                                        <Icon className="w-full h-full text-white" />
+                        return (
+                            <article
+                                key={title}
+                                className={`
+                  group relative rounded-3xl overflow-hidden border transition-all duration-400
+                  bg-[var(--card-bg)] border-[var(--border-color)]
+                  ${isHovered ? "shadow-2xl -translate-y-2 scale-[1.02] z-20 min-h-[420px]" : "shadow-sm min-h-[220px]"}
+                `}
+                                onMouseEnter={() => setHoveredIndex(idx)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                                aria-labelledby={`svc-${idx}`}
+                            >
+                                {/* subtle color glow on hover */}
+                                <div className={`absolute inset-0 pointer-events-none transition-opacity duration-200 ${isHovered ? "opacity-12" : "opacity-0"} bg-gradient-to-br ${badgeGrad}`} />
+
+                                {/* Card content */}
+                                <div className="relative p-8 h-full flex flex-col">
+                                    {/* icon + title */}
+                                    <div className="flex items-start gap-4">
+                                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center p-3 flex-shrink-0 bg-gradient-to-br ${badgeGrad} shadow`}>
+                                            <Icon className="w-6 h-6 text-white" />
+                                        </div>
+
+                                        <div className="flex-1">
+                                            <h3
+                                                id={`svc-${idx}`}
+                                                className="text-lg font-bold text-[var(--foreground)]"
+                                            >
+                                                {title}
+                                            </h3>
+                                            <p className="mt-2 text-sm text-[var(--secondary-text)]">
+                                                {description}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#008ac1] transition-colors duration-300">
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-gray-600 leading-relaxed">
-                                        {service.description}
-                                    </p>
+
+                                    {/* spacer */}
+                                    <div className="flex-1" />
+
+                                    {/* details container — collapsed by default, expands on hover */}
+                                    <div className={`mt-4 overflow-hidden transition-all duration-400 ${isHovered ? "max-h-[320px]" : "max-h-0"}`}>
+                                        <ul className="space-y-2">
+                                            {details.map((d, i) => (
+                                                <li key={i} className="flex items-start gap-3 text-sm text-[var(--secondary-text)]">
+                                                    <span className={`w-6 h-6 rounded-full flex items-center justify-center text-white bg-gradient-to-br ${badgeGrad} flex-shrink-0`}>
+                                                        <Check className="w-3 h-3" />
+                                                    </span>
+                                                    <span>{d}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                        <div className="mt-4">
+                                            <button className={`w-full py-2.5 px-4 rounded-xl text-white font-semibold text-sm bg-gradient-to-r ${badgeGrad} hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2`}>
+                                                View Details
+                                                <ArrowRight className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+
+                                {/* floating glow behind (for depth) */}
+                                <div className={`absolute -inset-1 rounded-3xl blur-xl -z-10 transition-opacity duration-400 ${isHovered ? "opacity-30" : "opacity-0"} bg-gradient-to-r ${badgeGrad}`} />
+                            </article>
                         );
                     })}
+                </div>
+
+                {/* Bottom CTA */}
+                <div className="mt-16 text-center">
+                    <p className="text-[var(--secondary-text)] mb-6">Need a custom solution? We'd love to help.</p>
+
+                    <button className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold bg-[linear-gradient(90deg,var(--brand-blue),var(--brand-teal))] text-white hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        Get Started
+                        <ArrowRight className="w-5 h-5" />
+                    </button>
                 </div>
             </div>
         </section>

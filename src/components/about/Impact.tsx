@@ -9,7 +9,7 @@ export default function Impact() {
     ];
 
     return (
-        <section className="py-12 lg:py-16 bg-gradient-to-br from-[#008ac1] via-[#00b5ca] to-[#00efd6] relative overflow-hidden">
+        <section className="py-12 lg:py-16 bg-gradient-to-br from-[#008ac1] via-[#00b5ca] to-[#008ac1] relative overflow-hidden">
             {/* Animated Background Elements */}
             <div className="absolute inset-0">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>

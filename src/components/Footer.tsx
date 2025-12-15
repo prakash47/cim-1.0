@@ -89,6 +89,7 @@ export default function Footer() {
         hover:bg-[linear-gradient(135deg,#1877F2,#0F68D8)]
       "
                                     style={styles.iconBg}
+                                    aria-label="Visit our Facebook page"
                                 >
                                     <Facebook className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
                                 </Link>
@@ -101,6 +102,7 @@ export default function Footer() {
         hover:bg-[linear-gradient(135deg,#1DA1F2,#0AA3FF)]
       "
                                     style={styles.iconBg}
+                                    aria-label="Visit our Twitter profile"
                                 >
                                     <Twitter className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
                                 </Link>
@@ -113,6 +115,7 @@ export default function Footer() {
         hover:bg-[linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)]
       "
                                     style={styles.iconBg}
+                                    aria-label="Visit our Instagram profile"
                                 >
                                     <Instagram className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
                                 </Link>
@@ -125,6 +128,7 @@ export default function Footer() {
         hover:bg-[linear-gradient(135deg,#0A66C2,#004182)]
       "
                                     style={styles.iconBg}
+                                    aria-label="Visit our LinkedIn profile"
                                 >
                                     <Linkedin className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
                                 </Link>
@@ -139,7 +143,7 @@ export default function Footer() {
                             <ul className="space-y-3">
                                 {services.map((service, index) => (
                                     <li key={index}>
-                                        <Link href={`/services/${service.toLowerCase().replace(/[&\s]+/g, "-")}`} className="text-sm flex items-center group" style={styles.link}>
+                                        <Link href={`/services/${service.toLowerCase().replace(/[&\s]+/g, "-")}`} className="text-sm flex items-center group py-1" style={styles.link}>
                                             <ArrowRight className="h-3 w-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                                             {service}
                                         </Link>
@@ -156,7 +160,7 @@ export default function Footer() {
                             <ul className="space-y-3 mb-6">
                                 {quickLinks.map((link, index) => (
                                     <li key={index}>
-                                        <Link href={link.href} className="text-sm flex items-center group" style={styles.link}>
+                                        <Link href={link.href} className="text-sm flex items-center group py-1" style={styles.link}>
                                             <ArrowRight className="h-3 w-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                                             {link.name}
                                         </Link>

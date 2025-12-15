@@ -48,9 +48,22 @@
 
   --animate-slideInLeft: slideInLeft 1s ease-out;
   --animate-slideInRight: slideInRight 1s ease-out;
+  --animate-fadeIn: fadeIn 0.7s ease-out;
 }
 
 /* Animations & global transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -115,9 +128,10 @@
   }
 }
 
-/* Smooth transitions for theme switching */
-* {
-  transition-property: background-color, border-color, color, fill, stroke;
+/* Smooth transitions for theme switching - applied to key elements only */
+body,
+.theme-transition {
+  transition-property: background-color, border-color, color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition-duration: 200ms;
 }

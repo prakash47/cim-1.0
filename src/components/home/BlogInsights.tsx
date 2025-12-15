@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { Lightbulb, ArrowRight } from 'lucide-react';
 
 export default function BlogInsights() {
@@ -33,7 +34,7 @@ export default function BlogInsights() {
                         </div>
                         <h2 style={{ fontSize: "2.25rem", fontWeight: 900 }}>Strategies, tools & <span style={{ background: "linear-gradient(90deg, var(--brand-cyan), var(--brand-blue))", WebkitBackgroundClip: "text", color: "transparent" }}>growth playbooks</span></h2>
                     </div>
-                    <a href="/blog" style={{ color: "var(--brand-blue)", fontWeight: 600 }} className="hidden md:inline-flex items-center gap-2">View all articles <ArrowRight className="w-5 h-5" /></a>
+                    <Link href="/blog" style={{ color: "var(--brand-blue)", fontWeight: 600 }} className="hidden md:inline-flex items-center gap-2">View all articles <ArrowRight className="w-5 h-5" /></Link>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -41,7 +42,7 @@ export default function BlogInsights() {
                         <article key={b.title} style={{ backgroundColor: "var(--background)", border: "1px solid var(--border-color)", borderRadius: 16, padding: 24, transition: "all 0.3s", transform: "translateY(0)", boxShadow: "0 4px 6px rgba(0,0,0,0.05)" }} className="hover:shadow-lg hover:-translate-y-1">
                             <h3 style={{ fontWeight: 800, marginBottom: 8 }}>{b.title}</h3>
                             <p style={{ color: "var(--secondary-text)", marginBottom: 16 }}>{b.description}</p>
-                            <a href={b.href} style={{ color: "var(--brand-blue)", fontWeight: 600 }}>Read article <ArrowRight className="w-4 h-4 inline-block ml-1" /></a>
+                            <Link href={b.href} style={{ color: "var(--brand-blue)", fontWeight: 600 }}>Read article <ArrowRight className="w-4 h-4 inline-block ml-1" /></Link>
                         </article>
                     ))}
                 </div>

@@ -77,6 +77,7 @@ export default function ContactInfo() {
                                     key={index}
                                     href="#"
                                     className={`w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 ${social.color} transition-all hover:scale-110 hover:shadow-md`}
+                                    aria-label={`Visit our social profile`}
                                 >
                                     <Icon className="w-6 h-6" />
                                 </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { Award, ArrowRight } from 'lucide-react';
 
 export default function CaseStudies() {
@@ -47,7 +48,7 @@ export default function CaseStudies() {
                             Real projects, <span style={{ background: "linear-gradient(90deg, var(--brand-yellow), var(--brand-orange))", WebkitBackgroundClip: "text", color: "transparent" }}>measurable outcomes</span>
                         </h2>
                     </div>
-                    <a href="/case-studies" style={{ color: "var(--brand-blue)", fontWeight: 600 }} className="hidden md:inline-flex items-center gap-2">View all cases <ArrowRight className="w-5 h-5" /></a>
+                    <Link href="/case-studies" style={{ color: "var(--brand-blue)", fontWeight: 600 }} className="hidden md:inline-flex items-center gap-2">View all cases <ArrowRight className="w-5 h-5" /></Link>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -67,7 +68,7 @@ export default function CaseStudies() {
                             <h3 style={{ fontWeight: 800, marginBottom: 8 }}>{cs.title}</h3>
                             <p style={{ color: "var(--secondary-text)", marginBottom: 16 }}>{cs.description}</p>
 
-                            <a href={`/case-studies/${cs.company.toLowerCase().replace(/\s+/g, "-")}`} style={{ color: "var(--brand-blue)", fontWeight: 600 }}>Read case study <ArrowRight className="w-4 h-4 inline-block ml-1" /></a>
+                            <Link href={`/case-studies/${cs.company.toLowerCase().replace(/\s+/g, "-")}`} style={{ color: "var(--brand-blue)", fontWeight: 600 }}>Read case study <ArrowRight className="w-4 h-4 inline-block ml-1" /></Link>
                         </article>
                     ))}
                 </div>

@@ -1,11 +1,26 @@
+import dynamic from 'next/dynamic';
 import Hero from '@/components/services/web-design-development/Hero';
 import ServiceOverview from '@/components/services/web-design-development/ServiceOverview';
-import WhyChooseUs from '@/components/services/web-design-development/WhyChooseUs';
-import WebsiteTypes from '@/components/services/web-design-development/WebsiteTypes';
-import Process from '@/components/services/web-design-development/Process';
-import Technologies from '@/components/services/web-design-development/Technologies';
-import SEOPerformance from '@/components/services/web-design-development/SEOPerformance';
-import CTA from '@/components/services/web-design-development/CTA';
+
+// Lazy load below-the-fold components for better performance
+const WhyChooseUs = dynamic(() => import('@/components/services/web-design-development/WhyChooseUs'), {
+    loading: () => <div className="py-20" />,
+});
+const WebsiteTypes = dynamic(() => import('@/components/services/web-design-development/WebsiteTypes'), {
+    loading: () => <div className="py-20" />,
+});
+const Process = dynamic(() => import('@/components/services/web-design-development/Process'), {
+    loading: () => <div className="py-20" />,
+});
+const Technologies = dynamic(() => import('@/components/services/web-design-development/Technologies'), {
+    loading: () => <div className="py-20" />,
+});
+const SEOPerformance = dynamic(() => import('@/components/services/web-design-development/SEOPerformance'), {
+    loading: () => <div className="py-20" />,
+});
+const CTA = dynamic(() => import('@/components/services/web-design-development/CTA'), {
+    loading: () => <div className="py-20" />,
+});
 
 export const metadata = {
     title: 'Web Design & Development Services | Custom Website Development Company',
@@ -29,7 +44,7 @@ export const metadata = {
 
 export default function WebDesignDevelopmentPage() {
     return (
-        <div className="bg-white dark:bg-black">
+        <main className="bg-white dark:bg-black">
             <Hero />
             <ServiceOverview />
             <WhyChooseUs />
@@ -38,6 +53,6 @@ export default function WebDesignDevelopmentPage() {
             <Technologies />
             <SEOPerformance />
             <CTA />
-        </div>
+        </main>
     );
 }

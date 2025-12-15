@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 const TermsOfService: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -321,9 +322,9 @@ const TermsOfService: React.FC = () => {
                         <a href="mailto:contact@cinuteinfomedia.com" className="px-4 py-2 rounded-lg font-semibold transition" style={{ background: "var(--brand-blue)", color: "white" }}>
                             Email Support
                         </a>
-                        <a href="/contact" className="px-4 py-2 rounded-lg border font-semibold transition" style={{ borderColor: "var(--border-color)", color: "var(--foreground)", background: "var(--card-bg)" }}>
+                        <Link href="/contact" className="px-4 py-2 rounded-lg border font-semibold transition" style={{ borderColor: "var(--border-color)", color: "var(--foreground)", background: "var(--card-bg)" }}>
                             Contact Sales
-                        </a>
+                        </Link>
                     </div>
                 </div>
 

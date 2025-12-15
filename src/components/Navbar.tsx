@@ -135,6 +135,9 @@ export default function Navbar() {
                   onMouseLeave={(e) => {
                     if (!isServicesOpen) e.currentTarget.style.backgroundColor = "transparent";
                   }}
+                  aria-expanded={isServicesOpen}
+                  aria-haspopup="true"
+                  aria-label="Services Menu"
                 >
                   <span>Services</span>
                   <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
@@ -246,7 +249,7 @@ export default function Navbar() {
               {isDark ? <Sun className="w-5 h-5" style={{ color: "var(--brand-yellow)" }} /> : <Moon className="w-5 h-5" style={{ color: "var(--brand-blue)" }} />}
             </button>
 
-            <button onClick={toggleMobileMenu} className="p-2 rounded-lg transition-colors" style={{ color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
+            <button onClick={toggleMobileMenu} className="p-2 rounded-lg transition-colors" style={{ color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")} aria-label="Toggle mobile menu" aria-expanded={isMobileMenuOpen}>
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>

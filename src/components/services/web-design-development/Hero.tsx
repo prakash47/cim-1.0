@@ -1,20 +1,11 @@
 "use client";
 
-import { Sparkles, ArrowRight, Home, ChevronRight } from "lucide-react";
+import { Sparkles, ArrowRight, Home, ChevronRight, Rocket, Zap, Smartphone, TrendingUp, ShieldCheck, Code } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaRocket, FaChartLine, FaMobile, FaCode } from "react-icons/fa";
-import { MdSpeed, MdSecurity } from "react-icons/md";
 
 
 export default function Hero() {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
-
     return (
         <section
             className="relative overflow-hidden transition-colors duration-300"
@@ -47,9 +38,9 @@ export default function Hero() {
             <div className="mx-auto px-6 md:px-12 xl:px-20 py-12 relative">
                 {/* Breadcrumbs */}
                 <nav
-                    className={`flex items-center gap-2 text-sm mb-5 justify-center lg:justify-start transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                        }`}
+                    className="flex items-center gap-2 text-sm mb-5 justify-center lg:justify-start animate-fadeIn"
                     aria-label="Breadcrumb"
+                    style={{ animationDelay: "0.1s", animationFillMode: "both" }}
                 >
                     <Link
                         href="/"
@@ -84,8 +75,8 @@ export default function Hero() {
 
                     {/* LEFT CONTENT */}
                     <div
-                        className={`text-center lg:text-left transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                            }`}
+                        className="text-center lg:text-left animate-fadeIn"
+                        style={{ animationDelay: "0.2s", animationFillMode: "both" }}
                     >
                         {/* Badge */}
                         <div
@@ -137,7 +128,7 @@ export default function Hero() {
                                     backgroundColor: "color-mix(in srgb, var(--brand-blue) 8%, transparent)",
                                 }}
                             >
-                                <FaRocket className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
+                                <Rocket className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
                                 <span className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>
                                     Fast Launch
                                 </span>
@@ -147,7 +138,7 @@ export default function Hero() {
                                     backgroundColor: "color-mix(in srgb, var(--brand-blue) 8%, transparent)",
                                 }}
                             >
-                                <MdSpeed className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
+                                <Zap className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
                                 <span className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>
                                     Lightning Fast
                                 </span>
@@ -157,7 +148,7 @@ export default function Hero() {
                                     backgroundColor: "color-mix(in srgb, var(--brand-blue) 8%, transparent)",
                                 }}
                             >
-                                <FaMobile className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
+                                <Smartphone className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
                                 <span className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>
                                     Mobile First
                                 </span>
@@ -167,7 +158,7 @@ export default function Hero() {
                                     backgroundColor: "color-mix(in srgb, var(--brand-blue) 8%, transparent)",
                                 }}
                             >
-                                <FaChartLine className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
+                                <TrendingUp className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
                                 <span className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>
                                     SEO Ready
                                 </span>
@@ -177,7 +168,7 @@ export default function Hero() {
                                     backgroundColor: "color-mix(in srgb, var(--brand-blue) 8%, transparent)",
                                 }}
                             >
-                                <MdSecurity className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
+                                <ShieldCheck className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
                                 <span className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>
                                     Secure
                                 </span>
@@ -187,7 +178,7 @@ export default function Hero() {
                                     backgroundColor: "color-mix(in srgb, var(--brand-blue) 8%, transparent)",
                                 }}
                             >
-                                <FaCode className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
+                                <Code className="w-5 h-5 flex-shrink-0" style={{ color: "var(--brand-blue)" }} />
                                 <span className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>
                                     Clean Code
                                 </span>
@@ -273,8 +264,8 @@ export default function Hero() {
 
                     {/* RIGHT VISUAL ELEMENT */}
                     <div
-                        className={`relative flex flex-col items-center gap-12 justify-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                            }`}
+                        className="relative flex flex-col items-center gap-12 justify-center animate-fadeIn"
+                        style={{ animationDelay: "0.3s", animationFillMode: "both" }}
                     >
                         <div
                             className="absolute inset-0 rounded-3xl blur-2xl"
@@ -306,9 +297,13 @@ export default function Hero() {
                             <Image
                                 src="/images/web-development-illustration.png"
                                 alt="Web Design & Development"
-                                width={500}
-                                height={500}
+                                width={638}
+                                height={565}
+                                priority
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 638px"
                                 className="w-full h-auto rounded-3xl"
+                                placeholder="blur"
+                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDAwUBAAAAAAAAAAAAAQIDAAQRBRIhBhMiMUFR/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAYEQEBAQEBAAAAAAAAAAAAAAABAgADEf/aAAwDAQACEQMRAD8AzTR9I1C5sY57izt7eKVQ8Ud1KImkU8g7cEgH5nHNWP6Y/EfxSlFNmSuf/9k="
                             />
                         </div>
                         {/* Additional Info Section */}
@@ -320,9 +315,9 @@ export default function Hero() {
                                 backdropFilter: "blur(10px)",
                             }}
                         >
-                            <h3 className="text-xl font-bold mb-3" style={{ color: "var(--foreground)" }}>
+                            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--foreground)" }}>
                                 Why Choose Us?
-                            </h3>
+                            </h2>
                             <p className="text-sm mb-4" style={{ color: "var(--secondary-text)" }}>
                                 We combine cutting-edge technology with proven methodologies to deliver exceptional web solutions tailored to your business needs.
                             </p>

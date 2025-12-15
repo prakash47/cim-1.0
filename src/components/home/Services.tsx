@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Zap, Globe, Palette, Search, Target, Share2, Bot, Workflow, Code, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function Services() {
@@ -109,10 +110,10 @@ export default function Services() {
                                 </ul>
 
                                 <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 12, borderTop: "1px solid var(--border-color)" }}>
-                                    <a href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`} style={{ color: "var(--brand-blue)", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 8 }}>
+                                    <Link href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`} style={{ color: "var(--brand-blue)", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 8 }}>
                                         Learn more <ArrowRight className="w-4 h-4" />
-                                    </a>
-                                    <a href="/contact" style={{ color: "var(--secondary-text)" }}>Get quote</a>
+                                    </Link>
+                                    <Link href="/contact" style={{ color: "var(--secondary-text)" }}>Get quote</Link>
                                 </div>
                             </div>
                         </article>

@@ -40,7 +40,7 @@ export default function Hero() {
                 />
             </div>
 
-            <div className="mx-auto px-6 md:px-12 xl:px-20 py-6 relative">
+            <div className="mx-auto px-6 md:px-12 xl:px-20 py-12 relative">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                     {/* LEFT CONTENT */}
@@ -140,7 +140,7 @@ export default function Hero() {
 
                     {/* RIGHT LOGO SECTION */}
                     <div
-                        className={`pt-10 relative flex items-center justify-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                        className={`relative flex items-center justify-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                             }`}
                     >
                         <div

@@ -102,7 +102,7 @@ export default function ServiceOverview() {
 
                 {/* Key Benefits */}
                 <div className="mt-16 p-8 rounded-2xl border" style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--border-color)" }}>
-                    <h3 className="text-2xl font-bold mb-6">Why Choose Our Mobile App Development Services?</h3>
+                    <h3 className="text-2xl font-bold mb-6">What Makes Our Mobile App Development Services Stand Out?</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex gap-4">
                             <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--brand-purple), var(--brand-yellow))" }}>

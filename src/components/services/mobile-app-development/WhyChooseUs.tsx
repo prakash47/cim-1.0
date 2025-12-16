@@ -1,6 +1,9 @@
 "use client";
 
 import { Zap, Lock, TrendingUp, Palette, Smartphone, Award } from "lucide-react";
+import { CheckCircle2, XCircle, ShieldCheck, Rocket, Gauge, Wrench, Layers, Building2 } from "lucide-react";
+import Image from "next/image";
+
 
 export default function WhyChooseUs() {
     const reasons = [
@@ -108,33 +111,140 @@ export default function WhyChooseUs() {
                 </div>
 
                 {/* Comparison Section */}
-                <div className="mt-20 p-8 rounded-2xl border" style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--border-color)" }}>
-                    <h3 className="text-2xl font-bold mb-8 text-center" style={{ color: "var(--foreground)" }}>Our Competitive Advantages</h3>
+                <div
+                    className="mt-20 p-10 rounded-3xl border"
+                    style={{
+                        backgroundColor: "var(--card-bg)",
+                        borderColor: "var(--border-color)",
+                    }}
+                >
+                    {/* Heading */}
+                    <h3
+                        className="text-2xl md:text-3xl font-bold mb-10 text-center"
+                        style={{ color: "var(--foreground)" }}
+                    >
+                        Our Competitive Advantages
+                    </h3>
+
                     <div className="overflow-x-auto">
-                        <table className="w-full">
+                        <table className="w-full border-separate border-spacing-y-3">
+                            {/* Table Head */}
                             <thead>
-                                <tr style={{ borderBottomColor: "var(--border-color)", color: "var(--foreground)" }} className="border-b">
-                                    <th className="text-left py-4 px-4 font-semibold">Feature</th>
-                                    <th className="text-center py-4 px-4 font-semibold">CIM</th>
-                                    <th className="text-center py-4 px-4 font-semibold">Others</th>
+                                <tr>
+                                    <th className="text-left px-6 py-4 text-lg font-semibold" style={{ color: "var(--secondary-text)" }}>
+                                        Feature
+                                    </th>
+
+                                    {/* CIM Header */}
+                                    <th className="text-center px-6 py-4">
+                                        <div className="flex flex-col items-center gap-1">
+                                            <Image src="/images/CIM_Brand_Logo.png" alt="CIM Logo" width={50} height={50} />
+                                        </div>
+                                        <span className="font-semibold" style={{ color: "var(--foreground)" }}>
+                                            CIM
+                                        </span>
+                                    </th>
+
+                                    {/* Others Header */}
+                                    <th className="text-center px-6 py-4">
+                                        <div className="flex flex-col items-center gap-1">
+                                            <div
+                                                className="w-15 h-15 rounded-full flex items-center justify-center"
+                                                style={{
+                                                    backgroundColor: "var(--border-color)",
+                                                }}
+                                            >
+                                                <Building2 className="w-8 h-8" style={{ color: "var(--secondary-text)" }} />
+                                            </div>
+                                            <span className="font-semibold" style={{ color: "var(--foreground)" }}>
+                                                Others
+                                            </span>
+                                        </div>
+                                    </th>
                                 </tr>
                             </thead>
+
+                            {/* Table Body */}
                             <tbody>
                                 {[
-                                    { feature: "Custom Development", cim: true, others: false },
-                                    { feature: "Post-Launch Support", cim: true, others: false },
-                                    { feature: "App Store Optimization", cim: true, others: false },
-                                    { feature: "Security Audit", cim: true, others: false },
-                                    { feature: "Performance Testing", cim: true, others: true },
-                                    { feature: "Agile Methodology", cim: true, others: true },
+                                    { label: "Custom Development", icon: Layers, cim: true, others: false },
+                                    { label: "Post-Launch Support", icon: Wrench, cim: true, others: false },
+                                    { label: "App Store Optimization", icon: Rocket, cim: true, others: false },
+                                    { label: "Security Audit", icon: ShieldCheck, cim: true, others: false },
+                                    { label: "Performance Testing", icon: Gauge, cim: true, others: true },
+                                    { label: "Agile Methodology", icon: Layers, cim: true, others: true },
                                 ].map((row, index) => (
-                                    <tr key={index} style={{ borderBottomColor: "var(--border-color)", color: "var(--secondary-text)" }} className="border-b hover:bg-opacity-50 transition-colors" onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "color-mix(in srgb, var(--brand-purple) 5%, transparent)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
-                                        <td className="py-4 px-4 font-medium">{row.feature}</td>
-                                        <td className="text-center py-4 px-4">
-                                            <span style={{ color: "var(--brand-purple)" }} className="text-lg font-bold">✓</span>
+                                    <tr
+                                        key={index}
+                                        className="transition-all"
+                                        onMouseEnter={(e) =>
+                                        (e.currentTarget.style.backgroundColor =
+                                            "color-mix(in srgb, var(--brand-purple) 6%, transparent)")
+                                        }
+                                        onMouseLeave={(e) =>
+                                            (e.currentTarget.style.backgroundColor = "transparent")
+                                        }
+                                    >
+                                        {/* Feature */}
+                                        <td className="px-6 py-5">
+                                            <div className="flex items-center gap-3">
+                                                <div
+                                                    className="w-9 h-9 rounded-xl flex items-center justify-center"
+                                                    style={{
+                                                        backgroundColor:
+                                                            "color-mix(in srgb, var(--brand-purple) 12%, transparent)",
+                                                    }}
+                                                >
+                                                    <row.icon
+                                                        className="w-5 h-5"
+                                                        style={{ color: "var(--brand-purple)" }}
+                                                    />
+                                                </div>
+                                                <span className="font-medium" style={{ color: "var(--foreground)" }}>
+                                                    {row.label}
+                                                </span>
+                                            </div>
                                         </td>
-                                        <td className="text-center py-4 px-4">
-                                            {row.others ? <span style={{ color: "var(--brand-purple)" }} className="text-lg font-bold">✓</span> : <span style={{ color: "var(--secondary-text)" }}>—</span>}
+
+                                        {/* CIM Cell */}
+                                        <td className="text-center px-6 py-5">
+                                            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold"
+                                                style={{
+                                                    backgroundColor:
+                                                        "color-mix(in srgb, var(--brand-purple) 15%, transparent)",
+                                                    color: "var(--brand-purple)",
+                                                }}
+                                            >
+                                                <CheckCircle2 className="w-4 h-4" />
+                                                Included
+                                            </span>
+                                        </td>
+
+                                        {/* Others Cell */}
+                                        <td className="text-center px-6 py-5">
+                                            {row.others ? (
+                                                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold"
+                                                    style={{
+                                                        backgroundColor:
+                                                            "color-mix(in srgb, var(--border-color) 40%, transparent)",
+                                                        color: "var(--secondary-text)",
+                                                    }}
+                                                >
+                                                    <CheckCircle2 className="w-4 h-4" />
+                                                    Limited
+                                                </span>
+                                            ) : (
+                                                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold"
+                                                    style={{
+                                                        backgroundColor:
+                                                            "color-mix(in srgb, var(--border-color) 20%, transparent)",
+                                                        color: "var(--secondary-text)",
+                                                    }}
+                                                >
+                                                    <XCircle className="w-4 h-4" />
+                                                    Not Included
+                                                </span>
+                                            )}
                                         </td>
                                     </tr>
                                 ))}
@@ -142,6 +252,7 @@ export default function WhyChooseUs() {
                         </table>
                     </div>
                 </div>
+
             </div>
         </section>
     );

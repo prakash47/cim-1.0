@@ -285,7 +285,7 @@ export default function Hero() {
                             }}
                         >
                             <Image
-                                src="/images/web-development-illustration.png"
+                                src="/images/services-images/web-development-illustration.png"
                                 alt="Web Design & Development"
                                 width={638}
                                 height={565}

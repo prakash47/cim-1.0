@@ -173,6 +173,7 @@ export default function Navbar() {
                                 e.currentTarget.style.backgroundColor = "transparent";
                                 e.currentTarget.style.borderColor = "transparent";
                               }}
+                              onClick={() => setIsServicesOpen(false)}
                             >
                               <div className="flex items-start space-x-3">
                                 <div className={`flex-shrink-0 w-12 h-12 rounded-lg ${service.color} p-2.5 group-hover:scale-110 transition-transform shadow-lg`}>
@@ -203,7 +204,11 @@ export default function Navbar() {
                               Let's discuss your project and find the perfect solution
                             </p>
                           </div>
-                          <Link href="/contact" className="px-6 py-2.5 bg-gradient-to-r from-[#008ac1] to-[#00b5ca] hover:from-[#008ac1] hover:to-[#008ac1] text-white rounded-full text-sm font-medium transition-all shadow-lg hover:shadow-xl hover:scale-105">
+                          <Link
+                            href="/contact"
+                            className="px-6 py-2.5 bg-gradient-to-r from-[#008ac1] to-[#00b5ca] hover:from-[#008ac1] hover:to-[#008ac1] text-white rounded-full text-sm font-medium transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                            onClick={() => setIsServicesOpen(false)}
+                          >
                             Schedule Consultation
                           </Link>
                         </div>

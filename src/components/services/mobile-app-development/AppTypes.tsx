@@ -1,11 +1,17 @@
 "use client";
 
 import { IoLogoApple, IoLogoAndroid } from "react-icons/io5";
-import { TbDeviceMobileCode } from "react-icons/tb";
+import {
+    Clock,
+    IndianRupee
+} from "lucide-react";
+
 import { MdWeb } from "react-icons/md";
 import { HiOfficeBuilding } from "react-icons/hi";
 import { FaRocket, FaPaintBrush } from "react-icons/fa";
 import { BiGitMerge } from "react-icons/bi";
+import { SiHuawei } from "react-icons/si";
+
 
 export default function AppTypes() {
     const appTypes = [
@@ -43,6 +49,18 @@ export default function AppTypes() {
             description: "Large-scale, mission-critical applications for enterprises. We handle complex requirements, security, and integration with existing systems.",
             features: ["Enterprise Security", "Legacy System Integration", "Scalability", "Compliance & Governance"],
             gradient: "from-[#4facfe] to-[#00f2fe]"
+        },
+        {
+            icon: SiHuawei,
+            title: "HarmonyOS App Development",
+            description: "Custom HarmonyOS applications built for Huawei’s ecosystem. We develop seamless, distributed apps that run smoothly across phones, tablets, wearables, and IoT devices.",
+            features: [
+                "HarmonyOS SDK",
+                "Distributed App Architecture",
+                "Huawei AppGallery Deployment",
+                "IoT & Multi-Device Support"
+            ],
+            gradient: "from-[#ff4b4b] to-[#d6001c]"
         },
         {
             icon: FaRocket,
@@ -136,37 +154,156 @@ export default function AppTypes() {
                 </div>
 
                 {/* Detailed Comparison */}
-                <div className="p-8 rounded-2xl border" style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--border-color)" }}>
-                    <h3 className="text-2xl font-bold mb-8">Choosing the Right Approach</h3>
+                <div
+                    className="p-10 rounded-3xl border"
+                    style={{
+                        backgroundColor: "var(--card-bg)",
+                        borderColor: "var(--border-color)",
+                    }}
+                >
+                    {/* Heading */}
+                    <h3
+                        className="text-2xl md:text-3xl font-bold mb-10"
+                        style={{ color: "var(--foreground)" }}
+                    >
+                        Choosing the Right Mobile App Development Approach
+                    </h3>
+
                     <div className="overflow-x-auto">
-                        <table className="w-full text-sm">
+                        <table className="w-full border-separate border-spacing-y-3 text-sm">
+                            {/* Table Head */}
                             <thead>
-                                <tr style={{ borderBottomColor: "var(--border-color)" }} className="border-b">
-                                    <th className="text-left py-3 px-4 font-semibold">Approach</th>
-                                    <th className="text-left py-3 px-4 font-semibold">Best For</th>
-                                    <th className="text-left py-3 px-4 font-semibold">Development Time</th>
-                                    <th className="text-left py-3 px-4 font-semibold">Cost</th>
+                                <tr>
+                                    <th className="text-left px-6 py-4 font-semibold" style={{ color: "var(--secondary-text)" }}>
+                                        Approach
+                                    </th>
+                                    <th className="text-left px-6 py-4 font-semibold" style={{ color: "var(--secondary-text)" }}>
+                                        Best For
+                                    </th>
+                                    <th className="text-left px-6 py-4 font-semibold" style={{ color: "var(--secondary-text)" }}>
+                                        Development Time
+                                    </th>
+                                    <th className="text-left px-6 py-4 font-semibold" style={{ color: "var(--secondary-text)" }}>
+                                        Cost
+                                    </th>
                                 </tr>
                             </thead>
+
+                            {/* Table Body */}
                             <tbody>
                                 {[
-                                    { approach: "Native (iOS)", best: "Premium iOS experience", time: "Moderate", cost: "Higher" },
-                                    { approach: "Native (Android)", best: "Android optimization", time: "Moderate", cost: "Higher" },
-                                    { approach: "Cross-Platform", best: "Multi-platform reach", time: "Fast", cost: "Moderate" },
-                                    { approach: "Hybrid", best: "Rapid prototyping", time: "Very Fast", cost: "Lower" },
-                                    { approach: "Enterprise", best: "Complex requirements", time: "Variable", cost: "Higher" },
+                                    {
+                                        approach: "Native (iOS)",
+                                        icon: IoLogoApple,
+                                        gradient: "from-[#000000] to-[#434343]",
+                                        best: "Premium iOS experience",
+                                        time: "Moderate",
+                                        cost: "Higher",
+                                    },
+                                    {
+                                        approach: "Native (Android)",
+                                        icon: IoLogoAndroid,
+                                        gradient: "from-[#3ddc84] to-[#07c160]",
+                                        best: "Android optimization",
+                                        time: "Moderate",
+                                        cost: "Higher",
+                                    },
+                                    {
+                                        approach: "Cross-Platform",
+                                        icon: BiGitMerge,
+                                        gradient: "from-[#667eea] to-[#764ba2]",
+                                        best: "Multi-platform reach",
+                                        time: "Fast",
+                                        cost: "Moderate",
+                                    },
+                                    {
+                                        approach: "Hybrid",
+                                        icon: MdWeb,
+                                        gradient: "from-[#f093fb] to-[#f5576c]",
+                                        best: "Rapid prototyping",
+                                        time: "Very Fast",
+                                        cost: "Lower",
+                                    },
+                                    {
+                                        approach: "Enterprise",
+                                        icon: HiOfficeBuilding,
+                                        gradient: "from-[#4facfe] to-[#00f2fe]",
+                                        best: "Complex & large-scale systems",
+                                        time: "Variable",
+                                        cost: "Higher",
+                                    },
                                 ].map((row, index) => (
-                                    <tr key={index} style={{ borderBottomColor: "var(--border-color)" }} className="border-b hover:bg-opacity-50 transition-colors" onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "color-mix(in srgb, var(--brand-purple) 5%, transparent)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
-                                        <td className="py-3 px-4 font-medium">{row.approach}</td>
-                                        <td className="py-3 px-4">{row.best}</td>
-                                        <td className="py-3 px-4">{row.time}</td>
-                                        <td className="py-3 px-4">{row.cost}</td>
+                                    <tr
+                                        key={index}
+                                        className="transition-all"
+                                        onMouseEnter={(e) =>
+                                        (e.currentTarget.style.backgroundColor =
+                                            "color-mix(in srgb, var(--brand-purple) 6%, transparent)")
+                                        }
+                                        onMouseLeave={(e) =>
+                                            (e.currentTarget.style.backgroundColor = "transparent")
+                                        }
+                                    >
+                                        {/* Approach */}
+                                        <td className="px-6 py-5">
+                                            <div className="flex items-center gap-3">
+                                                <div
+                                                    className={`w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br ${row.gradient}`}
+                                                >
+                                                    <row.icon
+                                                        className="w-6 h-6 text-white"
+                                                    />
+                                                </div>
+                                                <span
+                                                    className="font-semibold"
+                                                    style={{ color: "var(--foreground)" }}
+                                                >
+                                                    {row.approach}
+                                                </span>
+                                            </div>
+                                        </td>
+
+                                        {/* Best For */}
+                                        <td className="px-6 py-5" style={{ color: "var(--secondary-text)" }}>
+                                            {row.best}
+                                        </td>
+
+                                        {/* Time */}
+                                        <td className="px-6 py-5">
+                                            <span
+                                                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold"
+                                                style={{
+                                                    backgroundColor:
+                                                        "color-mix(in srgb, var(--brand-purple) 10%, transparent)",
+                                                    color: "var(--brand-purple)",
+                                                }}
+                                            >
+                                                <Clock className="w-3.5 h-3.5" />
+                                                {row.time}
+                                            </span>
+                                        </td>
+
+                                        {/* Cost */}
+                                        <td className="px-6 py-5">
+                                            <span
+                                                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold"
+                                                style={{
+                                                    backgroundColor:
+                                                        "color-mix(in srgb, var(--border-color) 35%, transparent)",
+                                                    color: "var(--foreground)",
+                                                }}
+                                            >
+                                                <IndianRupee className="w-3.5 h-3.5" />
+                                                {row.cost}
+                                            </span>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
+
             </div>
         </section>
     );

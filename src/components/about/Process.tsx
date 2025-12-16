@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 
 export default function Process() {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
 
     const process = [
         {
@@ -123,7 +123,6 @@ export default function Process() {
                     <div className="space-y-12">
                         {process.map((step, idx) => {
                             const Icon = step.icon;
-                            const isHovered = hoveredIndex === idx;
                             const isLeft = idx % 2 === 0;
 
                             // build gradient string for inline usages (safe small inline usage)
@@ -136,21 +135,16 @@ export default function Process() {
                                         <div className="hidden lg:flex justify-end">
                                             {isLeft && (
                                                 <article
-                                                    onMouseEnter={() => setHoveredIndex(idx)}
-                                                    onMouseLeave={() => setHoveredIndex(null)}
-                                                    aria-labelledby={`process-${idx}`}
-                                                    className={`max-w-md w-full relative rounded-3xl p-8 border-2 transition-all duration-500 cursor-pointer bg-[var(--card-bg)] ${isHovered ? "shadow-2xl border-transparent -translate-y-2 scale-105" : "shadow-lg border-[var(--border-color)] hover:shadow-xl"
-                                                        }`}
+                                                    className="max-w-md w-full relative rounded-3xl p-8 border-2 transition-all duration-500 cursor-pointer bg-[var(--card-bg)] shadow-lg border-[var(--border-color)] hover:shadow-2xl hover:border-transparent hover:-translate-y-1 hover:scale-[1.02] group"
                                                 >
                                                     {/* subtle hover backdrop */}
                                                     <div
-                                                        className={`absolute inset-0 rounded-3xl -z-10 transition-opacity duration-500 ${isHovered ? "opacity-5" : "opacity-0"}`}
+                                                        className="absolute inset-0 rounded-3xl -z-10 transition-opacity duration-500 opacity-0 group-hover:opacity-5"
                                                         style={{ background: grad }}
                                                     />
 
                                                     <div
-                                                        className={`absolute -top-4 -right-4 w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-xl z-10 transition-transform duration-500 ${isHovered ? "scale-125 rotate-12" : "scale-100 rotate-0"
-                                                            }`}
+                                                        className="absolute -top-4 -right-4 w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-xl z-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
                                                         style={{ background: grad }}
                                                     >
                                                         {idx + 1}
@@ -158,8 +152,7 @@ export default function Process() {
 
                                                     <div className="relative mb-6">
                                                         <div
-                                                            className={`w-20 h-20 rounded-2xl p-4 shadow-lg transition-transform duration-500 ${isHovered ? "scale-110 -rotate-6" : "scale-100 rotate-0"
-                                                                }`}
+                                                            className="w-20 h-20 rounded-2xl p-4 shadow-lg transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3"
                                                             style={{ background: grad }}
                                                         >
                                                             <Icon className="w-full h-full text-white" />
@@ -168,15 +161,14 @@ export default function Process() {
 
                                                     <h3
                                                         id={`process-${idx}`}
-                                                        className={`text-2xl font-bold mb-4 text-[var(--foreground)] ${isHovered ? "text-[var(--brand-blue)] dark:text-[var(--brand-teal)]" : ""
-                                                            }`}
+                                                        className="text-2xl font-bold mb-4 text-[var(--foreground)] transition-colors duration-300 group-hover:text-[var(--brand-blue)] dark:group-hover:text-[var(--brand-teal)]"
                                                     >
                                                         {step.title}
                                                     </h3>
 
                                                     <p className="text-[var(--secondary-text)] leading-relaxed mb-4">{step.description}</p>
 
-                                                    <div className={`space-y-2 overflow-hidden transition-all duration-500 ${isHovered ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
+                                                    <div className="space-y-2 overflow-hidden">
                                                         <div className="pt-4 border-t border-[var(--border-color)]">
                                                             {step.details.map((d, i) => (
                                                                 <div key={i} className="flex items-center gap-2 mb-2 text-sm text-[var(--secondary-text)]">
@@ -191,8 +183,7 @@ export default function Process() {
                                                     </div>
 
                                                     <div
-                                                        className={`flex items-center gap-2 text-sm font-semibold mt-4 transition-all duration-300 ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
-                                                            }`}
+                                                        className="flex items-center gap-2 text-sm font-semibold mt-4 transition-all duration-300 opacity-100 translate-x-0"
                                                         style={{ background: grad, WebkitBackgroundClip: "text", color: "transparent" }}
                                                     >
                                                         Learn more
@@ -206,7 +197,7 @@ export default function Process() {
                                         <div className="flex justify-center items-start">
                                             <div className="relative mt-1">
                                                 <div
-                                                    className={`w-5 h-5 rounded-full shadow-lg transition-transform duration-300 ${isHovered ? "scale-125" : "scale-100"}`}
+                                                    className="w-5 h-5 rounded-full shadow-lg transition-transform duration-300 group-hover:scale-125"
                                                     style={{ background: `linear-gradient(135deg, ${step.colorFrom}, ${step.colorTo})` }}
                                                 />
                                                 <div
@@ -222,20 +213,15 @@ export default function Process() {
                                         <div className="hidden lg:flex justify-start">
                                             {!isLeft && (
                                                 <article
-                                                    onMouseEnter={() => setHoveredIndex(idx)}
-                                                    onMouseLeave={() => setHoveredIndex(null)}
-                                                    aria-labelledby={`process-${idx}`}
-                                                    className={`max-w-md w-full relative rounded-3xl p-8 border-2 transition-all duration-500 cursor-pointer bg-[var(--card-bg)] ${isHovered ? "shadow-2xl border-transparent -translate-y-2 scale-105" : "shadow-lg border-[var(--border-color)] hover:shadow-xl"
-                                                        }`}
+                                                    className="max-w-md w-full relative rounded-3xl p-8 border-2 transition-all duration-500 cursor-pointer bg-[var(--card-bg)] shadow-lg border-[var(--border-color)] hover:shadow-2xl hover:border-transparent hover:-translate-y-1 hover:scale-[1.02] group"
                                                 >
                                                     <div
-                                                        className={`absolute inset-0 rounded-3xl -z-10 transition-opacity duration-500 ${isHovered ? "opacity-5" : "opacity-0"}`}
+                                                        className="absolute inset-0 rounded-3xl -z-10 transition-opacity duration-500 opacity-0 group-hover:opacity-5"
                                                         style={{ background: grad }}
                                                     />
 
                                                     <div
-                                                        className={`absolute -top-4 -left-4 w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-xl z-10 transition-transform duration-500 ${isHovered ? "scale-125 rotate-12" : "scale-100 rotate-0"
-                                                            }`}
+                                                        className="absolute -top-4 -left-4 w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-xl z-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
                                                         style={{ background: grad }}
                                                     >
                                                         {idx + 1}
@@ -243,8 +229,7 @@ export default function Process() {
 
                                                     <div className="relative mb-6">
                                                         <div
-                                                            className={`w-20 h-20 rounded-2xl p-4 shadow-lg transition-transform duration-500 ${isHovered ? "scale-110 -rotate-6" : "scale-100 rotate-0"
-                                                                }`}
+                                                            className="w-20 h-20 rounded-2xl p-4 shadow-lg transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3"
                                                             style={{ background: grad }}
                                                         >
                                                             <Icon className="w-full h-full text-white" />
@@ -253,15 +238,14 @@ export default function Process() {
 
                                                     <h3
                                                         id={`process-${idx}`}
-                                                        className={`text-2xl font-bold mb-4 text-[var(--foreground)] ${isHovered ? "text-[var(--brand-blue)] dark:text-[var(--brand-teal)]" : ""
-                                                            }`}
+                                                        className="text-2xl font-bold mb-4 text-[var(--foreground)] transition-colors duration-300 group-hover:text-[var(--brand-blue)] dark:group-hover:text-[var(--brand-teal)]"
                                                     >
                                                         {step.title}
                                                     </h3>
 
                                                     <p className="text-[var(--secondary-text)] leading-relaxed mb-4">{step.description}</p>
 
-                                                    <div className={`space-y-2 overflow-hidden transition-all duration-500 ${isHovered ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
+                                                    <div className="space-y-2 overflow-hidden">
                                                         <div className="pt-4 border-t border-[var(--border-color)]">
                                                             {step.details.map((d, i) => (
                                                                 <div key={i} className="flex items-center gap-2 mb-2 text-sm text-[var(--secondary-text)]">
@@ -276,8 +260,7 @@ export default function Process() {
                                                     </div>
 
                                                     <div
-                                                        className={`flex items-center gap-2 text-sm font-semibold mt-4 transition-all duration-300 ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
-                                                            }`}
+                                                        className="flex items-center gap-2 text-sm font-semibold mt-4 transition-all duration-300 opacity-100 translate-x-0"
                                                         style={{ background: grad, WebkitBackgroundClip: "text", color: "transparent" }}
                                                     >
                                                         Learn more
@@ -289,43 +272,36 @@ export default function Process() {
                                     </div>
 
                                     {/* Mobile stacked card */}
-                                    <div className="lg:hidden mt-6">
+                                    <div className="lg:hidden mt-6 relative bg-[var(--card-bg)] rounded-3xl p-6 border-2 transition-all duration-500 shadow-lg border-[var(--border-color)] active:scale-[1.02]">
                                         <div
-                                            onMouseEnter={() => setHoveredIndex(idx)}
-                                            onMouseLeave={() => setHoveredIndex(null)}
-                                            className={`relative bg-[var(--card-bg)] rounded-3xl p-6 border-2 transition-all duration-500 ${hoveredIndex === idx ? "shadow-2xl border-transparent" : "shadow-lg border-[var(--border-color)]"
-                                                }`}
+                                            className="absolute -top-4 right-4 w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold z-10"
+                                            style={{ background: `linear-gradient(135deg, ${step.colorFrom}, ${step.colorTo})` }}
                                         >
+                                            {idx + 1}
+                                        </div>
+
+                                        <div className="flex items-start gap-4">
                                             <div
-                                                className="absolute -top-4 right-4 w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold z-10"
+                                                className="w-14 h-14 rounded-xl p-3 shadow"
                                                 style={{ background: `linear-gradient(135deg, ${step.colorFrom}, ${step.colorTo})` }}
                                             >
-                                                {idx + 1}
+                                                <Icon className="w-full h-full text-white" />
                                             </div>
 
-                                            <div className="flex items-start gap-4">
-                                                <div
-                                                    className="w-14 h-14 rounded-xl p-3 shadow"
-                                                    style={{ background: `linear-gradient(135deg, ${step.colorFrom}, ${step.colorTo})` }}
-                                                >
-                                                    <Icon className="w-full h-full text-white" />
-                                                </div>
+                                            <div>
+                                                <h4 className="text-lg font-semibold text-[var(--foreground)]">{step.title}</h4>
+                                                <p className="text-sm text-[var(--secondary-text)]">{step.description}</p>
 
-                                                <div>
-                                                    <h4 className="text-lg font-semibold text-[var(--foreground)]">{step.title}</h4>
-                                                    <p className="text-sm text-[var(--secondary-text)]">{step.description}</p>
-
-                                                    <div className={`mt-3 space-y-1 ${hoveredIndex === idx ? "opacity-100" : "opacity-80"}`}>
-                                                        {step.details.slice(0, 2).map((d, i) => (
-                                                            <div key={i} className="text-xs text-[var(--secondary-text)] flex items-center gap-2">
-                                                                <CheckCircle2
-                                                                    className="w-3 h-3 text-transparent bg-clip-text"
-                                                                    style={{ background: `linear-gradient(135deg, ${step.colorFrom}, ${step.colorTo})` }}
-                                                                />
-                                                                <span>{d}</span>
-                                                            </div>
-                                                        ))}
-                                                    </div>
+                                                <div className="mt-3 space-y-1 opacity-100">
+                                                    {step.details.slice(0, 2).map((d, i) => (
+                                                        <div key={i} className="text-xs text-[var(--secondary-text)] flex items-center gap-2">
+                                                            <CheckCircle2
+                                                                className="w-3 h-3 text-transparent bg-clip-text"
+                                                                style={{ background: `linear-gradient(135deg, ${step.colorFrom}, ${step.colorTo})` }}
+                                                            />
+                                                            <span>{d}</span>
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             </div>
                                         </div>
@@ -363,6 +339,6 @@ export default function Process() {
           to { opacity: 1; transform: translateX(0); }
         }
       `}</style>
-        </section>
+        </section >
     );
 }

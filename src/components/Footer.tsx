@@ -194,7 +194,7 @@ export default function Footer() {
                                 </li>
                                 <li className="flex items-start text-sm" style={styles.text}>
                                     <MapPin className="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" style={{ color: "var(--brand-purple)" }} />
-                                    <span>Office #3, Ashley Tower, Beverly Park, Mira Road (E), Mumbai, 401107</span>
+                                    <span>Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107</span>
                                 </li>
                             </ul>
 

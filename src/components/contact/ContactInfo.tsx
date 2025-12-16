@@ -20,7 +20,7 @@ export default function ContactInfo() {
         {
             icon: MapPin,
             title: 'Visit Us',
-            content: 'Office #3, Ashley Tower, Beverly Park, Mira Road (E), Mumbai, 401107',
+            content: 'Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107',
             link: '#',
             color: 'from-[#00efd6] to-[#00b5ca]'
         },

@@ -5,7 +5,7 @@ import { MapPin } from "lucide-react";
 
 export default function Location() {
     const address = encodeURIComponent(
-        "Cinute InfoMedia, Office #3, Ashley Tower, Beverly Park, Mira Road (E), Mumbai, 401107"
+        "Cinute InfoMedia, Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107"
     );
     const embedUrl = `https://maps.google.com/maps?q=${address}&t=m&z=15&output=embed`;
 
@@ -74,7 +74,7 @@ export default function Location() {
                                         Visit Our Office
                                     </h3>
                                     <p className="text-sm mt-1" style={{ color: "var(--secondary-text)" }}>
-                                        Office #3, Ashley Tower, Beverly Park, Mira Road (E), Mumbai, 401107
+                                        Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107
                                     </p>
                                     <a
                                         href="https://maps.app.goo.gl/ak5SjeUnrDyWLXFNA"

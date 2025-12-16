@@ -228,7 +228,7 @@ const PrivacyPolicy: React.FC = () => {
                 {
                     subtitle: "",
                     text:
-                        "Privacy Team — Cinute InfoMedia\nEmail: contact@cinuteinfomedia.com\nPhone: +91-9004988859 / +91-7700995410\nAddress: Office #3, Ashley Tower, Beverly Park, Mira Road (E), Mumbai, 401107, Maharashtra, India.",
+                        "Privacy Team — Cinute InfoMedia\nEmail: contact@cinuteinfomedia.com\nPhone: +91-9004988859 / +91-7700995410\nAddress: Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107, India.",
                 },
             ],
         },
@@ -360,13 +360,13 @@ const PrivacyPolicy: React.FC = () => {
                                 Cinute InfoMedia
                             </p>
                             <p className="text-sm mb-1" style={{ color: "var(--secondary-text)" }}>
-                                Office #3, Ashley Tower, Beverly Park
+                                Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park
                             </p>
                             <p className="text-sm mb-1" style={{ color: "var(--secondary-text)" }}>
-                                Mira Road (E), Mumbai, 401107
+                                Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107
                             </p>
                             <p className="text-sm" style={{ color: "var(--secondary-text)" }}>
-                                Maharashtra, India
+                                India
                             </p>
                         </div>
 

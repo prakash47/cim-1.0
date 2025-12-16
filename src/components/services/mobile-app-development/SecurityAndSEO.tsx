@@ -80,8 +80,8 @@ export default function SecurityAndSEO() {
             <div className="mx-auto px-6 md:px-12 xl:px-20 relative">
                 {/* Section Header */}
                 <div className="text-center mb-16 animate-fadeIn">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4" style={{ color: "var(--brand-purple)" }}>
-                        Security, Performance & App Store Optimization
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4" style={{ color: "var(--foreground)" }}>
+                        <span style={{ color: "var(--brand-purple)" }}>Security, Performance</span> & App Store Optimization
                     </h2>
                     <p className="text-lg md:text-xl max-w-3xl mx-auto" style={{ color: "var(--secondary-text)" }}>
                         We prioritize security at every level and optimize your app for maximum visibility and performance in app stores.

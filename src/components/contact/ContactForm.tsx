@@ -267,7 +267,7 @@ export default function ContactForm() {
                                         rel="noreferrer"
                                         style={{ color: "var(--foreground)", fontWeight: 600, display: "block" }}
                                     >
-                                        Office #3, Ashley Tower, Beverly Park, Mira Road (E), Mumbai, 401107
+                                        Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107
                                     </a>
                                 </div>
                             </div>

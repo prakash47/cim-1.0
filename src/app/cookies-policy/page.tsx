@@ -227,7 +227,7 @@ const CookiesPolicy: React.FC = () => {
                 {
                     subtitle: "",
                     text:
-                        "Privacy Team — Cinute InfoMedia\nEmail: contact@cinuteinfomedia.com\nPhone: +91-9004988859 / +91-7700995410\nAddress: Office #3, Ashley Tower, Beverly Park, Mira Road (E), Mumbai, 401107, Maharashtra, India.",
+                        "Privacy Team — Cinute InfoMedia\nEmail: contact@cinuteinfomedia.com\nPhone: +91-9004988859 / +91-7700995410\nAddress: Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107, India.",
                 },
             ],
         },

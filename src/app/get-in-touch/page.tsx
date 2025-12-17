@@ -143,14 +143,14 @@ export default function OutreachLandingPage() {
                 <header className="text-center mb-12 sm:mb-16 animate-fade-in-up">
                     <h1
                         className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight"
-                        style={{
+
+                    >
+                        <span style={{
                             background: gradient,
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
                             backgroundClip: "text",
-                        }}
-                    >
-                        Let's Build Something That Grows 🚀
+                        }}>Let's Build Something That Grows</span> 🚀
                     </h1>
                     <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-8" style={{ color: "var(--secondary-text)" }}>
                         Quick onboarding. No spam. Just a few questions to understand your goals and share the right plan.

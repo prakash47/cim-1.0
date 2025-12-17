@@ -111,7 +111,7 @@ export default function OutreachLandingPage() {
         setShowSuccess(true);
 
         setTimeout(() => {
-            window.location.href = "https://www.cinuteinfomedia.com";
+            window.location.href = "https://cim-10.vercel.app/";
         }, 2000);
     };
 
@@ -523,7 +523,7 @@ export default function OutreachLandingPage() {
 
                             <div className="space-y-4 max-w-md mx-auto mb-8">
                                 <a
-                                    href="https://www.cinuteinfomedia.com"
+                                    href="https://cim-10.vercel.app/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block p-4 border-2 rounded-xl font-semibold transition-all duration-300 hover:-translate-y-1"

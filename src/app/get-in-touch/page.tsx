@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface FormData {
     name: string;
@@ -39,7 +40,7 @@ export default function OutreachLandingPage() {
     const [countdown, setCountdown] = useState<number>(8);
 
     const services = [
-        { value: "web-dev", label: "Web/App Development", icon: "💻" },
+        { value: "web-dev", label: "Web/App Development", icon: "", image: "/images/Web-dev-icon.png" },
         { value: "social-media", label: "Social Media Management", icon: "📱" },
         { value: "paid-ads", label: "Paid Ads (Google/Meta/LinkedIn)", icon: "🎯" },
         { value: "seo", label: "SEO Optimization", icon: "🔍" },
@@ -97,12 +98,9 @@ export default function OutreachLandingPage() {
     };
 
     const isValidURL = (url: string): boolean => {
-        try {
-            new URL(url);
-            return true;
-        } catch {
-            return false;
-        }
+        // Allow http/https, www., or just domain.com format
+        const pattern = /^(https?:\/\/)?(?:www\.([\w-]+\.)+[\w-]{2,}|(?!www\.)([\w-]+\.)+[\w-]{2,})(\/.*)?$/i;
+        return pattern.test(url);
     };
 
     const toggleService = (value: string) => {
@@ -170,23 +168,25 @@ export default function OutreachLandingPage() {
             </div>
 
             <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Hero Section */}
-                <header className="text-center mb-12 sm:mb-16 animate-fade-in-up">
-                    <h1
-                        className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight"
+                {/* Hero Section - Only visible on step 1 */}
+                {currentStep === 1 && (
+                    <header className="text-center mb-12 sm:mb-16 animate-fade-in-up">
+                        <h1
+                            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight"
 
-                    >
-                        <span style={{
-                            background: gradient,
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                            backgroundClip: "text",
-                        }}>Let's Build Something That Grows</span> 🚀
-                    </h1>
-                    <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-8" style={{ color: "var(--secondary-text)" }}>
-                        Quick onboarding. No spam. Just a few questions to understand your goals and share the right plan.
-                    </p>
-                </header>
+                        >
+                            <span style={{
+                                background: gradient,
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                backgroundClip: "text",
+                            }}>Let's Build Something That Grows</span> 🚀
+                        </h1>
+                        <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-8" style={{ color: "var(--secondary-text)" }}>
+                            Quick onboarding. No spam. Just a few questions to understand your goals and share the right plan.
+                        </p>
+                    </header>
+                )}
 
                 {/* Form Card */}
                 <div
@@ -362,7 +362,7 @@ export default function OutreachLandingPage() {
                                 <button
                                     onClick={() => handleNext(2)}
                                     className="w-full font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg"
-                                    style={{ background: BRAND.accent, color: "#1a1a1a" }}
+                                    style={{ background: BRAND.primary, color: "#ffffffff" }}
                                 >
                                     Next ➡️
                                 </button>
@@ -404,7 +404,21 @@ export default function OutreachLandingPage() {
                                                         ✓
                                                     </div>
                                                 )}
-                                                <div className="text-2xl sm:text-3xl mb-2 text-center">{service.icon}</div>
+                                                <div className="text-2xl sm:text-3xl mb-2 text-center flex justify-center items-center h-10 w-full">
+                                                    {/* @ts-ignore - checking for image property dynamically */}
+                                                    {service.image ? (
+                                                        <div className="relative w-8 h-8 sm:w-10 sm:h-10">
+                                                            <Image
+                                                                src={service.image}
+                                                                alt={service.label}
+                                                                fill
+                                                                className="object-contain"
+                                                            />
+                                                        </div>
+                                                    ) : (
+                                                        service.icon
+                                                    )}
+                                                </div>
                                                 <div className="text-[10px] sm:text-sm font-semibold text-center break-words leading-tight" style={{ color: "var(--foreground)" }}>
                                                     {service.label}
                                                 </div>
@@ -535,7 +549,7 @@ export default function OutreachLandingPage() {
                                 <button
                                     onClick={() => handleNext(3)}
                                     className="flex-1 font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg"
-                                    style={{ background: BRAND.accent, color: "#1a1a1a" }}
+                                    style={{ background: BRAND.primary, color: "#ffffffff" }}
                                 >
                                     🚀 Let's Build This
                                 </button>
@@ -558,7 +572,7 @@ export default function OutreachLandingPage() {
                             </p>
                             <div className="mb-8 p-4 rounded-xl" style={{ background: `linear-gradient(90deg, ${BRAND.primary}15, ${BRAND.secondary}15)` }}>
                                 <p className="text-sm" style={{ color: "var(--secondary-text)" }}>
-                                    Redirecting automatically in <span className="font-bold text-lg" style={{ color: BRAND.accent }}>{countdown}</span> seconds...
+                                    Redirecting automatically in <span className="font-bold text-lg" style={{ color: BRAND.primary }}>{countdown}</span> seconds...
                                 </p>
                             </div>
 
@@ -591,16 +605,9 @@ export default function OutreachLandingPage() {
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button
-                                    onClick={() => setCurrentStep(2)}
-                                    className="sm:w-auto px-6 py-3 font-semibold rounded-xl transition-all"
-                                    style={{ background: "var(--hover-bg)", color: "var(--foreground)" }}
-                                >
-                                    ← Back
-                                </button>
-                                <button
                                     onClick={handleSubmit}
                                     className="flex-1 font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg"
-                                    style={{ background: BRAND.accent, color: "#1a1a1a" }}
+                                    style={{ background: BRAND.primary, color: "#ffffffff" }}
                                 >
                                     ✅ Done
                                 </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface FormData {
     name: string;
@@ -34,8 +34,9 @@ export default function OutreachLandingPage() {
         budget: "",
         timeline: "",
     });
-    const [errors, setErrors] = useState<Partial<FormData>>({});
+    const [errors, setErrors] = useState<Record<string, string>>({});
     const [showSuccess, setShowSuccess] = useState<boolean>(false);
+    const [countdown, setCountdown] = useState<number>(8);
 
     const services = [
         { value: "web-dev", label: "Web/App Development", icon: "💻" },
@@ -46,7 +47,7 @@ export default function OutreachLandingPage() {
         { value: "automation", label: "Automated Workflows", icon: "⚡" },
         { value: "virtual-assistance", label: "Virtual Assistance", icon: "👤" },
         { value: "data-processing", label: "Data Processing", icon: "📊" },
-        { value: "not-sure", label: "Not Sure – need guidance", icon: "🤔" },
+        { value: "not-sure", label: "Not Sure, need guidance", icon: "🤔" },
     ];
 
     const budgetOptions = [
@@ -65,7 +66,7 @@ export default function OutreachLandingPage() {
     ];
 
     const validateStep1 = (): boolean => {
-        const newErrors: Partial<FormData> = {};
+        const newErrors: Record<string, string> = {};
 
         if (!formData.name.trim()) newErrors.name = "Please enter your name";
         if (!formData.website.trim()) newErrors.website = "Please enter your website";
@@ -73,6 +74,19 @@ export default function OutreachLandingPage() {
         if (!formData.email.trim()) newErrors.email = "Please enter your email";
         else if (!isValidEmail(formData.email)) newErrors.email = "Please enter a valid email";
         if (!formData.phone.trim()) newErrors.phone = "Please enter your phone number";
+        if (!formData.referral) newErrors.referral = "Please select how you found us";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const validateStep2 = (): boolean => {
+        const newErrors: Record<string, string> = {};
+
+        if (formData.services.length === 0) newErrors.services = "Please select at least one service";
+        if (!formData.goal.trim()) newErrors.goal = "Please describe your goal or challenge";
+        if (!formData.budget) newErrors.budget = "Please select a budget range";
+        if (!formData.timeline) newErrors.timeline = "Please select a timeline";
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -102,9 +116,26 @@ export default function OutreachLandingPage() {
 
     const handleNext = (step: number) => {
         if (step === 2 && !validateStep1()) return;
+        if (step === 3 && !validateStep2()) return;
         setCurrentStep(step);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
+
+    // Auto-redirect countdown when on step 3
+    useEffect(() => {
+        if (currentStep !== 3) return;
+
+        if (countdown <= 0) {
+            handleSubmit();
+            return;
+        }
+
+        const timer = setTimeout(() => {
+            setCountdown(prev => prev - 1);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, [currentStep, countdown]);
 
     const handleSubmit = () => {
         console.log("Form Data:", formData);
@@ -219,10 +250,10 @@ export default function OutreachLandingPage() {
                             <div className="space-y-6">
                                 <div>
                                     <label className="block text-sm font-semibold mb-2" style={{ color: "var(--foreground)" }}>
-                                        We love knowing who we're speaking to! ✨
+                                        We love knowing who we're speaking to! <span style={{ color: BRAND.accent }}>*</span>
                                     </label>
-                                    <div className="flex gap-8">
-                                        <div className="flex flex-col w-1/2"><input
+                                    <div className="flex flex-col md:flex-row gap-8">
+                                        <div className="flex flex-col w-full md:w-1/2"><input
                                             type="text"
                                             placeholder="What's your name?*"
                                             value={formData.name}
@@ -236,7 +267,7 @@ export default function OutreachLandingPage() {
                                         />
                                             {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                                         </div>
-                                        <div className="flex flex-col w-1/2"><input
+                                        <div className="flex flex-col w-full md:w-1/2"><input
                                             type="text"
                                             placeholder="Link to website or socials?*"
                                             value={formData.website}
@@ -257,14 +288,14 @@ export default function OutreachLandingPage() {
 
                                 <div>
                                     <label className="block text-sm font-semibold mb-2" style={{ color: "var(--foreground)" }}>
-                                        How can we reach you? 📧
+                                        How can we reach you? <span style={{ color: BRAND.accent }}>*</span>
                                     </label>
                                     <p className="text-xs mb-2" style={{ color: "var(--secondary-text)" }}>
                                         Only for sharing your strategy plan. No spam ever.
                                     </p>
 
-                                    <div className="flex gap-8">
-                                        <div className="flex flex-col w-1/2">
+                                    <div className="flex flex-col md:flex-row gap-8">
+                                        <div className="flex flex-col w-full md:w-1/2">
                                             <input
                                                 type="email"
                                                 placeholder="Email*"
@@ -279,7 +310,7 @@ export default function OutreachLandingPage() {
                                             />
                                             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                                         </div>
-                                        <div className="flex flex-col w-1/2">
+                                        <div className="flex flex-col w-full md:w-1/2">
                                             <input
                                                 type="tel"
                                                 placeholder="Phone / WhatsApp*"
@@ -299,7 +330,7 @@ export default function OutreachLandingPage() {
 
 
                                     <label className="block text-sm font-semibold mt-5 py-2" style={{ color: "var(--foreground)" }}>
-                                        How did you find us? 🔍
+                                        How did you find us? <span style={{ color: BRAND.accent }}>*</span>
                                     </label>
                                     <select
                                         value={formData.referral}
@@ -307,7 +338,7 @@ export default function OutreachLandingPage() {
                                         className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-all cursor-pointer focus:ring-4"
                                         style={{
                                             background: "var(--hover-bg)",
-                                            borderColor: "var(--border-color)",
+                                            borderColor: errors.referral ? "#ef4444" : "var(--border-color)",
                                             color: "var(--foreground)",
                                         }}
                                     >
@@ -323,6 +354,7 @@ export default function OutreachLandingPage() {
                                         <option value="ai">AI</option>
                                         <option value="other">Other Mediums</option>
                                     </select>
+                                    {errors.referral && <p className="text-red-500 text-sm mt-1">{errors.referral}</p>}
                                 </div>
                             </div>
 
@@ -344,7 +376,7 @@ export default function OutreachLandingPage() {
                             <div className="space-y-8">
                                 <div>
                                     <label className="block text-lg font-semibold mb-2" style={{ color: "var(--foreground)" }}>
-                                        What are you looking to grow or fix right now? 🎯
+                                        What are you looking to grow or fix right now? <span style={{ color: BRAND.accent }}>*</span>
                                     </label>
                                     <p className="text-sm mb-4" style={{ color: "var(--secondary-text)" }}>
                                         Pick whichever feels closest. We'll figure the rest out together.
@@ -372,18 +404,19 @@ export default function OutreachLandingPage() {
                                                         ✓
                                                     </div>
                                                 )}
-                                                <div className="text-3xl mb-2 text-center">{service.icon}</div>
-                                                <div className="text-xs sm:text-sm font-semibold text-center" style={{ color: "var(--foreground)" }}>
+                                                <div className="text-2xl sm:text-3xl mb-2 text-center">{service.icon}</div>
+                                                <div className="text-[10px] sm:text-sm font-semibold text-center break-words leading-tight" style={{ color: "var(--foreground)" }}>
                                                     {service.label}
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
+                                    {errors.services && <p className="text-red-500 text-sm mt-2">{errors.services}</p>}
                                 </div>
 
                                 <div>
                                     <label className="block text-lg font-semibold mb-2" style={{ color: "var(--foreground)" }}>
-                                        What's your main goal or challenge? 💭
+                                        What's your main goal or challenge? <span style={{ color: BRAND.accent }}>*</span>
                                     </label>
                                     <p className="text-sm mb-4" style={{ color: "var(--secondary-text)" }}>
                                         This gives us context before suggesting anything.
@@ -395,15 +428,16 @@ export default function OutreachLandingPage() {
                                         className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-all min-h-[120px] resize-y focus:ring-4"
                                         style={{
                                             background: "var(--hover-bg)",
-                                            borderColor: "var(--border-color)",
+                                            borderColor: errors.goal ? "#ef4444" : "var(--border-color)",
                                             color: "var(--foreground)",
                                         }}
                                     />
+                                    {errors.goal && <p className="text-red-500 text-sm mt-1">{errors.goal}</p>}
                                 </div>
 
                                 <div>
                                     <label className="block text-lg font-semibold mb-2" style={{ color: "var(--foreground)" }}>
-                                        Your monthly budget range? 💰
+                                        Your monthly budget range? <span style={{ color: BRAND.accent }}>*</span>
                                     </label>
                                     <p className="text-sm mb-4" style={{ color: "var(--secondary-text)" }}>
                                         This will help us match the right plan.
@@ -445,11 +479,12 @@ export default function OutreachLandingPage() {
                                             </label>
                                         ))}
                                     </div>
+                                    {errors.budget && <p className="text-red-500 text-sm mt-2">{errors.budget}</p>}
                                 </div>
 
                                 <div>
                                     <label className="block text-lg font-semibold mb-2" style={{ color: "var(--foreground)" }}>
-                                        How soon do you want to get started? ⏰
+                                        How soon do you want to get started? <span style={{ color: BRAND.accent }}>*</span>
                                     </label>
                                     <div className="space-y-3">
                                         {timelineOptions.map((option) => (
@@ -485,6 +520,7 @@ export default function OutreachLandingPage() {
                                             </label>
                                         ))}
                                     </div>
+                                    {errors.timeline && <p className="text-red-500 text-sm mt-2">{errors.timeline}</p>}
                                 </div>
                             </div>
 
@@ -517,9 +553,14 @@ export default function OutreachLandingPage() {
                             <p className="text-lg mb-2" style={{ color: "var(--secondary-text)" }}>
                                 Someone from our team will reach out with a tailored plan for your goals.
                             </p>
-                            <p className="text-lg font-semibold mb-8" style={{ color: BRAND.primary }}>
+                            <p className="text-lg font-semibold mb-4" style={{ color: BRAND.primary }}>
                                 No spam. No pressure. Just real solutions.
                             </p>
+                            <div className="mb-8 p-4 rounded-xl" style={{ background: `linear-gradient(90deg, ${BRAND.primary}15, ${BRAND.secondary}15)` }}>
+                                <p className="text-sm" style={{ color: "var(--secondary-text)" }}>
+                                    Redirecting automatically in <span className="font-bold text-lg" style={{ color: BRAND.accent }}>{countdown}</span> seconds...
+                                </p>
+                            </div>
 
                             <div className="space-y-4 max-w-md mx-auto mb-8">
                                 <a
@@ -570,23 +611,25 @@ export default function OutreachLandingPage() {
             </div>
 
             {/* Success Overlay */}
-            {showSuccess && (
-                <div
-                    className="fixed inset-0 flex items-center justify-center z-50 animate-fade-in"
-                    style={{ background: "color-mix(in srgb, var(--background) 95%, transparent)" }}
-                >
-                    <div className="text-center">
-                        <div
-                            className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 animate-scale-in"
-                            style={{ background: gradient }}
-                        >
-                            <div className="text-white text-5xl">✓</div>
+            {
+                showSuccess && (
+                    <div
+                        className="fixed inset-0 flex items-center justify-center z-50 animate-fade-in"
+                        style={{ background: "color-mix(in srgb, var(--background) 95%, transparent)" }}
+                    >
+                        <div className="text-center">
+                            <div
+                                className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 animate-scale-in"
+                                style={{ background: gradient }}
+                            >
+                                <div className="text-white text-5xl">✓</div>
+                            </div>
+                            <h2 className="text-3xl font-bold mb-2" style={{ color: BRAND.primary }}>Success!</h2>
+                            <p style={{ color: "var(--secondary-text)" }}>Redirecting you to our homepage...</p>
                         </div>
-                        <h2 className="text-3xl font-bold mb-2" style={{ color: BRAND.primary }}>Success!</h2>
-                        <p style={{ color: "var(--secondary-text)" }}>Redirecting you to our homepage...</p>
                     </div>
-                </div>
-            )}
+                )
+            }
 
             <style jsx>{`
                 @keyframes blob {
@@ -664,6 +707,6 @@ export default function OutreachLandingPage() {
                     animation: scale-in 0.5s ease-out;
                 }
             `}</style>
-        </main>
+        </main >
     );
 }

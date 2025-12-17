@@ -97,12 +97,12 @@ export default function Hero() {
                                 className="bg-clip-text text-transparent"
                                 style={{
                                     background:
-                                        "var(--brand-blue)",
+                                        "var(--foreground)",
                                     WebkitBackgroundClip: "text",
                                     color: "transparent",
                                 }}
                             >
-                                Social Media Marketing Services That Convert
+                                <span style={{ color: "var(--brand-teal)", fontWeight: 800 }}>Social Media Marketing Services</span> That Convert
                             </span>
                         </h1>
 
@@ -117,7 +117,7 @@ export default function Hero() {
 
                         {/* Tagline */}
                         <p className="text-xl md:text-2xl mb-8" style={{ color: "var(--secondary-text)" }}>
-                            Transform your social presence into a powerful engine for <span style={{ color: "var(--brand-teal)", fontWeight: 700 }}>brand awareness</span>, <span style={{ color: "var(--brand-cyan)", fontWeight: 700 }}>lead generation</span>, and measurable ROI.
+                            Transform your social presence into a powerful engine for <span style={{ color: "var(--brand-teal)", fontWeight: 700 }}>brand awareness</span>, <span style={{ color: "var(--brand-teal)", fontWeight: 700 }}>lead generation</span>, and measurable ROI.
                         </p>
 
                         {/* Feature Highlights */}
@@ -193,7 +193,7 @@ export default function Hero() {
                             }}
                         >
                             <div className="text-center">
-                                <div className="text-3xl md:text-4xl font-bold mb-1"
+                                <div className="text-xl md:text-4xl font-bold mb-1"
                                     style={{
                                         background: "linear-gradient(90deg, var(--brand-teal), var(--brand-cyan))",
                                         WebkitBackgroundClip: "text",
@@ -207,7 +207,7 @@ export default function Hero() {
                                 </div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl md:text-4xl font-bold mb-1"
+                                <div className="text-xl md:text-4xl font-bold mb-1"
                                     style={{
                                         background: "linear-gradient(90deg, var(--brand-teal), var(--brand-cyan))",
                                         WebkitBackgroundClip: "text",
@@ -221,7 +221,7 @@ export default function Hero() {
                                 </div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl md:text-4xl font-bold mb-1"
+                                <div className="text-xl md:text-4xl font-bold mb-1"
                                     style={{
                                         background: "linear-gradient(90deg, var(--brand-teal), var(--brand-cyan))",
                                         WebkitBackgroundClip: "text",
@@ -251,7 +251,7 @@ export default function Hero() {
 
                     {/* RIGHT VISUAL ELEMENT */}
                     <div
-                        className="relative flex flex-col items-center gap-12 justify-center animate-fadeIn -mt-10"
+                        className="relative flex flex-col items-center gap-12 justify-center animate-fadeIn mt-0 lg:-mt-15"
                         style={{ animationDelay: "0.3s", animationFillMode: "both" }}
                     >
                         <div
@@ -272,7 +272,7 @@ export default function Hero() {
                             }}
                         >
                             <Image
-                                src="/images/services-images/social-media-marketing-illustration.webp"
+                                src="/images/services-images/social-media-marketing-illustration.svg"
                                 alt="Social Media Marketing"
                                 width={638}
                                 height={565}

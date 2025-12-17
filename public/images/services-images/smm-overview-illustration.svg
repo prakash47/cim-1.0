@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+  
+  <!-- Central Dashboard/Screen -->
+  <g transform="translate(100, 60)">
+    <!-- Main Dashboard Panel -->
+    <rect x="0" y="0" width="300" height="380" rx="20" fill="#16213e" stroke="#00b5ca" stroke-width="2"/>
+    
+    <!-- Header Bar -->
+    <rect x="0" y="0" width="300" height="50" rx="20" fill="#00b5ca"/>
+    <rect x="0" y="30" width="300" height="20" fill="#00b5ca"/>
+    <text x="150" y="32" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">Social Media Dashboard</text>
+    
+    <!-- Profile Section -->
+    <g transform="translate(20, 65)">
+      <circle cx="30" cy="30" r="25" fill="#00b5ca"/>
+      <circle cx="30" cy="24" r="10" fill="white"/>
+      <ellipse cx="30" cy="42" rx="14" ry="10" fill="white"/>
+      <text x="70" y="25" fill="white" font-size="13" font-weight="bold" font-family="Arial, sans-serif">Your Brand</text>
+      <text x="70" y="42" fill="#a0aec0" font-size="10" font-family="Arial, sans-serif">@yourbrand • Verified ✓</text>
+    </g>
+    
+    <!-- Stats Row -->
+    <g transform="translate(20, 130)">
+      <!-- Followers -->
+      <g>
+        <rect x="0" y="0" width="80" height="55" rx="8" fill="#1a1a2e"/>
+        <text x="40" y="25" fill="#00b5ca" font-size="16" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">125K</text>
+        <text x="40" y="42" fill="#718096" font-size="9" text-anchor="middle" font-family="Arial, sans-serif">Followers</text>
+      </g>
+      <!-- Engagement -->
+      <g transform="translate(90, 0)">
+        <rect x="0" y="0" width="80" height="55" rx="8" fill="#1a1a2e"/>
+        <text x="40" y="25" fill="#48bb78" font-size="16" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">8.5%</text>
+        <text x="40" y="42" fill="#718096" font-size="9" text-anchor="middle" font-family="Arial, sans-serif">Engagement</text>
+      </g>
+      <!-- Reach -->
+      <g transform="translate(180, 0)">
+        <rect x="0" y="0" width="80" height="55" rx="8" fill="#1a1a2e"/>
+        <text x="40" y="25" fill="#9f7aea" font-size="16" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">2.4M</text>
+        <text x="40" y="42" fill="#718096" font-size="9" text-anchor="middle" font-family="Arial, sans-serif">Reach</text>
+      </g>
+    </g>
+    
+    <!-- Growth Chart -->
+    <g transform="translate(20, 200)">
+      <rect x="0" y="0" width="260" height="100" rx="10" fill="#1a1a2e"/>
+      <text x="10" y="20" fill="white" font-size="11" font-weight="bold" font-family="Arial, sans-serif">Audience Growth</text>
+      <text x="210" y="20" fill="#48bb78" font-size="10" font-weight="bold" font-family="Arial, sans-serif">↑ +24%</text>
+      
+      <!-- Chart Grid Lines -->
+      <line x1="10" y1="40" x2="250" y2="40" stroke="#2d3748" stroke-width="1"/>
+      <line x1="10" y1="55" x2="250" y2="55" stroke="#2d3748" stroke-width="1"/>
+      <line x1="10" y1="70" x2="250" y2="70" stroke="#2d3748" stroke-width="1"/>
+      <line x1="10" y1="85" x2="250" y2="85" stroke="#2d3748" stroke-width="1"/>
+      
+      <!-- Growth Line -->
+      <polyline 
+        points="20,80 50,72 80,75 110,65 140,60 170,50 200,45 230,35" 
+        stroke="#00b5ca" 
+        stroke-width="3" 
+        fill="none" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+      
+      <!-- Gradient Fill Under Line -->
+      <polygon 
+        points="20,80 50,72 80,75 110,65 140,60 170,50 200,45 230,35 230,85 20,85" 
+        fill="url(#chartGradient)" 
+        opacity="0.3"/>
+      
+      <!-- Data Points -->
+      <circle cx="230" cy="35" r="5" fill="#00b5ca"/>
+      <circle cx="200" cy="45" r="3" fill="#00b5ca" opacity="0.8"/>
+      <circle cx="170" cy="50" r="3" fill="#00b5ca" opacity="0.8"/>
+    </g>
+    
+    <!-- Recent Posts Performance -->
+    <g transform="translate(20, 315)">
+      <text x="0" y="12" fill="white" font-size="11" font-weight="bold" font-family="Arial, sans-serif">Top Performing Content</text>
+      
+      <!-- Post 1 -->
+      <g transform="translate(0, 22)">
+        <rect x="0" y="0" width="125" height="35" rx="6" fill="#1a1a2e"/>
+        <rect x="5" y="5" width="25" height="25" rx="4" fill="#00b5ca" opacity="0.3"/>
+        <text x="17" y="22" fill="#00b5ca" font-size="10" text-anchor="middle" font-family="Arial, sans-serif">📷</text>
+        <text x="40" y="15" fill="white" font-size="9" font-family="Arial, sans-serif">Reel Post</text>
+        <text x="40" y="27" fill="#48bb78" font-size="8" font-family="Arial, sans-serif">♥ 12.4K  💬 892</text>
+      </g>
+      
+      <!-- Post 2 -->
+      <g transform="translate(135, 22)">
+        <rect x="0" y="0" width="125" height="35" rx="6" fill="#1a1a2e"/>
+        <rect x="5" y="5" width="25" height="25" rx="4" fill="#9f7aea" opacity="0.3"/>
+        <text x="17" y="22" fill="#9f7aea" font-size="10" text-anchor="middle" font-family="Arial, sans-serif">🎬</text>
+        <text x="40" y="15" fill="white" font-size="9" font-family="Arial, sans-serif">Video Post</text>
+        <text x="40" y="27" fill="#48bb78" font-size="8" font-family="Arial, sans-serif">♥ 8.2K  💬 456</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Floating Social Platform Icons -->
+  
+  <!-- Instagram -->
+  <g transform="translate(30, 100)">
+    <rect x="0" y="0" width="50" height="50" rx="12" fill="url(#instagramGradient)"/>
+    <rect x="12" y="12" width="26" height="26" rx="6" stroke="white" stroke-width="2" fill="none"/>
+    <circle cx="25" cy="25" r="7" stroke="white" stroke-width="2" fill="none"/>
+    <circle cx="35" cy="15" r="2" fill="white"/>
+  </g>
+  
+  <!-- Facebook -->
+  <g transform="translate(420, 120)">
+    <circle cx="25" cy="25" r="25" fill="#1877f2"/>
+    <text x="25" y="35" fill="white" font-size="28" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">f</text>
+  </g>
+  
+  <!-- Twitter/X -->
+  <g transform="translate(30, 320)">
+    <circle cx="25" cy="25" r="25" fill="#1a1a2e" stroke="#00b5ca" stroke-width="2"/>
+    <text x="25" y="33" fill="white" font-size="20" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">𝕏</text>
+  </g>
+  
+  <!-- LinkedIn -->
+  <g transform="translate(420, 300)">
+    <rect x="0" y="0" width="50" height="50" rx="8" fill="#0077b5"/>
+    <text x="25" y="36" fill="white" font-size="24" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">in</text>
+  </g>
+  
+  <!-- YouTube -->
+  <g transform="translate(420, 220)">
+    <rect x="0" y="10" width="50" height="35" rx="8" fill="#ff0000"/>
+    <polygon points="20,20 20,40 35,30" fill="white"/>
+  </g>
+  
+  <!-- Notification Badges -->
+  
+  <!-- New Followers Alert -->
+  <g transform="translate(30, 200)">
+    <rect x="0" y="0" width="60" height="60" rx="14" fill="#00b5ca"/>
+    <circle cx="30" cy="25" r="12" fill="white" opacity="0.3"/>
+    <circle cx="30" cy="22" r="6" fill="white"/>
+    <ellipse cx="30" cy="33" rx="8" ry="5" fill="white"/>
+    <text x="30" y="52" fill="white" font-size="8" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">+1.2K</text>
+  </g>
+  
+  <!-- Engagement Boost -->
+  <g transform="translate(420, 40)">
+    <rect x="0" y="0" width="70" height="55" rx="12" fill="#48bb78"/>
+    <text x="35" y="25" fill="white" font-size="18" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">↑ 45%</text>
+    <text x="35" y="42" fill="white" font-size="8" text-anchor="middle" font-family="Arial, sans-serif">This Week</text>
+  </g>
+  
+  <!-- Likes Heart -->
+  <g transform="translate(70, 30)">
+    <circle cx="25" cy="25" r="22" fill="#ff6b6b"/>
+    <path d="M25 35 C20 30, 14 24, 14 19 C14 14, 18 11, 22 11 C24 11, 25 12, 25 14 C25 12, 26 11, 28 11 C32 11, 36 14, 36 19 C36 24, 30 30, 25 35" fill="white"/>
+  </g>
+  
+  <!-- Comments -->
+  <g transform="translate(30, 400)">
+    <rect x="0" y="0" width="55" height="45" rx="10" fill="#00b5ca"/>
+    <rect x="8" y="10" width="30" height="4" rx="2" fill="white" opacity="0.8"/>
+    <rect x="8" y="18" width="25" height="4" rx="2" fill="white" opacity="0.6"/>
+    <rect x="8" y="26" width="20" height="4" rx="2" fill="white" opacity="0.4"/>
+    <text x="47" y="38" fill="white" font-size="8" font-weight="bold" font-family="Arial, sans-serif">💬</text>
+  </g>
+  
+  <!-- Share Icon -->
+  <g transform="translate(420, 380)">
+    <circle cx="30" cy="30" r="28" fill="#9f7aea"/>
+    <circle cx="38" cy="18" r="6" fill="white"/>
+    <circle cx="38" cy="42" r="6" fill="white"/>
+    <circle cx="18" cy="30" r="6" fill="white"/>
+    <line x1="24" y1="27" x2="32" y2="21" stroke="white" stroke-width="2"/>
+    <line x1="24" y1="33" x2="32" y2="39" stroke="white" stroke-width="2"/>
+  </g>
+  
+  <!-- Trending Hashtag -->
+  <g transform="translate(100, 455)">
+    <rect x="0" y="0" width="120" height="35" rx="17" fill="#ed8936"/>
+    <text x="60" y="23" fill="white" font-size="12" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">#Trending 🔥</text>
+  </g>
+  
+  <!-- Analytics Badge -->
+  <g transform="translate(280, 455)">
+    <rect x="0" y="0" width="110" height="35" rx="17" fill="#00b5ca"/>
+    <text x="55" y="23" fill="white" font-size="12" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">📊 Analytics</text>
+  </g>
+  
+  <!-- Decorative Connection Lines -->
+  <line x1="80" y1="130" x2="100" y2="150" stroke="#00b5ca" stroke-width="1" opacity="0.4" stroke-dasharray="4,4"/>
+  <line x1="400" y1="140" x2="420" y2="145" stroke="#00b5ca" stroke-width="1" opacity="0.4" stroke-dasharray="4,4"/>
+  <line x1="80" y1="350" x2="100" y2="340" stroke="#00b5ca" stroke-width="1" opacity="0.4" stroke-dasharray="4,4"/>
+  <line x1="400" y1="320" x2="420" y2="325" stroke="#00b5ca" stroke-width="1" opacity="0.4" stroke-dasharray="4,4"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b5ca;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00b5ca;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="instagramGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#feda75"/>
+      <stop offset="25%" style="stop-color:#fa7e1e"/>
+      <stop offset="50%" style="stop-color:#d62976"/>
+      <stop offset="75%" style="stop-color:#962fbf"/>
+      <stop offset="100%" style="stop-color:#4f5bd5"/>
+    </linearGradient>
+  </defs>
+</svg>

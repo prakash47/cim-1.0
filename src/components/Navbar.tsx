@@ -19,6 +19,7 @@ import {
   X,
   Moon,
   Sun,
+  Monitor,
 } from "lucide-react";
 
 const services = [
@@ -37,7 +38,10 @@ export default function Navbar() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const themeDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileThemeRef = useRef<HTMLButtonElement>(null);
 
   // next-themes
   const { theme, resolvedTheme, setTheme } = useTheme();
@@ -49,9 +53,28 @@ export default function Navbar() {
   const currentTheme = theme === "system" ? resolvedTheme : theme;
   const isDark = currentTheme === "dark";
 
-  const toggleTheme = () => {
-    setTheme(isDark ? "light" : "dark");
+  const toggleTheme = (newTheme: string) => {
+    setTheme(newTheme);
+    setIsThemeOpen(false);
+    setIsThemeOpen(false);
   };
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
+      const isOutsideDesktop = themeDropdownRef.current && !themeDropdownRef.current.contains(target);
+      const isOutsideMobile = mobileThemeRef.current && !mobileThemeRef.current.contains(target);
+
+      if (isOutsideDesktop && isOutsideMobile) {
+        setIsThemeOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -226,20 +249,68 @@ export default function Navbar() {
               </Link>
 
               {/* Theme Toggle Button */}
-              <button
-                onClick={toggleTheme}
-                className="p-2.5 rounded-lg transition-all hover:scale-110"
-                style={{ color: "var(--foreground)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-                aria-label="Toggle theme"
-              >
-                {isDark ? (
-                  <Sun className="w-5 h-5 transition-transform" style={{ color: "var(--brand-yellow)" }} />
-                ) : (
-                  <Moon className="w-5 h-5 transition-transform" style={{ color: "var(--brand-blue)" }} />
+              {/* Theme Dropdown */}
+              <div className="relative" ref={themeDropdownRef}>
+                <button
+                  onClick={() => setIsThemeOpen(!isThemeOpen)}
+                  className="p-2.5 rounded-lg transition-all hover:scale-110"
+                  style={{ color: "var(--foreground)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                  aria-label="Theme settings"
+                  aria-expanded={isThemeOpen}
+                >
+                  {theme === 'system' ? (
+                    <Monitor className="w-5 h-5 transition-transform" />
+                  ) : isDark ? (
+                    <Moon className="w-5 h-5 transition-transform" style={{ color: "var(--brand-blue)" }} />
+                  ) : (
+                    <Sun className="w-5 h-5 transition-transform" style={{ color: "var(--brand-yellow)" }} />
+                  )}
+                </button>
+
+                {isThemeOpen && (
+                  <div
+                    className="absolute top-12 right-0 w-36 rounded-xl border shadow-xl p-1 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+                    style={{
+                      backgroundColor: "var(--card-bg)",
+                      borderColor: "var(--border-color)",
+                    }}
+                  >
+                    {[
+                      { name: "Light", value: "light", icon: Sun, color: "var(--brand-yellow)" },
+                      { name: "Dark", value: "dark", icon: Moon, color: "var(--brand-blue)" },
+                      { name: "System", value: "system", icon: Monitor, color: "var(--foreground)" },
+                    ].map((mode) => {
+                      const Icon = mode.icon;
+                      const isSelected = theme === mode.value;
+                      return (
+                        <button
+                          key={mode.value}
+                          onClick={() => toggleTheme(mode.value)}
+                          className={`w-full flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${isSelected ? "bg-accent text-accent-foreground" : "hover:bg-muted"
+                            }`}
+                          style={{
+                            backgroundColor: isSelected ? "var(--hover-bg)" : "transparent",
+                            color: "var(--foreground)"
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!isSelected) e.currentTarget.style.backgroundColor = "var(--hover-bg)";
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!isSelected) e.currentTarget.style.backgroundColor = "transparent";
+                          }}
+                        >
+                          <Icon className="w-4 h-4" style={{ color: mode.color }} />
+                          <span>{mode.name}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
                 )}
-              </button>
+
+
+              </div>
 
               <Link href="/contact" className="ml-2 bg-gradient-to-r from-[#008ac1] to-[#00b5ca] hover:from-[#008ac1] hover:to-[#008ac1] text-white px-6 py-2.5 rounded-full text-md font-medium transition-all shadow-lg shadow-[#008ac1]/30 hover:shadow-xl hover:shadow-[#008ac1]/40 hover:scale-105">
                 Get Started
@@ -250,9 +321,80 @@ export default function Navbar() {
           {/* Mobile Menu Button and Theme Toggle */}
           <div className="lg:hidden flex items-center space-x-2">
             {/* Mobile Theme Toggle */}
-            <button onClick={toggleTheme} className="p-2 rounded-lg transition-colors" style={{ color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")} aria-label="Toggle theme">
-              {isDark ? <Sun className="w-5 h-5" style={{ color: "var(--brand-yellow)" }} /> : <Moon className="w-5 h-5" style={{ color: "var(--brand-blue)" }} />}
+            {/* Mobile Theme Toggle - Cycle through modes for mobile simplicity or keep dropdown? 
+                User asked for Dropdown. Let's start with a simpler cycle for mobile to save space, OR a small dropdown.
+                The request said "in the toggle theme button... add existing modes... via a dropdown".
+                Mobile might be cramped. Let's do a cycle for mobile for now or just the same dropdown logic?
+                Actually, let's keep it simple and consistent: Dropdown for mobile too, or finding a way to integrate.
+                
+                However, for mobile, it's often easier to just cycle: Light -> Dark -> System -> Light.
+                But user strictly asked for Dropdown.
+                Let's stick to the desktop change first, but wait, the code I'm editing includes the mobile section? 
+                No, this is the desktop section. 
+                
+                Ah, I see the mobile section in the file content around line 251.
+                Let's double check if I should edit the mobile section too.
+                Request: "Change the theme icons as per the selected theme."
+                "in the navbar ... toggle theme button".
+                It implies both.
+                
+                Let's try to adapt the mobile part too.
+             */}
+            <button
+              ref={mobileThemeRef}
+              onClick={() => setIsThemeOpen(!isThemeOpen)}
+              className="p-2 rounded-lg transition-colors relative"
+              style={{ color: "var(--foreground)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+              aria-label="Theme settings"
+            >
+              {theme === 'system' ? (
+                <Monitor className="w-5 h-5" />
+              ) : isDark ? (
+                <Moon className="w-5 h-5" style={{ color: "var(--brand-blue)" }} />
+              ) : (
+                <Sun className="w-5 h-5" style={{ color: "var(--brand-yellow)" }} />
+              )}
+              {/* Mobile Dropdown */}
+              {isThemeOpen && (
+                <div
+                  className="absolute top-10 right-0 w-32 rounded-xl border shadow-xl p-1 overflow-hidden z-50"
+                  style={{
+                    backgroundColor: "var(--card-bg)",
+                    borderColor: "var(--border-color)",
+                  }}
+                >
+                  {[
+                    { name: "Light", value: "light", icon: Sun, color: "var(--brand-yellow)" },
+                    { name: "Dark", value: "dark", icon: Moon, color: "var(--brand-blue)" },
+                    { name: "System", value: "system", icon: Monitor, color: "var(--foreground)" },
+                  ].map((mode) => {
+                    const Icon = mode.icon;
+                    const isSelected = theme === mode.value;
+                    return (
+                      <div
+                        key={mode.value}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleTheme(mode.value);
+                        }}
+                        className={`w-full flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${isSelected ? "bg-accent text-accent-foreground" : "hover:bg-muted"
+                          }`}
+                        style={{
+                          backgroundColor: isSelected ? "var(--hover-bg)" : "transparent",
+                          color: "var(--foreground)"
+                        }}
+                      >
+                        <Icon className="w-4 h-4" style={{ color: mode.color }} />
+                        <span>{mode.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </button>
+
 
             <button onClick={toggleMobileMenu} className="p-2 rounded-lg transition-colors" style={{ color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")} aria-label="Toggle mobile menu" aria-expanded={isMobileMenuOpen}>
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

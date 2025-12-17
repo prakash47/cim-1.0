@@ -108,20 +108,22 @@ export default function Process() {
                                     {step.number}
                                 </div>
 
-                                {/* Icon */}
-                                <div
-                                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                                    style={{
-                                        background: "linear-gradient(135deg, var(--brand-teal), var(--brand-teal))",
-                                    }}
-                                >
-                                    <Icon className="w-6 h-6 text-white" />
-                                </div>
+                                <div className="flex items-center gap-4">
+                                    {/* Icon */}
+                                    <div
+                                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                                        style={{
+                                            background: "linear-gradient(135deg, var(--brand-teal), var(--brand-teal))",
+                                        }}
+                                    >
+                                        <Icon className="w-6 h-6 text-white" />
+                                    </div>
 
-                                {/* Title */}
-                                <h3 className="text-xl font-bold mb-3" style={{ color: "var(--foreground)" }}>
-                                    {step.title}
-                                </h3>
+                                    {/* Title */}
+                                    <h3 className="text-xl font-bold mb-3" style={{ color: "var(--foreground)" }}>
+                                        {step.title}
+                                    </h3>
+                                </div>
 
                                 {/* Description */}
                                 <p style={{ color: "var(--secondary-text)", lineHeight: "1.6" }}>

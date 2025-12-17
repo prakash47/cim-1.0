@@ -1,6 +1,7 @@
 "use client";
 
-import { Zap, Eye, MessageCircle, Users, Target } from "lucide-react";
+import { Zap } from "lucide-react";
+import Image from "next/image";
 
 export default function ServiceOverview() {
     return (
@@ -79,79 +80,90 @@ export default function ServiceOverview() {
                         </div>
                     </div>
 
-                    {/* Right Visual – Social Media Metrics Grid */}
+                    {/* Right Visual – Social Media Illustration */}
                     <div className="relative hidden md:block">
                         {/* Animated Background Glow */}
                         <div
-                            className="absolute -inset-4 rounded-3xl blur-3xl animate-pulse"
+                            className="absolute -inset-8 rounded-3xl blur-3xl animate-pulse"
                             style={{
                                 background:
-                                    "linear-gradient(135deg, color-mix(in srgb, var(--brand-teal) 15%, transparent), color-mix(in srgb, var(--brand-teal) 15%, transparent))",
+                                    "linear-gradient(135deg, color-mix(in srgb, var(--brand-teal) 20%, transparent), color-mix(in srgb, var(--brand-cyan) 15%, transparent))",
                                 animationDuration: "4s",
                             }}
                         />
 
-                        {/* Metrics Grid */}
-                        <div className="relative grid grid-cols-2 gap-4">
-                            {/* Metric 1 */}
+                        {/* Illustration Card */}
+                        <div
+                            className="relative rounded-3xl p-6 border shadow-2xl overflow-hidden"
+                            style={{
+                                backgroundColor: "var(--card-bg)",
+                                borderColor: "color-mix(in srgb, var(--brand-teal) 30%, var(--border-color))",
+                            }}
+                        >
+                            {/* Decorative Corner Accent */}
                             <div
-                                className="rounded-2xl p-6 border shadow-lg transform hover:scale-105 transition-all duration-300"
+                                className="absolute top-0 right-0 w-32 h-32 rounded-bl-full opacity-20"
                                 style={{
-                                    backgroundColor: "var(--card-bg)",
-                                    borderColor: "var(--border-color)",
+                                    background: "linear-gradient(135deg, var(--brand-teal), var(--brand-cyan))",
                                 }}
-                            >
-                                <Eye className="w-8 h-8 mb-3" style={{ color: "var(--brand-teal)" }} />
-                                <p style={{ color: "var(--secondary-text)", fontSize: "0.9rem" }}>Brand Awareness</p>
-                                <p className="text-2xl font-bold mt-2" style={{ color: "var(--brand-teal)" }}>
-                                    +240%
-                                </p>
+                            />
+
+                            {/* Illustration */}
+                            <div className="relative aspect-square flex items-center justify-center">
+                                <Image
+                                    src="/images/services-images/smm-overview-illustration.svg"
+                                    alt="Social Media Marketing - Strategic engagement across platforms with likes, comments, and community building"
+                                    width={500}
+                                    height={500}
+                                    className="object-contain drop-shadow-lg"
+                                    priority
+                                />
                             </div>
 
-                            {/* Metric 2 */}
+                            {/* Bottom Accent Bar */}
                             <div
-                                className="rounded-2xl p-6 border shadow-lg transform hover:scale-105 transition-all duration-300"
+                                className="absolute bottom-0 left-0 right-0 h-1.5"
                                 style={{
-                                    backgroundColor: "var(--card-bg)",
-                                    borderColor: "var(--border-color)",
+                                    background: "linear-gradient(90deg, var(--brand-teal), var(--brand-cyan), var(--brand-teal))",
                                 }}
-                            >
-                                <MessageCircle className="w-8 h-8 mb-3" style={{ color: "var(--brand-teal)" }} />
-                                <p style={{ color: "var(--secondary-text)", fontSize: "0.9rem" }}>Engagement</p>
-                                <p className="text-2xl font-bold mt-2" style={{ color: "var(--brand-teal)" }}>
-                                    +185%
-                                </p>
-                            </div>
+                            />
+                        </div>
 
-                            {/* Metric 3 */}
-                            <div
-                                className="rounded-2xl p-6 border shadow-lg transform hover:scale-105 transition-all duration-300"
-                                style={{
-                                    backgroundColor: "var(--card-bg)",
-                                    borderColor: "var(--border-color)",
-                                }}
-                            >
-                                <Target className="w-8 h-8 mb-3" style={{ color: "var(--brand-cyan)" }} />
-                                <p style={{ color: "var(--secondary-text)", fontSize: "0.9rem" }}>Lead Generation</p>
-                                <p className="text-2xl font-bold mt-2" style={{ color: "var(--brand-cyan)" }}>
-                                    +320%
-                                </p>
-                            </div>
+                        {/* Floating Social Elements */}
+                        <div
+                            className="absolute -top-4 -right-4 w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg animate-bounce"
+                            style={{
+                                backgroundColor: "var(--brand-teal)",
+                                animationDuration: "3s",
+                            }}
+                        >
+                            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
 
-                            {/* Metric 4 */}
-                            <div
-                                className="rounded-2xl p-6 border shadow-lg transform hover:scale-105 transition-all duration-300"
-                                style={{
-                                    backgroundColor: "var(--card-bg)",
-                                    borderColor: "var(--border-color)",
-                                }}
-                            >
-                                <Users className="w-8 h-8 mb-3" style={{ color: "var(--brand-teal)" }} />
-                                <p style={{ color: "var(--secondary-text)", fontSize: "0.9rem" }}>Community Growth</p>
-                                <p className="text-2xl font-bold mt-2" style={{ color: "var(--brand-teal)" }}>
-                                    +450%
-                                </p>
-                            </div>
+                        <div
+                            className="absolute -bottom-2 -left-2 w-14 h-14 rounded-xl flex items-center justify-center shadow-lg animate-pulse"
+                            style={{
+                                backgroundColor: "var(--brand-cyan)",
+                                animationDuration: "2s",
+                            }}
+                        >
+                            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                            </svg>
+                        </div>
+
+                        <div
+                            className="absolute top-1/2 -left-6 w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
+                            style={{
+                                backgroundColor: "var(--brand-teal)",
+                                animation: "pulse 2.5s infinite",
+                            }}
+                        >
+                            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z" />
+                            </svg>
                         </div>
                     </div>
                 </div>

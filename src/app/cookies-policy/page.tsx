@@ -42,7 +42,7 @@ const CookiesPolicy: React.FC = () => {
                 {
                     subtitle: "Analytics & Performance",
                     text:
-                        "Help us understand how visitors interact with our site — pages visited, time spent, bounce rates — so we can improve content and usability (e.g., Google Analytics).",
+                        "Help us understand how visitors interact with our site - pages visited, time spent, bounce rates - so we can improve content and usability (e.g., Google Analytics).",
                 },
                 {
                     subtitle: "Marketing & Advertising",
@@ -99,12 +99,12 @@ const CookiesPolicy: React.FC = () => {
                 {
                     subtitle: "Analytics",
                     text:
-                        "Google Analytics: _ga, _gid — used to distinguish users and sessions for reporting and optimization.",
+                        "Google Analytics: _ga, _gid - used to distinguish users and sessions for reporting and optimization.",
                 },
                 {
                     subtitle: "Advertising",
                     text:
-                        "Google Ads / DoubleClick: IDE, AID — used for ad targeting and frequency capping. Meta Pixel: _fbp — used for ad measurement and audience building.",
+                        "Google Ads / DoubleClick: IDE, AID - used for ad targeting and frequency capping. Meta Pixel: _fbp - used for ad measurement and audience building.",
                 },
                 {
                     subtitle: "Functional",
@@ -162,7 +162,7 @@ const CookiesPolicy: React.FC = () => {
                 {
                     subtitle: "",
                     text:
-                        "Some parts of our site rely on third-party services which may set cookies (analytics, widgets, social plugins, embedded video). We do not control those third-party cookies — please consult the third party’s privacy/cookie policy for details and opt-out options.",
+                        "Some parts of our site rely on third-party services which may set cookies (analytics, widgets, social plugins, embedded video). We do not control those third-party cookies - please consult the third party’s privacy/cookie policy for details and opt-out options.",
                 },
                 {
                     subtitle: "Examples",
@@ -227,7 +227,7 @@ const CookiesPolicy: React.FC = () => {
                 {
                     subtitle: "",
                     text:
-                        "Privacy Team — Cinute InfoMedia\nEmail: contact@cinuteinfomedia.com\nPhone: +91-9004988859 / +91-7700995410\nAddress: Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107, India.",
+                        "Privacy Team - Cinute InfoMedia\nEmail: contact@cinuteinfomedia.com\nPhone: +91-9004988859 / +91-7700995410\nAddress: Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107, India.",
                 },
             ],
         },

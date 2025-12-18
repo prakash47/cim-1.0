@@ -238,11 +238,11 @@ export default function Hero() {
 
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold transition-all shadow-lg hover:shadow-xl hover:scale-105" style={{ background: "linear-gradient(135deg, var(--brand-teal), var(--brand-cyan))", color: "white" }}>
+                            <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base font-semibold transition-all shadow-lg hover:shadow-xl hover:scale-105" style={{ background: "linear-gradient(135deg, var(--brand-teal), var(--brand-cyan))", color: "white" }}>
                                 Start Growing Now
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
-                            <Link href="#overview" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold border transition-all hover:scale-105" style={{ borderColor: "var(--border-color)", color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
+                            <Link href="#overview" className="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base font-semibold border transition-all hover:scale-105" style={{ borderColor: "var(--border-color)", color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
                                 Learn More
                                 <ArrowRight className="w-5 h-5" />
                             </Link>

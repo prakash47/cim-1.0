@@ -69,7 +69,7 @@ export default function Hero() {
 
                         <div className="flex flex-wrap gap-4 mb-12">
                             <button
-                                className="group relative px-8 py-4 text-white font-bold rounded-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                                className="group relative px-6 py-3 md:px-8 md:py-4 text-sm md:text-base text-white font-bold rounded-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
                                 style={{ background: "linear-gradient(90deg, var(--brand-blue), var(--brand-cyan))" }}
                             >
                                 <span className="relative z-10 flex items-center gap-2">
@@ -79,7 +79,7 @@ export default function Hero() {
                             </button>
 
                             <button
-                                className="group px-8 py-4 border rounded-full font-bold hover:border-color transition-all duration-300 flex items-center gap-2"
+                                className="group px-6 py-3 md:px-8 md:py-4 text-sm md:text-base border rounded-full font-bold hover:border-color transition-all duration-300 flex items-center gap-2"
                                 style={{ borderColor: "var(--border-color)" }}
                             >
                                 <Play className="w-5 h-5" />

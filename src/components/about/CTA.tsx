@@ -42,10 +42,10 @@ export default function CTA() {
                             <Link
                                 href="/contact"
                                 className="
-                  group inline-flex items-center justify-center gap-2 px-8 py-4 
+                  group inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 
                   bg-white dark:bg-[var(--card-bg)] 
                   text-[var(--brand-blue)] dark:text-[var(--brand-teal)]
-                  rounded-2xl text-lg font-semibold 
+                  rounded-2xl text-sm md:text-lg font-semibold 
                   transition-all shadow-xl hover:shadow-2xl hover:scale-105
                 "
                             >
@@ -57,10 +57,10 @@ export default function CTA() {
                             <Link
                                 href="#services"
                                 className="
-                  inline-flex items-center justify-center px-8 py-4 
+                  inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 
                   bg-white/10 hover:bg-white/20 dark:bg-white/10 dark:hover:bg-white/20 
                   backdrop-blur-xl text-white border-2 border-white/30 
-                  rounded-2xl text-lg font-semibold transition-all hover:scale-105
+                  rounded-2xl text-sm md:text-lg font-semibold transition-all hover:scale-105
                 "
                             >
                                 Explore Services

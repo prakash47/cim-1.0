@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { BsTwitterX } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Phone, ArrowRight } from "lucide-react";
 
@@ -81,30 +82,17 @@ export default function Footer() {
 
                             {/* Social Media */}
                             <div className="flex space-x-4">
-                                {/* Facebook */}
+                                {/* LinkedIn */}
                                 <Link
                                     href="#"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
-        hover:bg-[linear-gradient(135deg,#1877F2,#0F68D8)]
+        hover:bg-[linear-gradient(135deg,#0A66C2,#004182)]
       "
                                     style={styles.iconBg}
-                                    aria-label="Visit our Facebook page"
+                                    aria-label="Visit our LinkedIn profile"
                                 >
-                                    <Facebook className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
-                                </Link>
-
-                                {/* Twitter */}
-                                <Link
-                                    href="#"
-                                    className="
-        w-12 h-12 rounded-full transition-all flex items-center justify-center group
-        hover:bg-[linear-gradient(135deg,#1DA1F2,#0AA3FF)]
-      "
-                                    style={styles.iconBg}
-                                    aria-label="Visit our Twitter profile"
-                                >
-                                    <Twitter className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
+                                    <Linkedin className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
                                 </Link>
 
                                 {/* Instagram */}
@@ -120,18 +108,37 @@ export default function Footer() {
                                     <Instagram className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
                                 </Link>
 
-                                {/* LinkedIn */}
+                                {/* Twitter */}
                                 <Link
                                     href="#"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
-        hover:bg-[linear-gradient(135deg,#0A66C2,#004182)]
+        hover:bg-[linear-gradient(135deg,#000000,#333333)]
       "
                                     style={styles.iconBg}
-                                    aria-label="Visit our LinkedIn profile"
+                                    aria-label="Visit our Twitter profile"
                                 >
-                                    <Linkedin className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
+                                    <BsTwitterX className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
                                 </Link>
+
+
+                                {/* Facebook */}
+                                <Link
+                                    href="#"
+                                    className="
+        w-12 h-12 rounded-full transition-all flex items-center justify-center group
+        hover:bg-[linear-gradient(135deg,#1877F2,#0F68D8)]
+      "
+                                    style={styles.iconBg}
+                                    aria-label="Visit our Facebook page"
+                                >
+                                    <Facebook className="h-6 w-6 text-[var(--foreground)] group-hover:text-white transition-colors" />
+                                </Link>
+
+
+
+
+
                             </div>
                         </div>
 

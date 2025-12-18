@@ -98,7 +98,7 @@ export default function Hero() {
                             </p>
 
                             <p style={{ color: "var(--secondary-text)" }}>
-                                We don’t just run campaigns — we build{" "}
+                                We don't just run campaigns - we build{" "}
                                 <span className="relative inline-block">
                                     <span
                                         className="relative z-10"

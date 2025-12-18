@@ -2,6 +2,7 @@
 
 import { Sparkles, ArrowRight, Home, ChevronRight, Zap, Cpu, Workflow, BarChart3, ShieldCheck, Rocket } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
     return (
@@ -94,14 +95,8 @@ export default function Hero() {
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold">
                             <span
                                 className="bg-clip-text text-transparent"
-                                style={{
-                                    background:
-                                        "linear-gradient(90deg, var(--brand-orange), var(--brand-orange))",
-                                    WebkitBackgroundClip: "text",
-                                    color: "transparent",
-                                }}
                             >
-                                Automate Your Business with AI
+                                <span style={{ color: "var(--brand-orange)" }}>Automate</span> <span style={{ color: "var(--foreground)" }}>Your Business</span> <span style={{ color: "var(--brand-orange)" }}>with AI</span>
                             </span>
                         </h1>
 
@@ -238,61 +233,98 @@ export default function Hero() {
                         {/* CTA Button */}
                         <Link
                             href="/contact"
-                            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#fab900] to-[#ee6500] hover:from-[#fab900] hover:to-[#fab900] text-black rounded-full text-lg font-bold transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                            className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#fab900] to-[#ee6500] hover:from-[#fab900] hover:to-[#fab900] text-black rounded-full text-sm md:text-lg font-bold transition-all shadow-lg hover:shadow-xl hover:scale-105"
                         >
                             Start Your AI Journey
                             <ArrowRight className="w-5 h-5" />
                         </Link>
                     </div>
 
-                    {/* RIGHT SIDE - Futuristic AI Visualization */}
+                    {/* RIGHT VISUAL ELEMENT */}
                     <div
-                        className="hidden lg:flex items-center justify-center animate-fadeIn"
-                        style={{ animationDelay: "0.4s", animationFillMode: "both" }}
+                        className="relative flex flex-col items-center gap-12 justify-center animate-fadeIn mt-0 lg:-mt-15"
+                        style={{ animationDelay: "0.3s", animationFillMode: "both" }}
                     >
-                        <div className="relative w-full h-96">
-                            {/* Central AI Core */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div
-                                    className="w-32 h-32 rounded-full flex items-center justify-center shadow-2xl animate-pulse"
+                        <div
+                            className="absolute inset-0 rounded-3xl blur-2xl"
+                            style={{
+                                background:
+                                    "linear-gradient(135deg, color-mix(in srgb, var(--brand-orange) 10%, transparent), color-mix(in srgb, var(--brand-yellow) 10%, transparent), color-mix(in srgb, var(--brand-blue) 10%, transparent))",
+                            }}
+                        />
+
+                        {/* Feature Card */}
+                        <div
+                            className="relative flex items-center justify-center rounded-3xl shadow-2xl border hover:scale-105 transition-transform duration-300 max-w-lg w-full"
+                            style={{
+                                backgroundColor: "var(--card-bg)",
+                                borderColor: "var(--border-color)",
+                                backdropFilter: "blur(6px)",
+                            }}
+                        >
+                            <Image
+                                src="/images/services-images/ai-workflow-automation-illustration.svg"
+                                alt="AI Workflow & Automation"
+                                width={638}
+                                height={565}
+                                priority
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 638px"
+                                className="w-full h-auto rounded-3xl p-4"
+                            />
+                        </div>
+                        {/* Additional Info Section */}
+                        <div
+                            className="w-full p-6 rounded-2xl border"
+                            style={{
+                                backgroundColor: "var(--card-bg)",
+                                borderColor: "var(--border-color)",
+                                backdropFilter: "blur(10px)",
+                            }}
+                        >
+                            <h2 className="text-xl font-bold mb-3" style={{ color: "var(--foreground)" }}>
+                                Why Choose Us?
+                            </h2>
+                            <p className="text-sm mb-4" style={{ color: "var(--secondary-text)" }}>
+                                We design and implement intelligent automation solutions that streamline your operations, reduce manual errors, and unlock new levels of productivity with cutting-edge AI technology.
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                                <span
+                                    className="px-3 py-1 rounded-full text-xs font-semibold"
                                     style={{
-                                        background: "linear-gradient(135deg, var(--brand-orange), var(--brand-orange))",
+                                        backgroundColor: "color-mix(in srgb, var(--brand-orange) 15%, transparent)",
+                                        color: "var(--brand-orange)",
                                     }}
                                 >
-                                    <Cpu className="w-16 h-16 text-white" />
-                                </div>
+                                    Custom Workflows
+                                </span>
+                                <span
+                                    className="px-3 py-1 rounded-full text-xs font-semibold"
+                                    style={{
+                                        backgroundColor: "color-mix(in srgb, var(--brand-orange) 15%, transparent)",
+                                        color: "var(--brand-orange)",
+                                    }}
+                                >
+                                    Process Automation
+                                </span>
+                                <span
+                                    className="px-3 py-1 rounded-full text-xs font-semibold"
+                                    style={{
+                                        backgroundColor: "color-mix(in srgb, var(--brand-orange) 15%, transparent)",
+                                        color: "var(--brand-orange)",
+                                    }}
+                                >
+                                    AI Integration
+                                </span>
+                                <span
+                                    className="px-3 py-1 rounded-full text-xs font-semibold"
+                                    style={{
+                                        backgroundColor: "color-mix(in srgb, var(--brand-orange) 15%, transparent)",
+                                        color: "var(--brand-orange)",
+                                    }}
+                                >
+                                    24/7 Support
+                                </span>
                             </div>
-
-                            {/* Orbiting Elements */}
-                            <div className="absolute inset-0">
-                                {[0, 120, 240].map((angle, i) => (
-                                    <div
-                                        key={i}
-                                        className="absolute w-20 h-20 rounded-lg flex items-center justify-center shadow-lg"
-                                        style={{
-                                            background: i === 0 ? "linear-gradient(135deg, var(--brand-blue), var(--brand-cyan))" :
-                                                i === 1 ? "linear-gradient(135deg, var(--brand-purple), var(--brand-orange))" :
-                                                    "linear-gradient(135deg, var(--brand-teal), var(--brand-blue))",
-                                            top: "50%",
-                                            left: "50%",
-                                            transform: `rotate(${angle}deg) translateX(120px) rotate(-${angle}deg)`,
-                                            animation: `float 6s ease-in-out infinite`,
-                                            animationDelay: `${i * 0.2}s`,
-                                        }}
-                                    >
-                                        {i === 0 && <Workflow className="w-10 h-10 text-white" />}
-                                        {i === 1 && <BarChart3 className="w-10 h-10 text-white" />}
-                                        {i === 2 && <Zap className="w-10 h-10 text-white" />}
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Connection Lines */}
-                            <svg className="absolute inset-0 w-full h-full" style={{ pointerEvents: "none" }}>
-                                <line x1="50%" y1="50%" x2="50%" y2="20%" stroke="var(--brand-orange)" strokeWidth="2" opacity="0.3" />
-                                <line x1="50%" y1="50%" x2="80%" y2="70%" stroke="var(--brand-orange)" strokeWidth="2" opacity="0.3" />
-                                <line x1="50%" y1="50%" x2="20%" y2="70%" stroke="var(--brand-blue)" strokeWidth="2" opacity="0.3" />
-                            </svg>
                         </div>
                     </div>
                 </div>

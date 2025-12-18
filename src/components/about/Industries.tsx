@@ -51,7 +51,7 @@ export default function Industries() {
               `}
                             style={{ animationDelay: `${index * 80}ms` }}
                         >
-                            {/* Icon badge — gradient driven by CSS brand vars */}
+                            {/* Icon badge - gradient driven by CSS brand vars */}
                             <div
                                 className={`
                   flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center

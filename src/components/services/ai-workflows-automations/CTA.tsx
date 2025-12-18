@@ -42,14 +42,14 @@ export default function CTA() {
                         <div className="flex flex-col md:flex-row gap-4 justify-center mb-12">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#fab900] to-[#ee6500] hover:from-[#fab900] hover:to-[#fab900] text-black rounded-full text-lg font-bold transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                                className="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#fab900] to-[#ee6500] hover:from-[#fab900] hover:to-[#fab900] text-black rounded-full text-sm md:text-lg font-bold transition-all shadow-lg hover:shadow-xl hover:scale-105"
                             >
                                 <Zap className="w-5 h-5" />
                                 Book Your AI Consultation
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
                             <button
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 rounded-full text-lg font-bold transition-all hover:scale-105"
+                                className="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 border-2 rounded-full text-sm md:text-lg font-bold transition-all hover:scale-105"
                                 style={{
                                     borderColor: "var(--brand-orange)",
                                     color: "var(--brand-orange)",

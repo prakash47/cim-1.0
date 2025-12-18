@@ -17,7 +17,7 @@ export default function FAQ() {
         },
         {
             q: "Can you integrate with our existing CRM and analytics?",
-            a: "Yes — we integrate with common CRMs (HubSpot, Salesforce), analytics (GA4), and data warehouses, plus custom systems via APIs.",
+            a: "Yes - we integrate with common CRMs (HubSpot, Salesforce), analytics (GA4), and data warehouses, plus custom systems via APIs.",
         },
         {
             q: "Do you offer help with hiring or building internal teams?",

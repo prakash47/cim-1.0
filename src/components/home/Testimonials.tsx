@@ -11,7 +11,7 @@ export default function Testimonials() {
             company: "Ved Solutions",
             industry: "IT & QA",
             quote:
-                "CIM increased our qualified B2B leads by 320% in 3 months and lowered our CAC significantly — they are growth partners, not vendors.",
+                "CIM increased our qualified B2B leads by 320% in 3 months and lowered our CAC significantly - they are growth partners, not vendors.",
             result: "320% Lead Increase",
             avatar: "V",
         },

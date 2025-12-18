@@ -215,7 +215,7 @@ export default function Services() {
                                     {/* spacer */}
                                     <div className="flex-1" />
 
-                                    {/* details container — collapsed by default, expands on hover */}
+                                    {/* details container - collapsed by default, expands on hover */}
                                     <div className={`mt-4 overflow-hidden transition-all duration-400 ${isHovered ? "max-h-[320px]" : "max-h-0"}`}>
                                         <ul className="space-y-2">
                                             {details.map((d, i) => (
@@ -248,7 +248,7 @@ export default function Services() {
                 <div className="mt-16 text-center">
                     <p className="text-[var(--secondary-text)] mb-6">Need a custom solution? We'd love to help.</p>
 
-                    <button className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold bg-[linear-gradient(90deg,var(--brand-blue),var(--brand-teal))] text-white hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    <button className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-2xl text-sm md:text-base font-semibold bg-[linear-gradient(90deg,var(--brand-blue),var(--brand-teal))] text-white hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                         Get Started
                         <ArrowRight className="w-5 h-5" />
                     </button>

@@ -56,7 +56,7 @@ export default function CTA() {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                                className="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base font-semibold transition-all shadow-lg hover:shadow-xl hover:scale-105"
                                 style={{
                                     background: "linear-gradient(135deg, var(--brand-purple), var(--brand-yellow))",
                                     color: "white",
@@ -67,7 +67,7 @@ export default function CTA() {
                             </Link>
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold border transition-all hover:scale-105"
+                                className="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base font-semibold border transition-all hover:scale-105"
                                 style={{
                                     borderColor: "var(--border-color)",
                                     color: "var(--foreground)",

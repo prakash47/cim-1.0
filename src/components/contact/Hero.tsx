@@ -350,7 +350,7 @@ export default function Hero() {
                                         ✓
                                     </span>
                                     <p className="text-sm" style={{ color: "var(--secondary-text)" }}>
-                                        <strong style={{ color: "var(--foreground)" }}>Personalized Support</strong> — We respond quickly & guide you at every step.
+                                        <strong style={{ color: "var(--foreground)" }}>Personalized Support</strong> - We respond quickly & guide you at every step.
                                     </p>
                                 </li>
 
@@ -362,7 +362,7 @@ export default function Hero() {
                                         ✓
                                     </span>
                                     <p className="text-sm" style={{ color: "var(--secondary-text)" }}>
-                                        <strong style={{ color: "var(--foreground)" }}>Transparent Communication</strong> — No hidden costs, no confusion.
+                                        <strong style={{ color: "var(--foreground)" }}>Transparent Communication</strong> - No hidden costs, no confusion.
                                     </p>
                                 </li>
 
@@ -374,7 +374,7 @@ export default function Hero() {
                                         ✓
                                     </span>
                                     <p className="text-sm" style={{ color: "var(--secondary-text)" }}>
-                                        <strong style={{ color: "var(--foreground)" }}>Expert Project Guidance</strong> — We help shape your idea the right way.
+                                        <strong style={{ color: "var(--foreground)" }}>Expert Project Guidance</strong> - We help shape your idea the right way.
                                     </p>
                                 </li>
                             </ul>
@@ -393,7 +393,7 @@ export default function Hero() {
                                             <CheckCircle2 className="w-12 h-12" style={{ color: "white" }} />
                                         </div>
                                         <h3 className="text-2xl font-bold mb-2" style={{ color: "var(--foreground)" }}>
-                                            Thanks — we'll be in touch!
+                                            Thanks - we'll be in touch!
                                         </h3>
                                         <p style={{ color: "var(--secondary-text)" }}>We received your message and will respond within 24 hours.</p>
                                         <div className="flex justify-center gap-3 mt-6">

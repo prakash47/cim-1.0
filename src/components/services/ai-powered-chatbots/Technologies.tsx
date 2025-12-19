@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Brain, Zap, Lock, BarChart3 } from "lucide-react";
 
 export default function Technologies() {
@@ -33,12 +34,15 @@ export default function Technologies() {
     return (
         <section
             className="relative transition-colors duration-300 py-20 md:py-28"
-            style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}
+            style={{
+                backgroundColor: "var(--card-bg)",
+                borderColor: "var(--border-color)",
+            }}
         >
             <div className="mx-auto px-6 md:px-12 xl:px-20">
                 {/* Section Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{ color: "var(--foreground)" }}>
                         Technology Stack & <span style={{ color: "var(--brand-chatbot)" }}>AI Capabilities</span>
                     </h2>
                     <p className="text-lg md:text-xl max-w-3xl mx-auto" style={{ color: "var(--secondary-text)" }}>
@@ -117,18 +121,18 @@ export default function Technologies() {
                     </h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {[
-                            "Web Chat",
-                            "WhatsApp Business",
-                            "Facebook Messenger",
-                            "Telegram",
-                            "Slack",
-                            "Microsoft Teams",
-                            "Custom Integrations",
-                            "Mobile Apps",
+                            { name: "Web Chat", logo: "/images/ai_powered_chatbots_logos/web-chat.png" },
+                            { name: "WhatsApp Business", logo: "/images/ai_powered_chatbots_logos/WhatsApp-logo.webp" },
+                            { name: "Facebook Messenger", logo: "/images/ai_powered_chatbots_logos/Facebook-Messenger-logo.png" },
+                            { name: "Telegram", logo: "/images/ai_powered_chatbots_logos/Telegram-logo.webp" },
+                            { name: "Slack", logo: "/images/ai_powered_chatbots_logos/Slack-logo.png" },
+                            { name: "Microsoft Teams", logo: "/images/ai_powered_chatbots_logos/Microsoft-Office-Teams-logo.png" },
+                            { name: "Custom Integrations", logo: "/images/ai_powered_chatbots_logos/custom-integrations-logo.png" },
+                            { name: "Mobile Apps", logo: "/images/ai_powered_chatbots_logos/mobile-apps.png" },
                         ].map((platform, idx) => (
                             <div
                                 key={idx}
-                                className="p-4 rounded-lg text-center transition-all duration-300"
+                                className="p-4 rounded-lg text-center transition-all duration-300 flex flex-col items-center gap-3"
                                 style={{
                                     backgroundColor: "color-mix(in srgb, var(--brand-chatbot) 8%, transparent)",
                                     border: "1px solid var(--border-color)",
@@ -140,8 +144,17 @@ export default function Technologies() {
                                     e.currentTarget.style.backgroundColor = "color-mix(in srgb, var(--brand-chatbot) 8%, transparent)";
                                 }}
                             >
+                                <div className="w-12 h-12 flex items-center justify-center">
+                                    <Image
+                                        src={platform.logo}
+                                        alt={platform.name}
+                                        width={48}
+                                        height={48}
+                                        className="object-contain"
+                                    />
+                                </div>
                                 <p className="font-semibold" style={{ color: "var(--foreground)" }}>
-                                    {platform}
+                                    {platform.name}
                                 </p>
                             </div>
                         ))}

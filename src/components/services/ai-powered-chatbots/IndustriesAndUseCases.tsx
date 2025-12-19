@@ -74,12 +74,15 @@ export default function IndustriesAndUseCases() {
     return (
         <section
             className="relative py-20 md:py-28"
-            style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}
+            style={{
+                backgroundColor: "var(--card-bg)",
+                borderColor: "var(--border-color)",
+            }}
         >
             <div className="mx-auto px-6 md:px-12 xl:px-20">
                 {/* Header */}
                 <div className="text-center mb-20">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "var(--foreground)" }}>
                         Industries &{" "}
                         <span style={{ color: "var(--brand-chatbot)" }}>AI Use Cases</span>
                     </h2>
@@ -196,7 +199,7 @@ export default function IndustriesAndUseCases() {
 
                                     {/* Title with underline animation */}
                                     <div className="relative mb-3">
-                                        <h3 className="text-2xl font-bold">
+                                        <h3 className="text-2xl font-bold" style={{ color: "var(--foreground)" }}>
                                             {industry.title}
                                         </h3>
                                         <div

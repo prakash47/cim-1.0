@@ -219,19 +219,19 @@ export default function Footer() {
                         <p className="text-sm" style={styles.text}>
                             © {year} CIM. All rights reserved.
                         </p>
-                        <div className="flex items-center space-x-6 text-sm">
+                        <div className="flex flex-col md:flex-row items-center justify-center space-x-6 text-sm">
                             <Link href="/privacy-policy" className="hover:underline" style={styles.link}>
                                 Privacy Policy
                             </Link>
-                            <span style={{ color: "var(--border-color)" }}>|</span>
+                            <span className="hidden md:block" style={{ color: "var(--border-color)" }}>|</span>
                             <Link href="/terms-of-service" className="hover:underline" style={styles.link}>
                                 Terms of Service
                             </Link>
-                            <span style={{ color: "var(--border-color)" }}>|</span>
+                            <span className="hidden md:block" style={{ color: "var(--border-color)" }}>|</span>
                             <Link href="/cookies-policy" className="hover:underline" style={styles.link}>
                                 Cookies Policy
                             </Link>
-                            <span style={{ color: "var(--border-color)" }}>|</span>
+                            <span className="hidden md:block" style={{ color: "var(--border-color)" }}>|</span>
                             <Link href="/sitemap" className="hover:underline" style={styles.link}>
                                 Sitemap
                             </Link>

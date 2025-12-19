@@ -95,7 +95,10 @@ export default function WhyChooseUs() {
 
             <section
                 className="relative transition-colors duration-300 py-20 md:py-28 overflow-hidden"
-                style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}
+                style={{
+                    backgroundColor: "var(--card-bg)",
+                    borderColor: "var(--border-color)",
+                }}
             >
                 {/* Animated background elements */}
                 <div className="absolute inset-0 opacity-20">
@@ -118,7 +121,7 @@ export default function WhyChooseUs() {
                             </span>
                         </div>
 
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{ color: "var(--foreground)" }}>
                             Why Choose Our <span style={{ color: "var(--brand-chatbot)" }}>AI Chatbot Solutions</span>?
                         </h2>
                         <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: "var(--secondary-text)" }}>
@@ -180,7 +183,7 @@ export default function WhyChooseUs() {
 
                                         {/* Content */}
                                         <div className="relative z-10">
-                                            <h3 className="text-2xl font-bold mb-4 transition-colors duration-300 group-hover:text-[var(--brand-chatbot)]">
+                                            <h3 className="text-2xl font-bold mb-4 transition-colors duration-300" style={{ color: "var(--foreground)" }}>
                                                 {benefit.title}
                                             </h3>
                                             <p className="text-base leading-relaxed mb-6" style={{ color: "var(--secondary-text)" }}>

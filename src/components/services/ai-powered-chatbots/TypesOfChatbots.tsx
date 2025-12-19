@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Headphones, TrendingUp, FileText, Smartphone, MessageSquare, Building2, Sparkles, CheckCircle2, ArrowRight, Zap, Users, Search, Target } from "lucide-react";
 
 export default function TypesOfChatbots() {
@@ -49,15 +50,28 @@ export default function TypesOfChatbots() {
             badge: "Web & App",
         },
         {
-            icon: MessageSquare,
-            title: "WhatsApp / Messenger / Telegram Bots",
-            description: "Reach customers where they are. Deploy chatbots on WhatsApp, Facebook Messenger, Telegram, and other messaging platforms.",
-            features: ["Multi-platform support", "Rich media messaging", "Broadcast campaigns", "Conversation management"],
-            gradient: "from-rose-600 to-pink-500",
-            iconBg: "bg-rose-500/10",
-            iconColor: "text-rose-500",
+            icon: null,
+            customIcon: "/images/ai_powered_chatbots_logos/WhatsApp-logo.webp",
+            title: "WhatsApp Chatbots",
+            description: "Engage customers on the world's most popular messaging platform. Automate conversations, send notifications, and provide instant support via WhatsApp Business API.",
+            features: ["WhatsApp Business API", "Automated responses", "Broadcast messages", "Rich media support"],
+            gradient: "from-green-600 to-emerald-500",
+            iconBg: "bg-green-500/10",
+            iconColor: "text-green-500",
             animation: "message-bounce",
-            badge: "Messaging",
+            badge: "WhatsApp",
+        },
+        {
+            icon: null,
+            customIcon: "/images/ai_powered_chatbots_logos/Telegram-logo.webp",
+            title: "Telegram Chatbots",
+            description: "Build powerful bots for Telegram with advanced features like inline keyboards, group management, and seamless payment integration.",
+            features: ["Bot API integration", "Inline keyboards", "Group management", "Payment support"],
+            gradient: "from-sky-600 to-blue-500",
+            iconBg: "bg-sky-500/10",
+            iconColor: "text-sky-500",
+            animation: "message-bounce",
+            badge: "Telegram",
         },
         {
             icon: Building2,
@@ -227,7 +241,7 @@ export default function TypesOfChatbots() {
                     {/* Chatbot Types Grid */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         {chatbotTypes.map((type, index) => {
-                            const Icon = type.icon;
+                            const Icon = type.icon as React.ComponentType<{ className?: string; strokeWidth?: number }> | null;
                             const animationClass = `animate-${type.animation}`;
 
                             return (
@@ -281,7 +295,17 @@ export default function TypesOfChatbots() {
                                                 <div
                                                     className={`relative w-16 h-16 rounded-xl ${type.iconBg} flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl`}
                                                 >
-                                                    <Icon className={`w-8 h-8 ${type.iconColor} ${animationClass}`} strokeWidth={2.5} />
+                                                    {type.customIcon ? (
+                                                        <Image
+                                                            src={type.customIcon}
+                                                            alt={type.title}
+                                                            width={40}
+                                                            height={40}
+                                                            className={`object-contain ${animationClass}`}
+                                                        />
+                                                    ) : (
+                                                        Icon && <Icon className={`w-8 h-8 ${type.iconColor} ${animationClass}`} strokeWidth={2.5} />
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -328,7 +352,7 @@ export default function TypesOfChatbots() {
 
                                         {/* Large background icon watermark */}
                                         <div className="absolute -bottom-6 -right-6 opacity-0 group-hover:opacity-5 transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12">
-                                            <Icon className={`w-32 h-32 ${type.iconColor}`} strokeWidth={0.5} />
+                                            {Icon && <Icon className={`w-32 h-32 ${type.iconColor}`} strokeWidth={0.5} />}
                                         </div>
 
                                         {/* Floating particles */}

@@ -34,10 +34,10 @@ export default function AdPlatforms() {
         },
         {
             name: "TikTok Ads",
-            logo: "/images/performance-marketing-logos/tikTok-ads-logo.webp",
+            logo: "/images/performance-marketing-logos/tiktok-ads-logo.webp",
             description: "Short-form video ads for Gen Z & Millennials",
             stats: { reach: "1B+ users", ctr: "2.5% avg CTR" },
-            color: "#ffffffff",
+            color: "#ff59ffff",
             gradient: "from-pink-500 to-cyan-400",
         },
         {

@@ -158,7 +158,7 @@ export default function Hero() {
                             }}
                         >
                             <Image
-                                src="/images/services-images/performance-marketing-illustration.svg"
+                                src="/images/services-images/Performance-Marketing-illustration.svg"
                                 alt="Performance Marketing"
                                 width={638}
                                 height={565}

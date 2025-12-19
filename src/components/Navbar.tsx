@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import {
   Globe,
@@ -42,6 +43,19 @@ export default function Navbar() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const themeDropdownRef = useRef<HTMLDivElement>(null);
   const mobileThemeRef = useRef<HTMLButtonElement>(null);
+  const pathname = usePathname();
+
+  // Helper function to check if a nav item is active
+  const isActive = (path: string) => {
+    if (path === "/") return pathname === "/";
+    return pathname.startsWith(path);
+  };
+
+  // Active link styles
+  const getNavLinkStyle = (path: string) => ({
+    color: isActive(path) ? "var(--brand-blue)" : "var(--foreground)",
+    backgroundColor: isActive(path) ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent",
+  });
 
   // next-themes
   const { theme, resolvedTheme, setTheme } = useTheme();
@@ -132,11 +146,11 @@ export default function Navbar() {
             <Link href="/" className="flex items-center space-x-2 group">
               <div className="h-20 w-[180px] flex items-center justify-center overflow-hidden rounded-lg transition-transform group-hover:scale-105">
                 <Image
-                  src={isDark ? "/images/cim_Logo_white.png" : "/images/cim_Logo.png"}
+                  src={isDark ? "/images/CIM-LOGO-White.png" : "/images/CIM-LOGO-Black.png"}
                   alt="CIM Logo"
                   height={80}
                   width={180}
-                  className={`object-contain ${isDark ? "pt-1" : ""}`}
+                  className={"object-contain"}
                 />
               </div>
             </Link>
@@ -146,17 +160,30 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
             <div className="ml-10 flex items-center space-x-3">
+              <Link
+                href="/"
+                className="px-4 py-2 rounded-lg text-md font-medium transition-all"
+                style={getNavLinkStyle("/")}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent")}
+              >
+                Home
+              </Link>
               {/* Services Mega Menu */}
               <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <button
                   className="flex items-center space-x-1 px-4 py-2 rounded-lg text-md font-medium transition-all"
                   style={{
-                    color: "var(--foreground)",
-                    backgroundColor: isServicesOpen ? "var(--hover-bg)" : "transparent",
+                    color: isActive("/services") ? "var(--brand-blue)" : "var(--foreground)",
+                    backgroundColor: isServicesOpen
+                      ? "var(--hover-bg)"
+                      : isActive("/services")
+                        ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)"
+                        : "transparent",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/services") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
                   onMouseLeave={(e) => {
-                    if (!isServicesOpen) e.currentTarget.style.backgroundColor = "transparent";
+                    if (!isServicesOpen) e.currentTarget.style.backgroundColor = isActive("/services") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent";
                   }}
                   aria-expanded={isServicesOpen}
                   aria-haspopup="true"
@@ -241,10 +268,22 @@ export default function Navbar() {
                 )}
               </div>
 
-              <Link href="/about" className="px-4 py-2 rounded-lg text-md font-medium transition-all" style={{ color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
+              <Link
+                href="/about"
+                className="px-4 py-2 rounded-lg text-md font-medium transition-all"
+                style={getNavLinkStyle("/about")}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/about") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/about") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent")}
+              >
                 About
               </Link>
-              <Link href="/contact" className="px-4 py-2 rounded-lg text-md font-medium transition-all" style={{ color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
+              <Link
+                href="/contact"
+                className="px-4 py-2 rounded-lg text-md font-medium transition-all"
+                style={getNavLinkStyle("/contact")}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/contact") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/contact") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent")}
+              >
                 Contact
               </Link>
 
@@ -439,10 +478,24 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/about" onClick={toggleMobileMenu} className="block px-4 py-3 rounded-lg text-base font-medium transition-all" style={{ color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
+            <Link
+              href="/about"
+              onClick={toggleMobileMenu}
+              className="block px-4 py-3 rounded-lg text-base font-medium transition-all"
+              style={getNavLinkStyle("/about")}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/about") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/about") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent")}
+            >
               About
             </Link>
-            <Link href="/contact" onClick={toggleMobileMenu} className="block px-4 py-3 rounded-lg text-base font-medium transition-all" style={{ color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
+            <Link
+              href="/contact"
+              onClick={toggleMobileMenu}
+              className="block px-4 py-3 rounded-lg text-base font-medium transition-all"
+              style={getNavLinkStyle("/contact")}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/contact") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/contact") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent")}
+            >
               Contact
             </Link>
             <Link href="/contact" onClick={toggleMobileMenu} className="block w-full text-center bg-gradient-to-r from-[#008ac1] to-[#00b5ca] hover:from-[#008ac1] hover:to-[#008ac1] text-white px-6 py-3 rounded-full text-base font-medium transition-all shadow-lg">

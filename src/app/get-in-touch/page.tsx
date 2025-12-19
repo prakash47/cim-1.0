@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { FaArrowLeft, FaArrowRight, FaCheck } from "react-icons/fa";
 
 interface FormData {
     name: string;
@@ -361,10 +362,10 @@ export default function OutreachLandingPage() {
                             <div className="mt-8">
                                 <button
                                     onClick={() => handleNext(2)}
-                                    className="w-full font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg"
+                                    className="flex items-center justify-center w-full font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg gap-4"
                                     style={{ background: BRAND.primary, color: "#ffffffff" }}
                                 >
-                                    Next ➡️
+                                    Next <FaArrowRight />
                                 </button>
                             </div>
                         </div>
@@ -541,10 +542,10 @@ export default function OutreachLandingPage() {
                             <div className="flex flex-col sm:flex-row gap-4 mt-8">
                                 <button
                                     onClick={() => setCurrentStep(1)}
-                                    className="sm:w-auto px-6 py-3 font-semibold rounded-xl transition-all"
+                                    className="flex items-center gap-2 sm:w-auto px-6 py-3 font-semibold rounded-xl transition-all"
                                     style={{ background: "var(--hover-bg)", color: "var(--foreground)" }}
                                 >
-                                    ← Back
+                                    <FaArrowLeft /> Back
                                 </button>
                                 <button
                                     onClick={() => handleNext(3)}
@@ -603,13 +604,13 @@ export default function OutreachLandingPage() {
                                 </button>
                             </div>
 
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            <div className="flex justify-center flex-col sm:flex-row gap-4">
                                 <button
                                     onClick={handleSubmit}
-                                    className="flex-1 font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg"
+                                    className="flex items-center gap-2 font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-lg"
                                     style={{ background: BRAND.primary, color: "#ffffffff" }}
                                 >
-                                    ✅ Done
+                                    <FaCheck /> Done
                                 </button>
                             </div>
                         </div>

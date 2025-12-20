@@ -131,9 +131,9 @@ export default function Process() {
                             return (
                                 <div key={idx} className="relative">
                                     <div className="grid lg:grid-cols-3 items-start gap-6">
-                                        {/* Left column (shows card when isLeft) */}
-                                        <div className="hidden lg:flex justify-end">
-                                            {isLeft && (
+                                        {/* Left column (shows card when isLeft, shows step number when !isLeft) */}
+                                        <div className="hidden lg:flex justify-end items-center">
+                                            {isLeft ? (
                                                 <article
                                                     className="max-w-md w-full relative rounded-3xl p-8 border-2 transition-all duration-500 cursor-pointer bg-[var(--card-bg)] shadow-lg border-[var(--border-color)] hover:shadow-2xl hover:border-transparent hover:-translate-y-1 hover:scale-[1.02] group"
                                                 >
@@ -190,6 +190,42 @@ export default function Process() {
                                                         <ArrowRight className="w-4 h-4 text-[var(--brand-blue)] dark:text-[var(--brand-teal)]" />
                                                     </div>
                                                 </article>
+                                            ) : (
+                                                <div className="flex flex-col items-center justify-center relative">
+                                                    {/* Decorative rings */}
+                                                    <div
+                                                        className="absolute w-48 h-48 rounded-full opacity-5"
+                                                        style={{ background: grad }}
+                                                    />
+                                                    <div
+                                                        className="absolute w-36 h-36 rounded-full border-2 opacity-10"
+                                                        style={{ borderColor: step.colorFrom }}
+                                                    />
+                                                    {/* Large step number */}
+                                                    <div
+                                                        className="text-[10rem] font-black leading-none transition-all duration-500 hover:scale-110"
+                                                        style={{
+                                                            background: grad,
+                                                            WebkitBackgroundClip: "text",
+                                                            WebkitTextFillColor: "transparent",
+                                                            opacity: 0.15,
+                                                        }}
+                                                    >
+                                                        {idx + 1}
+                                                    </div>
+                                                    {/* Step title below */}
+                                                    <div
+                                                        className="text-lg font-bold uppercase tracking-widest -mt-4"
+                                                        style={{
+                                                            background: grad,
+                                                            WebkitBackgroundClip: "text",
+                                                            WebkitTextFillColor: "transparent",
+                                                            opacity: 0.4,
+                                                        }}
+                                                    >
+                                                        {step.title}
+                                                    </div>
+                                                </div>
                                             )}
                                         </div>
 
@@ -209,9 +245,9 @@ export default function Process() {
                                             </div>
                                         </div>
 
-                                        {/* Right column (shows card when not isLeft) */}
-                                        <div className="hidden lg:flex justify-start">
-                                            {!isLeft && (
+                                        {/* Right column (shows card when not isLeft, shows step number when isLeft) */}
+                                        <div className="hidden lg:flex justify-start items-center">
+                                            {!isLeft ? (
                                                 <article
                                                     className="max-w-md w-full relative rounded-3xl p-8 border-2 transition-all duration-500 cursor-pointer bg-[var(--card-bg)] shadow-lg border-[var(--border-color)] hover:shadow-2xl hover:border-transparent hover:-translate-y-1 hover:scale-[1.02] group"
                                                 >
@@ -267,6 +303,42 @@ export default function Process() {
                                                         <ArrowRight className="w-4 h-4 text-[var(--brand-blue)] dark:text-[var(--brand-teal)]" />
                                                     </div>
                                                 </article>
+                                            ) : (
+                                                <div className="flex flex-col items-center justify-center relative">
+                                                    {/* Decorative rings */}
+                                                    <div
+                                                        className="absolute w-48 h-48 rounded-full opacity-5"
+                                                        style={{ background: grad }}
+                                                    />
+                                                    <div
+                                                        className="absolute w-36 h-36 rounded-full border-2 opacity-10"
+                                                        style={{ borderColor: step.colorFrom }}
+                                                    />
+                                                    {/* Large step number */}
+                                                    <div
+                                                        className="text-[10rem] font-black leading-none transition-all duration-500 hover:scale-110"
+                                                        style={{
+                                                            background: grad,
+                                                            WebkitBackgroundClip: "text",
+                                                            WebkitTextFillColor: "transparent",
+                                                            opacity: 0.15,
+                                                        }}
+                                                    >
+                                                        {idx + 1}
+                                                    </div>
+                                                    {/* Step title below */}
+                                                    <div
+                                                        className="text-lg font-bold uppercase tracking-widest -mt-4"
+                                                        style={{
+                                                            background: grad,
+                                                            WebkitBackgroundClip: "text",
+                                                            WebkitTextFillColor: "transparent",
+                                                            opacity: 0.4,
+                                                        }}
+                                                    >
+                                                        {step.title}
+                                                    </div>
+                                                </div>
                                             )}
                                         </div>
                                     </div>

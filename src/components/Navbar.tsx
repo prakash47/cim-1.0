@@ -25,14 +25,14 @@ import {
 
 const services = [
   { icon: Globe, title: "Web Design & Development", description: "Custom websites that drive results", color: "bg-gradient-to-br from-[#008ac1] to-[#00b5ca]" },
-  { icon: Smartphone, title: "Mobile App Development", description: "Native & cross-platform solutions", color: "bg-gradient-to-br from-[#bc3feb] to-[#fab900]" },
-  { icon: Share2, title: "Social Media Marketing", description: "Engage and grow your audience", color: "bg-gradient-to-br from-[#00efd6] to-[#00b5ca]" },
+  { icon: Smartphone, title: "Mobile App Development", description: "Native & cross-platform solutions", color: "bg-gradient-to-br from-[#6B00D7] to-[#bc3feb]" },
+  { icon: Share2, title: "Social Media Marketing", description: "Engage and grow your audience", color: "bg-gradient-to-br from-[#00b5ca] to-[#00efd6]" },
   { icon: Zap, title: "AI Workflows & Automations", description: "Streamline your operations", color: "bg-gradient-to-br from-[#fab900] to-[#ee6500]" },
   { icon: MessageSquare, title: "AI-Powered Chatbots", description: "Intelligent customer support", color: "bg-gradient-to-br from-[#008ac1] to-[#bc3feb]" },
   { icon: TrendingUp, title: "Organic Growth & SEO", description: "Rank higher, reach more", color: "bg-gradient-to-br from-[#6db75c] to-[#4a9e3f]" },
-  { icon: Target, title: "Performance Marketing", description: "Data-driven ad campaigns", color: "bg-gradient-to-br from-[#ee6500] to-[#fab900]" },
-  { icon: Palette, title: "Brand Identity & Design", description: "Stand out with unique branding", color: "bg-gradient-to-br from-[#bc3feb] to-[#008ac1]" },
-  { icon: Headphones, title: "Additional Support Services", description: "Ongoing assistance & maintenance", color: "bg-gradient-to-br from-[#00efd6] to-[#bc3feb]" },
+  { icon: Target, title: "Performance Marketing", description: "Data-driven ad campaigns", color: "bg-gradient-to-br from-[#e53935] to-[#ff7043]" },
+  { icon: Palette, title: "Brand Identity & Design", description: "Stand out with unique branding", color: "bg-gradient-to-br from-[#fab900] to-[#ee6500]" },
+  { icon: Headphones, title: "Additional Support Services", description: "Ongoing assistance & maintenance", color: "bg-gradient-to-br from-[#4b277a] to-[#97288e]" },
 ];
 
 export default function Navbar() {
@@ -53,8 +53,8 @@ export default function Navbar() {
 
   // Active link styles
   const getNavLinkStyle = (path: string) => ({
-    color: isActive(path) ? "var(--brand-blue)" : "var(--foreground)",
-    backgroundColor: isActive(path) ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent",
+    color: isActive(path) ? "var(--brand-purple)" : "var(--foreground)",
+    backgroundColor: isActive(path) ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)" : "transparent",
   });
 
   // next-themes
@@ -164,8 +164,8 @@ export default function Navbar() {
                 href="/"
                 className="px-4 py-2 rounded-lg text-md font-medium transition-all"
                 style={getNavLinkStyle("/")}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent")}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/") ? "color-mix(in srgb, var(--brand-purple) 15%, transparent)" : "var(--hover-bg)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/") ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)" : "transparent")}
               >
                 Home
               </Link>
@@ -174,16 +174,16 @@ export default function Navbar() {
                 <button
                   className="flex items-center space-x-1 px-4 py-2 rounded-lg text-md font-medium transition-all"
                   style={{
-                    color: isActive("/services") ? "var(--brand-blue)" : "var(--foreground)",
+                    color: isActive("/services") ? "var(--brand-purple)" : "var(--foreground)",
                     backgroundColor: isServicesOpen
                       ? "var(--hover-bg)"
                       : isActive("/services")
-                        ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)"
+                        ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)"
                         : "transparent",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/services") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/services") ? "color-mix(in srgb, var(--brand-purple) 15%, transparent)" : "var(--hover-bg)")}
                   onMouseLeave={(e) => {
-                    if (!isServicesOpen) e.currentTarget.style.backgroundColor = isActive("/services") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent";
+                    if (!isServicesOpen) e.currentTarget.style.backgroundColor = isActive("/services") ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)" : "transparent";
                   }}
                   aria-expanded={isServicesOpen}
                   aria-haspopup="true"
@@ -272,8 +272,8 @@ export default function Navbar() {
                 href="/about"
                 className="px-4 py-2 rounded-lg text-md font-medium transition-all"
                 style={getNavLinkStyle("/about")}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/about") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/about") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent")}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/about") ? "color-mix(in srgb, var(--brand-purple) 15%, transparent)" : "var(--hover-bg)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/about") ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)" : "transparent")}
               >
                 About
               </Link>
@@ -281,8 +281,8 @@ export default function Navbar() {
                 href="/contact"
                 className="px-4 py-2 rounded-lg text-md font-medium transition-all"
                 style={getNavLinkStyle("/contact")}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/contact") ? "color-mix(in srgb, var(--brand-blue) 15%, transparent)" : "var(--hover-bg)")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/contact") ? "color-mix(in srgb, var(--brand-blue) 10%, transparent)" : "transparent")}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/contact") ? "color-mix(in srgb, var(--brand-purple) 15%, transparent)" : "var(--hover-bg)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/contact") ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)" : "transparent")}
               >
                 Contact
               </Link>

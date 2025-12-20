@@ -145,38 +145,26 @@ export default function Process() {
                                                     </div>
                                                 </div>
 
-                                                <div className="flex items-start gap-4">
-                                                    <div
-                                                        className="text-7xl font-bold opacity-10"
-                                                        style={{
-                                                            background: `linear-gradient(135deg, var(--brand-blue), var(--brand-teal))`,
-                                                            WebkitBackgroundClip: "text",
-                                                            WebkitTextFillColor: "transparent",
-                                                        }}
-                                                    >
-                                                        {step.number}
-                                                    </div>
-                                                    <div className="flex-1">
-                                                        <h3 className="text-2xl font-bold mb-3" style={{ color: "var(--foreground)" }}>
-                                                            {step.title}
-                                                        </h3>
-                                                        <p className="text-base leading-relaxed" style={{ color: "var(--secondary-text)" }}>
-                                                            {step.description}
-                                                        </p>
+                                                <div className="flex-1">
+                                                    <h3 className="text-2xl font-bold mb-3" style={{ color: "var(--foreground)" }}>
+                                                        {step.title}
+                                                    </h3>
+                                                    <p className="text-base leading-relaxed" style={{ color: "var(--secondary-text)" }}>
+                                                        {step.description}
+                                                    </p>
 
-                                                        {/* Step Status Badge */}
-                                                        <div className="mt-4">
-                                                            <span
-                                                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold"
-                                                                style={{
-                                                                    backgroundColor: "color-mix(in srgb, var(--brand-blue) 15%, transparent)",
-                                                                    color: "var(--brand-blue)",
-                                                                }}
-                                                            >
-                                                                <span className="w-2 h-2 rounded-full bg-[var(--brand-blue)]"></span>
-                                                                Step {idx + 1} of {steps.length}
-                                                            </span>
-                                                        </div>
+                                                    {/* Step Status Badge */}
+                                                    <div className="mt-4">
+                                                        <span
+                                                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold"
+                                                            style={{
+                                                                backgroundColor: "color-mix(in srgb, var(--brand-blue) 15%, transparent)",
+                                                                color: "var(--brand-blue)",
+                                                            }}
+                                                        >
+                                                            <span className="w-2 h-2 rounded-full bg-[var(--brand-blue)]"></span>
+                                                            Step {idx + 1} of {steps.length}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -236,8 +224,19 @@ export default function Process() {
                                         </div>
                                     </div>
 
-                                    {/* Spacer for layout balance */}
-                                    <div className="hidden lg:block flex-1" />
+                                    {/* Spacer with Step Number for layout balance */}
+                                    <div className="hidden lg:flex flex-1 items-center justify-center">
+                                        <div
+                                            className="text-8xl font-black opacity-10 transition-all duration-500 group-hover:opacity-20"
+                                            style={{
+                                                background: `linear-gradient(135deg, var(--brand-blue), var(--brand-teal))`,
+                                                WebkitBackgroundClip: "text",
+                                                WebkitTextFillColor: "transparent",
+                                            }}
+                                        >
+                                            {step.number}
+                                        </div>
+                                    </div>
                                 </div>
                             );
                         })}

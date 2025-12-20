@@ -119,8 +119,8 @@ export default function Process() {
                                     {/* Desktop Layout */}
                                     <div className="hidden md:flex items-center gap-8">
                                         {/* Left Content */}
-                                        <div className={`flex-1 ${isLeft ? 'text-right' : ''}`}>
-                                            {isLeft && (
+                                        <div className={`flex-1 ${isLeft ? 'text-right' : 'flex items-center justify-center'}`}>
+                                            {isLeft ? (
                                                 <div
                                                     className="inline-block p-6 rounded-2xl border transition-all duration-500"
                                                     style={{
@@ -150,6 +150,15 @@ export default function Process() {
                                                             </p>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            ) : (
+                                                <div
+                                                    className="text-8xl font-black opacity-10 transition-all duration-500"
+                                                    style={{
+                                                        color: step.color,
+                                                    }}
+                                                >
+                                                    {step.number}
                                                 </div>
                                             )}
                                         </div>
@@ -182,8 +191,8 @@ export default function Process() {
                                         </div>
 
                                         {/* Right Content */}
-                                        <div className={`flex-1 ${!isLeft ? 'text-left' : ''}`}>
-                                            {!isLeft && (
+                                        <div className={`flex-1 ${!isLeft ? 'text-left' : 'flex items-center justify-center'}`}>
+                                            {!isLeft ? (
                                                 <div
                                                     className="inline-block p-6 rounded-2xl border transition-all duration-500"
                                                     style={{
@@ -213,6 +222,15 @@ export default function Process() {
                                                             </p>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            ) : (
+                                                <div
+                                                    className="text-8xl font-black opacity-10 transition-all duration-500"
+                                                    style={{
+                                                        color: step.color,
+                                                    }}
+                                                >
+                                                    {step.number}
                                                 </div>
                                             )}
                                         </div>

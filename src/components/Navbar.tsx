@@ -113,7 +113,7 @@ export default function Navbar() {
   // Placeholder to avoid hydration mismatch
   if (!mounted) {
     return (
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-sm border-b shadow-sm">
+      <nav className="fixed top-0 w-full z-[150] backdrop-blur-sm border-b shadow-sm">
         <div className="mx-auto px-6 md:px-12 xl:px-16">
           <div className="flex justify-between items-center h-16 lg:h-20">
             <div className="flex-shrink-0">
@@ -132,7 +132,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="sticky top-0 w-full z-50 backdrop-blur-sm border-b shadow-sm transition-colors duration-300"
+      className="sticky top-0 w-full z-[150] backdrop-blur-sm border-b shadow-sm transition-colors duration-300"
       style={{
         // use the global background variable so dark mode works
         backgroundColor: "var(--card-bg)",
@@ -195,7 +195,7 @@ export default function Navbar() {
 
                 {/* Mega Menu Dropdown */}
                 {isServicesOpen && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 xl:-translate-x-[60%] lg:-translate-x-[55%] mt-2 w-screen lg:max-w-4xl xl:max-w-5xl">
+                  <div className="absolute left-1/2 transform -translate-x-1/2 xl:-translate-x-[60%] lg:-translate-x-[55%] mt-2 w-screen lg:max-w-4xl xl:max-w-5xl z-[300]">
                     <div
                       className="rounded-2xl shadow-2xl border p-8 overflow-hidden"
                       style={{
@@ -267,7 +267,15 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-
+              <Link
+                href="/blog"
+                className="px-4 py-2 rounded-lg text-md font-medium transition-all"
+                style={getNavLinkStyle("/blog")}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/blog") ? "color-mix(in srgb, var(--brand-purple) 15%, transparent)" : "var(--hover-bg)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/blog") ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)" : "transparent")}
+              >
+                Blog
+              </Link>
               <Link
                 href="/about"
                 className="px-4 py-2 rounded-lg text-md font-medium transition-all"
@@ -310,7 +318,7 @@ export default function Navbar() {
 
                 {isThemeOpen && (
                   <div
-                    className="absolute top-12 right-0 w-36 rounded-xl border shadow-xl p-1 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+                    className="absolute top-12 right-0 w-36 rounded-xl border shadow-xl p-1 overflow-hidden animate-in fade-in zoom-in-95 duration-200 z-[300]"
                     style={{
                       backgroundColor: "var(--card-bg)",
                       borderColor: "var(--border-color)",

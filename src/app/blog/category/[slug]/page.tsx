@@ -1,6 +1,6 @@
 "use client";
 
-import { categories, getBlogPostsByCategory, getCategoryDetails, categoryDetails } from "@/data/blog";
+import { categories, getBlogPostsByCategory, getCategoryDetails, categoryDetails, getCategorySlug } from "@/data/blog";
 import BlogCard from "@/components/blog/BlogCard";
 import BlogSidebar from "@/components/blog/BlogSidebar";
 import {
@@ -53,7 +53,7 @@ export default function CategoryPage() {
 
   const categoryName = useMemo(() => {
     return categories.find(
-      (cat) => cat.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "") === slug.replace(/&/g, "")
+      (cat) => getCategorySlug(cat) === slug
     );
   }, [slug]);
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { getAuthorByName, getBlogPostsByAuthor } from "@/data/blog";
+import { getAuthorByName, getBlogPostsByAuthor, getCategorySlug } from "@/data/blog";
 import BlogCard from "@/components/blog/BlogCard";
 import { Mail, Linkedin, Twitter, Github, ArrowLeft } from "lucide-react";
 import Image from "next/image";
@@ -56,135 +56,235 @@ export default function AuthorPage() {
       }}
       className="min-h-screen pb-5"
     >
-      {/* Back Button */}
-      <div className="px-6 md:px-12 xl:px-16 py-6">
-        <Link
-          href="/blog"
-          className="inline-flex items-center space-x-2 text-[var(--brand-purple)] hover:underline transition-all"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Blog</span>
-        </Link>
-      </div>
-
-      {/* Author Profile Section */}
-      <section className="px-6 md:px-12 xl:px-16 mb-16">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        {/* Background Gradient */}
         <div
-          className="rounded-2xl border p-8 md:p-12 overflow-hidden relative"
+          className="absolute inset-0 opacity-5"
           style={{
-            backgroundColor: "var(--card-bg)",
-            borderColor: "var(--border-color)",
+            background: "radial-gradient(ellipse at top, var(--brand-purple), transparent 70%)",
           }}
-        >
+        />
+
+        <div className="relative px-6 md:px-12 xl:px-16 py-8 md:py-12">
+
+          {/* Author Profile Card */}
           <div
-            className="absolute inset-0 opacity-10"
+            className="rounded-3xl border p-8 md:p-10 overflow-hidden relative"
             style={{
-              background: "linear-gradient(135deg, var(--brand-purple), var(--brand-cyan))",
+              backgroundColor: "var(--card-bg)",
+              borderColor: "var(--border-color)",
             }}
-          />
-          <div className="relative z-10">
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-              {/* Author Image */}
-              <div className="flex-shrink-0">
-                <Image
-                  src={author.image}
-                  alt={author.name}
-                  width={150}
-                  height={150}
-                  className="w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover border-4"
-                  style={{
-                    borderColor: "var(--brand-purple)",
-                  }}
-                />
-              </div>
+          >
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                background: "linear-gradient(135deg, var(--brand-purple), var(--brand-cyan))",
+              }}
+            />
 
-              {/* Author Info */}
-              <div className="flex-1 text-center md:text-left">
-                <h1 className="text-4xl font-bold mb-2">{author.name}</h1>
-                <p className="text-lg mb-4" style={{ color: "var(--secondary-text)" }}>
-                  {author.bio}
-                </p>
-
-                {/* Stats */}
-                <div className="flex flex-wrap gap-6 mb-6 justify-center md:justify-start">
-                  <div>
-                    <p className="text-2xl font-bold text-[var(--brand-purple)]">
-                      {authorPosts.length}
-                    </p>
-                    <p style={{ color: "var(--secondary-text)" }} className="text-sm">
-                      {authorPosts.length === 1 ? "Post" : "Posts"}
-                    </p>
+            <div className="relative z-10">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+                {/* Left: Author Image & Quick Actions */}
+                <div className="flex flex-col items-center lg:items-center">
+                  {/* Author Image with Ring */}
+                  <div className="relative mb-6 ">
+                    <div
+                      className="absolute -inset-2 rounded-full opacity-30"
+                      style={{ background: "linear-gradient(135deg, var(--brand-purple), var(--brand-cyan))" }}
+                    />
+                    <Image
+                      src={author.image}
+                      alt={author.name}
+                      width={180}
+                      height={180}
+                      className="relative w-40 h-40 md:w-60 md:h-60 rounded-full object-cover border-4"
+                      style={{ borderColor: "var(--background)" }}
+                    />
+                    {/* Verified Badge */}
+                    <div
+                      className="absolute bottom-2 right-2 w-10 h-10 rounded-full flex items-center justify-center border-4"
+                      style={{
+                        backgroundColor: "var(--brand-purple)",
+                        borderColor: "var(--background)"
+                      }}
+                      title="Verified Author"
+                    >
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-2xl font-bold text-[var(--brand-purple)]">
-                      {new Set(authorPosts.map((p) => p.category)).size}
-                    </p>
-                    <p style={{ color: "var(--secondary-text)" }} className="text-sm">
-                      Categories
-                    </p>
-                  </div>
-                </div>
 
-                {/* Social Links */}
-                <div className="flex items-center space-x-4 justify-center md:justify-start">
+                  {/* Social Links */}
+                  <div className="flex items-center gap-3 mb-4">
+                    {author.social?.linkedin && (
+                      <a
+                        href={author.social.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110 border hover:border-[var(--brand-purple)]"
+                        style={{
+                          backgroundColor: "color-mix(in srgb, var(--brand-purple) 10%, transparent)",
+                          borderColor: "var(--border-color)",
+                          color: "var(--brand-purple)",
+                        }}
+                        title="LinkedIn"
+                      >
+                        <Linkedin className="w-5 h-5" />
+                      </a>
+                    )}
+                    {author.social?.twitter && (
+                      <a
+                        href={author.social.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110 border hover:border-[var(--brand-purple)]"
+                        style={{
+                          backgroundColor: "color-mix(in srgb, var(--brand-purple) 10%, transparent)",
+                          borderColor: "var(--border-color)",
+                          color: "var(--brand-purple)",
+                        }}
+                        title="Twitter"
+                      >
+                        <Twitter className="w-5 h-5" />
+                      </a>
+                    )}
+                    {author.social?.github && (
+                      <a
+                        href={author.social.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110 border hover:border-[var(--brand-purple)]"
+                        style={{
+                          backgroundColor: "color-mix(in srgb, var(--brand-purple) 10%, transparent)",
+                          borderColor: "var(--border-color)",
+                          color: "var(--brand-purple)",
+                        }}
+                        title="GitHub"
+                      >
+                        <Github className="w-5 h-5" />
+                      </a>
+                    )}
+                  </div>
+
+                  {/* Contact Button */}
                   {author.email && (
                     <a
                       href={`mailto:${author.email}`}
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-                      style={{
-                        backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)",
-                        color: "var(--brand-purple)",
-                      }}
-                      title="Email"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white transition-all duration-200 hover:shadow-lg hover:scale-105"
+                      style={{ backgroundColor: "var(--brand-purple)" }}
                     >
-                      <Mail className="w-5 h-5" />
+                      <Mail className="w-4 h-4" />
+                      Get in Touch
                     </a>
                   )}
-                  {author.social?.linkedin && (
-                    <a
-                      href={author.social.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                </div>
+
+                {/* Center & Right: Author Details */}
+                <div className="lg:col-span-2">
+                  {/* Name & Title */}
+                  <div className="text-center lg:text-left mb-6">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">{author.name}</h1>
+                    <p className="text-lg font-medium" style={{ color: "var(--brand-purple)" }}>
+                      Content Writer & Industry Expert
+                    </p>
+                  </div>
+
+                  {/* Bio */}
+                  <div className="mb-6">
+                    <h2 className="text-sm font-bold uppercase tracking-wider mb-3" style={{ color: "var(--secondary-text)" }}>
+                      About
+                    </h2>
+                    <p className="text-base leading-relaxed" style={{ color: "var(--secondary-text)" }}>
+                      {author.bio}
+                    </p>
+                  </div>
+
+                  {/* Expertise Tags */}
+                  <div className="mb-6">
+                    <h2 className="text-sm font-bold uppercase tracking-wider mb-3" style={{ color: "var(--secondary-text)" }}>
+                      Expertise
+                    </h2>
+                    <div className="flex flex-wrap gap-2">
+                      {Array.from(new Set(authorPosts.map((p) => p.category))).map((category) => (
+                        <Link
+                          key={category}
+                          href={`/blog/category/${getCategorySlug(category)}`}
+                          className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 border hover:border-[var(--brand-purple)] hover:text-[var(--brand-purple)]"
+                          style={{
+                            backgroundColor: "color-mix(in srgb, var(--brand-purple) 10%, transparent)",
+                            color: "var(--brand-purple)",
+                            borderColor: "var(--border-color)",
+                          }}
+                        >
+                          {category}
+                        </Link>
+                      ))}
+                      {authorPosts
+                        .flatMap((p) => p.tags)
+                        .filter((tag, idx, arr) => arr.indexOf(tag) === idx)
+                        .slice(0, 6)
+                        .map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1.5 rounded-lg text-sm font-medium border"
+                            style={{
+                              borderColor: "var(--border-color)",
+                              color: "var(--secondary-text)",
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                    </div>
+                  </div>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-3 gap-4">
+                    <div
+                      className="p-4 rounded-xl text-center border"
                       style={{
-                        backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)",
-                        color: "var(--brand-purple)",
+                        backgroundColor: "color-mix(in srgb, var(--brand-purple) 5%, transparent)",
+                        borderColor: "var(--border-color)",
                       }}
-                      title="LinkedIn"
                     >
-                      <Linkedin className="w-5 h-5" />
-                    </a>
-                  )}
-                  {author.social?.twitter && (
-                    <a
-                      href={author.social.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                      <div className="text-2xl md:text-3xl font-bold" style={{ color: "var(--brand-purple)" }}>
+                        {authorPosts.length}
+                      </div>
+                      <div className="text-xs font-medium" style={{ color: "var(--secondary-text)" }}>
+                        {authorPosts.length === 1 ? "Article" : "Articles"}
+                      </div>
+                    </div>
+                    <div
+                      className="p-4 rounded-xl text-center border"
                       style={{
-                        backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)",
-                        color: "var(--brand-purple)",
+                        backgroundColor: "color-mix(in srgb, var(--brand-cyan) 5%, transparent)",
+                        borderColor: "var(--border-color)",
                       }}
-                      title="Twitter"
                     >
-                      <Twitter className="w-5 h-5" />
-                    </a>
-                  )}
-                  {author.social?.github && (
-                    <a
-                      href={author.social.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                      <div className="text-2xl md:text-3xl font-bold" style={{ color: "var(--brand-cyan)" }}>
+                        {new Set(authorPosts.map((p) => p.category)).size}
+                      </div>
+                      <div className="text-xs font-medium" style={{ color: "var(--secondary-text)" }}>
+                        Categories
+                      </div>
+                    </div>
+                    <div
+                      className="p-4 rounded-xl text-center border"
                       style={{
-                        backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)",
-                        color: "var(--brand-purple)",
+                        backgroundColor: "color-mix(in srgb, var(--brand-purple) 5%, transparent)",
+                        borderColor: "var(--border-color)",
                       }}
-                      title="GitHub"
                     >
-                      <Github className="w-5 h-5" />
-                    </a>
-                  )}
+                      <div className="text-2xl md:text-3xl font-bold" style={{ color: "var(--brand-purple)" }}>
+                        {authorPosts.reduce((acc, p) => acc + p.readTime, 0)}
+                      </div>
+                      <div className="text-xs font-medium" style={{ color: "var(--secondary-text)" }}>
+                        Min Read
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

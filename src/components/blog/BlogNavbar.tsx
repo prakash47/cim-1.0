@@ -2,25 +2,47 @@
 
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { categories, blogPosts } from "@/data/blog";
+import { categories, blogPosts, getCategorySlug } from "@/data/blog";
 import SearchBar from "./SearchBar";
-import { BookOpen, Layers, TrendingUp, Sparkles, X, Home, ChevronDown, Grid3X3, Menu } from "lucide-react";
+import {
+    Code,
+    Smartphone,
+    TrendingUp,
+    Bot,
+    Palette,
+    Search,
+    Target,
+    FileText,
+    X,
+    Home,
+    ChevronDown,
+    Grid3X3,
+    Menu
+} from "lucide-react";
 import Link from "next/link";
 
-// Category icons mapping
+// Category icons mapping - all 8 categories
 const categoryIcons: Record<string, React.ReactNode> = {
-    "Web Development": <Layers className="w-4 h-4" />,
+    "Web Development": <Code className="w-4 h-4" />,
+    "Mobile Apps": <Smartphone className="w-4 h-4" />,
     "Digital Marketing": <TrendingUp className="w-4 h-4" />,
-    "Business": <Sparkles className="w-4 h-4" />,
-    "Design": <BookOpen className="w-4 h-4" />,
+    "AI & Automation": <Bot className="w-4 h-4" />,
+    "UI/UX Design": <Palette className="w-4 h-4" />,
+    "SEO": <Search className="w-4 h-4" />,
+    "Business Strategy": <Target className="w-4 h-4" />,
+    "Case Studies": <FileText className="w-4 h-4" />,
 };
 
-// Category colors mapping
+// Category colors mapping - all 8 categories
 const categoryColors: Record<string, string> = {
     "Web Development": "#6B00D7",
-    "Digital Marketing": "#00b5ca",
-    "Business": "#f59e0b",
-    "Design": "#ec4899",
+    "Mobile Apps": "#00B5CA",
+    "Digital Marketing": "#FF6B35",
+    "AI & Automation": "#9B59B6",
+    "UI/UX Design": "#E91E63",
+    "SEO": "#27AE60",
+    "Business Strategy": "#3498DB",
+    "Case Studies": "#F39C12",
 };
 
 export default function BlogNavbar() {
@@ -36,13 +58,33 @@ export default function BlogNavbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
+    const lastScrollY = useRef(0);
 
-    // Handle scroll effect
+    // Handle scroll effect - hide on scroll down, show on scroll up
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10);
+            const currentScrollY = window.scrollY;
+
+            setIsScrolled(currentScrollY > 10);
+
+            // Only apply hide behavior on mobile/tablet (less than 1280px)
+            if (window.innerWidth < 1280) {
+                if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+                    // Scrolling down & past threshold - hide
+                    setIsHidden(true);
+                } else {
+                    // Scrolling up - show
+                    setIsHidden(false);
+                }
+            } else {
+                setIsHidden(false);
+            }
+
+            lastScrollY.current = currentScrollY;
         };
-        window.addEventListener("scroll", handleScroll);
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -102,7 +144,7 @@ export default function BlogNavbar() {
             setShowCategoryDropdown(false);
             setShowMobileMenu(false);
             if (category) {
-                router.push(`/blog/category/${category.toLowerCase().replace(/\s+/g, "-")}`);
+                router.push(`/blog/category/${getCategorySlug(category)}`);
             } else {
                 router.push("/blog");
             }
@@ -123,7 +165,7 @@ export default function BlogNavbar() {
         <>
             <nav
                 className={`sticky top-0 z-[100] border-b transition-all duration-300 ${isScrolled ? "backdrop-blur-xl shadow-lg" : "backdrop-blur-md"
-                    }`}
+                    } ${isHidden ? "xl:translate-y-0 -translate-y-full" : "translate-y-0"}`}
                 style={{
                     backgroundColor: isScrolled
                         ? "color-mix(in srgb, var(--background) 98%, transparent)"
@@ -133,11 +175,11 @@ export default function BlogNavbar() {
             >
                 <div className="px-4 sm:px-6 md:px-12 xl:px-16">
                     {/* Main Navigation Row */}
-                    <div className="flex items-center justify-between gap-2 sm:gap-3 py-2.5 sm:py-3 lg:py-4">
+                    <div className="flex items-center justify-between gap-2 sm:gap-3 py-2.5 sm:py-3 xl:py-4">
                         <div className="flex items-center gap-2 sm:gap-3">
                             <Link
                                 href="/blog"
-                                className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 lg:px-4 py-1.5 sm:py-2 lg:py-2.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm lg:text-base transition-all duration-200 whitespace-nowrap ${pathname === "/blog" && !hasActiveFilters
+                                className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 xl:px-4 py-1.5 sm:py-2 xl:py-2.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm xl:text-base transition-all duration-200 whitespace-nowrap ${pathname === "/blog" && !hasActiveFilters
                                     ? "shadow-md"
                                     : "hover:bg-[var(--hover-bg)]"
                                     }`}
@@ -150,7 +192,7 @@ export default function BlogNavbar() {
                                         pathname === "/blog" && !hasActiveFilters ? "white" : "var(--foreground)",
                                 }}
                             >
-                                <Home className="w-4 h-4 lg:w-5 lg:h-5" />
+                                <Home className="w-4 h-4 xl:w-5 xl:h-5" />
                                 <span className="hidden sm:inline">Blog</span>
                             </Link>
 
@@ -170,7 +212,7 @@ export default function BlogNavbar() {
                         </div>
 
                         {/* Center: Search Bar (Desktop & Tablet) */}
-                        <div className="hidden md:flex flex-1 max-w-lg lg:max-w-xl xl:max-w-2xl mx-2 lg:mx-4">
+                        <div className="hidden md:flex flex-1 max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-2 xl:mx-4">
                             <SearchBar
                                 onSearch={handleSearch}
                                 value={searchQuery}
@@ -179,9 +221,9 @@ export default function BlogNavbar() {
                         </div>
 
                         {/* Right: Categories (Desktop) */}
-                        <div className="hidden lg:flex items-center gap-2">
+                        <div className="hidden xl:flex items-center gap-2">
                             {categories.slice(0, 3).map((category) => {
-                                const categorySlug = category.toLowerCase().replace(/\s+/g, "-");
+                                const categorySlug = getCategorySlug(category);
                                 const isActive =
                                     pathname === `/blog/category/${categorySlug}` || selectedCategory === category;
                                 const color = categoryColors[category] || "var(--brand-purple)";
@@ -251,7 +293,7 @@ export default function BlogNavbar() {
                                                     More Categories
                                                 </p>
                                                 {categories.slice(3).map((category) => {
-                                                    const categorySlug = category.toLowerCase().replace(/\s+/g, "-");
+                                                    const categorySlug = getCategorySlug(category);
                                                     const isActive =
                                                         pathname === `/blog/category/${categorySlug}` ||
                                                         selectedCategory === category;
@@ -291,10 +333,11 @@ export default function BlogNavbar() {
                         <button
                             ref={mobileMenuButtonRef}
                             onClick={() => setShowMobileMenu(!showMobileMenu)}
-                            className="lg:hidden flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl border transition-all duration-200 hover:bg-[var(--hover-bg)]"
+                            className="xl:hidden flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl border transition-all duration-200 hover:bg-[var(--hover-bg)]"
                             style={{
                                 borderColor: showMobileMenu ? "var(--brand-purple)" : "var(--border-color)",
                                 backgroundColor: showMobileMenu ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)" : "transparent",
+                                color: "var(--foreground)"
                             }}
                         >
                             <Menu className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -314,42 +357,6 @@ export default function BlogNavbar() {
                         />
                     </div>
 
-                    {/* Tablet Categories Row */}
-                    <div className="hidden md:flex lg:hidden items-center gap-2 pb-3 overflow-x-auto scrollbar-hide">
-                        {categories.map((category) => {
-                            const categorySlug = category.toLowerCase().replace(/\s+/g, "-");
-                            const isActive =
-                                pathname === `/blog/category/${categorySlug}` || selectedCategory === category;
-                            const color = categoryColors[category] || "var(--brand-purple)";
-
-                            return (
-                                <button
-                                    key={category}
-                                    onClick={() => handleCategorySelect(category)}
-                                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 border whitespace-nowrap"
-                                    style={{
-                                        backgroundColor: isActive
-                                            ? `color-mix(in srgb, ${color} 12%, transparent)`
-                                            : "transparent",
-                                        color: isActive ? color : "var(--foreground)",
-                                        borderColor: isActive ? color : "var(--border-color)",
-                                    }}
-                                >
-                                    {categoryIcons[category]}
-                                    <span>{category}</span>
-                                    <span
-                                        className="px-1.5 py-0.5 rounded-md text-[10px] font-bold"
-                                        style={{
-                                            backgroundColor: `color-mix(in srgb, ${color} 20%, transparent)`,
-                                            color: color,
-                                        }}
-                                    >
-                                        {categoryCounts[category] || 0}
-                                    </span>
-                                </button>
-                            );
-                        })}
-                    </div>
                 </div>
             </nav>
 
@@ -357,7 +364,7 @@ export default function BlogNavbar() {
             {showMobileMenu && (
                 <div
                     ref={mobileMenuRef}
-                    className="lg:hidden absolute left-0 right-0 z-[99] border-b shadow-2xl animate-slideDown backdrop-blur-xl"
+                    className="xl:hidden absolute left-0 right-0 z-[99] border-b shadow-2xl animate-slideDown backdrop-blur-xl"
                     style={{
                         backgroundColor: "color-mix(in srgb, var(--background) 98%, transparent)",
                         borderColor: "var(--border-color)",
@@ -372,7 +379,7 @@ export default function BlogNavbar() {
                         </p>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                             {categories.map((category) => {
-                                const categorySlug = category.toLowerCase().replace(/\s+/g, "-");
+                                const categorySlug = getCategorySlug(category);
                                 const isActive =
                                     pathname === `/blog/category/${categorySlug}` || selectedCategory === category;
                                 const color = categoryColors[category] || "var(--brand-purple)";

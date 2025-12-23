@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { blogPosts } from "@/data/blog";
+import { blogPosts, getCategorySlug } from "@/data/blog";
 import BlogCard from "@/components/blog/BlogCard";
 import BlogSidebar from "@/components/blog/BlogSidebar";
 import { ChevronRight, Sparkles, ArrowRight } from "lucide-react";
@@ -184,7 +184,7 @@ function BlogPageContent() {
                       {["Web Development", "Digital Marketing", "Business", "Design"].map((cat) => (
                         <Link
                           key={cat}
-                          href={`/blog/category/${cat.toLowerCase().replace(/\s+/g, "-")}`}
+                          href={`/blog/category/${getCategorySlug(cat)}`}
                           className="px-4 py-2 rounded-xl text-sm font-semibold border transition-all duration-200 hover:border-[var(--brand-purple)] hover:text-[var(--brand-purple)] hover:bg-[color-mix(in_srgb,var(--brand-purple)_5%,transparent)]"
                           style={{
                             borderColor: "var(--border-color)",
@@ -235,53 +235,60 @@ function BlogPageContent() {
 
                     <Link
                       href={`/blog/${latestPost.slug}`}
-                      className="group block rounded-2xl border overflow-hidden transition-all duration-300 hover:shadow-xl"
+                      className="group block rounded-2xl border overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-[var(--brand-purple)]"
                       style={{
                         backgroundColor: "var(--card-bg)",
                         borderColor: "var(--border-color)",
                       }}
                     >
-                      <div className="relative aspect-[16/9] overflow-hidden">
+                      {/* Image Section - Top Half */}
+                      <div className="relative h-64 overflow-hidden">
                         <Image
                           src={latestPost.image}
                           alt={latestPost.title}
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                        <div className="absolute top-4 left-4">
                           <span
-                            className="inline-flex w-fit px-3 py-1 rounded-full text-xs font-semibold mb-3"
+                            className="inline-flex px-3 py-1.5 rounded-full text-xs font-semibold"
                             style={{
-                              backgroundColor: "color-mix(in srgb, var(--brand-purple) 80%, transparent)",
+                              backgroundColor: "var(--brand-purple)",
                               color: "white",
                             }}
                           >
                             {latestPost.category}
                           </span>
-                          <h3 className="text-xl lg:text-2xl font-bold text-white mb-2 group-hover:text-purple-200 transition-colors line-clamp-2">
-                            {latestPost.title}
-                          </h3>
-                          <p className="text-sm text-gray-200 mb-4 line-clamp-2">
-                            {latestPost.excerpt}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <Image
-                                src={latestPost.author.image}
-                                alt={latestPost.author.name}
-                                width={28}
-                                height={28}
-                                className="rounded-full border-2 border-white/30"
-                              />
-                              <span className="text-sm text-white font-medium">{latestPost.author.name}</span>
-                              <span className="text-xs text-gray-300">• {latestPost.readTime} min</span>
+                        </div>
+                      </div>
+
+                      {/* Content Section - Bottom Half */}
+                      <div className="p-6">
+                        <h3 className="text-xl lg:text-2xl font-bold mb-3 group-hover:text-[var(--brand-purple)] transition-colors line-clamp-2">
+                          {latestPost.title}
+                        </h3>
+                        <p className="text-sm mb-5 line-clamp-2" style={{ color: "var(--secondary-text)" }}>
+                          {latestPost.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between pt-4 border-t" style={{ borderColor: "var(--border-color)" }}>
+                          <div className="flex items-center gap-3">
+                            <Image
+                              src={latestPost.author.image}
+                              alt={latestPost.author.name}
+                              width={32}
+                              height={32}
+                              className="rounded-full"
+                            />
+                            <div>
+                              <span className="text-sm font-medium block">{latestPost.author.name}</span>
+                              <span className="text-xs" style={{ color: "var(--secondary-text)" }}>{latestPost.readTime} min read</span>
                             </div>
-                            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:gap-2.5 transition-all">
-                              Read
-                              <ArrowRight className="w-4 h-4" />
-                            </span>
                           </div>
+                          <span className="inline-flex items-center gap-1.5 text-sm font-semibold group-hover:gap-2.5 transition-all" style={{ color: "var(--brand-purple)" }}>
+                            Read Article
+                            <ArrowRight className="w-4 h-4" />
+                          </span>
                         </div>
                       </div>
                     </Link>

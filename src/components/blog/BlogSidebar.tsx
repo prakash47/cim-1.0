@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { categories, getPopularPosts, getAllTags } from "@/data/blog";
-import { TrendingUp, Folder, Tag } from "lucide-react";
+import { categories, getPopularPosts, getAllTags, getCategorySlug } from "@/data/blog";
+import { TrendingUp, Folder, Tag, ArrowRight } from "lucide-react";
 
 interface BlogSidebarProps {
   currentPostSlug?: string;
@@ -36,17 +37,27 @@ export default function BlogSidebar({ currentPostSlug }: BlogSidebarProps) {
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
-              className="group block p-3 rounded-lg transition-all duration-200 hover:bg-[var(--hover-bg)]"
+              className="group flex gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-[var(--hover-bg)]"
             >
-              <p className="text-sm font-semibold line-clamp-2 group-hover:text-[var(--brand-purple)] transition-colors">
-                {post.title}
-              </p>
-              <p className="text-xs mt-1" style={{ color: "var(--secondary-text)" }}>
-                {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                })}
-              </p>
+              <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold line-clamp-2 group-hover:text-[var(--brand-purple)] transition-colors">
+                  {post.title}
+                </p>
+                <p className="text-xs mt-1" style={{ color: "var(--secondary-text)" }}>
+                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>
+              </div>
             </Link>
           ))}
         </div>
@@ -66,7 +77,7 @@ export default function BlogSidebar({ currentPostSlug }: BlogSidebarProps) {
           {categories.map((category) => (
             <Link
               key={category}
-              href={`/blog/category/${category.toLowerCase().replace(/\s+/g, "-")}`}
+              href={`/blog/category/${getCategorySlug(category)}`}
               className="px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border hover:border-[var(--brand-purple)]"
               style={{
                 backgroundColor: "color-mix(in srgb, var(--brand-purple) 10%, transparent)",
@@ -78,6 +89,14 @@ export default function BlogSidebar({ currentPostSlug }: BlogSidebarProps) {
             </Link>
           ))}
         </div>
+        <Link
+          href="/blog/categories"
+          className="flex items-center justify-center gap-2 mt-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 hover:bg-[var(--hover-bg)]"
+          style={{ color: "var(--brand-purple)" }}
+        >
+          View all categories
+          <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
 
       {/* Tags */}

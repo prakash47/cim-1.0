@@ -109,51 +109,86 @@ export interface BlogPost {
 export const authors: Author[] = [
   {
     id: "1",
-    name: "Sarah Johnson",
+    name: "Prakash Mishra",
     title: "Senior Web Developer",
-    bio: "Senior Web Developer with 8+ years of experience in building scalable digital solutions. Passionate about modern web technologies and UI/UX design.",
-    image: "/images/authors/author-1.jpg",
-    email: "sarah@cim.com",
+    bio: "Senior Web Developer with expertise in modern web technologies, React, Next.js, and full-stack development. Passionate about building scalable digital solutions.",
+    image: "/images/blog/authors/prakash-mishra.png",
+    email: "prakash@cim.com",
     social: {
-      twitter: "https://twitter.com",
       linkedin: "https://linkedin.com",
       github: "https://github.com",
     },
   },
   {
     id: "2",
-    name: "Michael Chen",
-    title: "Digital Marketing Strategist",
-    bio: "Digital Marketing Strategist and SEO Expert. Helping businesses achieve sustainable organic growth through data-driven strategies.",
-    image: "/images/authors/author-2.jpg",
-    email: "michael@cim.com",
+    name: "Shravan More",
+    title: "UI/UX Designer & Frontend Developer",
+    bio: "UI/UX Designer and Frontend Developer creating beautiful, functional digital experiences. Specializing in user-centered design and modern web interfaces.",
+    image: "/images/blog/authors/shravan-more.png",
+    email: "shravan@cim.com",
     social: {
-      twitter: "https://twitter.com",
       linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
     },
   },
   {
     id: "3",
-    name: "Emma Williams",
-    title: "UI/UX Designer",
-    bio: "UI/UX Designer and Brand Strategist. Creating beautiful, functional digital experiences that drive user engagement and business results.",
-    image: "/images/authors/author-3.jpg",
-    email: "emma@cim.com",
+    name: "Adnan Khan",
+    title: "Full Stack Developer",
+    bio: "Full Stack Developer with a keen eye for design. Building end-to-end web solutions with modern technologies and best practices.",
+    image: "/images/blog/authors/Adnan-Khan.webp",
+    email: "adnan@cim.com",
+    social: {
+      linkedin: "https://linkedin.com",
+      github: "https://github.com",
+    },
+  },
+  {
+    id: "4",
+    name: "Jayesh Mistry",
+    title: "Web Developer & UI Designer",
+    bio: "Web Developer and UI Designer focused on creating intuitive user interfaces and responsive web applications.",
+    image: "/images/blog/authors/jayesh-mistry.png",
+    email: "jayesh@cim.com",
+    social: {
+      linkedin: "https://linkedin.com",
+      github: "https://github.com",
+    },
+  },
+  {
+    id: "5",
+    name: "Harsh Mishra",
+    title: "Mobile App Developer",
+    bio: "Mobile App Developer specializing in cross-platform development with Flutter and React Native. Building innovative mobile experiences.",
+    image: "/images/blog/authors/harsh-mishra.jpg",
+    email: "harsh@cim.com",
+    social: {
+      linkedin: "https://linkedin.com",
+      github: "https://github.com",
+    },
+  },
+  {
+    id: "6",
+    name: "Saurabh Parave",
+    title: "Digital Marketing Strategist",
+    bio: "Digital Marketing Strategist helping businesses achieve sustainable growth through data-driven marketing strategies and campaigns.",
+    image: "/images/blog/authors/saurabh-parave.jpg",
+    email: "saurabh@cim.com",
     social: {
       linkedin: "https://linkedin.com",
       twitter: "https://twitter.com",
     },
   },
   {
-    id: "4",
-    name: "David Kumar",
-    title: "Mobile App Developer",
-    bio: "Mobile App Developer and AI Enthusiast. Specializing in cross-platform development and integrating AI workflows into applications.",
-    image: "/images/authors/author-4.jpg",
-    email: "david@cim.com",
+    id: "7",
+    name: "Sushma Pal",
+    title: "SEO & Content Marketing Expert",
+    bio: "SEO and Content Marketing Expert. Helping businesses achieve organic growth through strategic content and search optimization.",
+    image: "/images/blog/authors/sushma-pal.png",
+    email: "sushma@cim.com",
     social: {
-      github: "https://github.com",
       linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
     },
   },
 ];
@@ -337,7 +372,7 @@ When building Next.js applications, follow these best practices:
 
 Next.js continues to evolve, bringing new features and improvements with each release. Whether you're building a simple blog or a complex enterprise application, Next.js provides the tools and flexibility you need to succeed in modern web development.
     `,
-    author: authors[0],
+    author: authors[0],  // Prakash Mishra
     category: "Web Development",
     tags: ["Next.js", "React", "Web Development", "JavaScript"],
     image: "/images/blog/blog_image.png",
@@ -452,7 +487,7 @@ Track your progress with these key metrics:
 
 SEO is a long-term investment that requires patience and consistency. By implementing these strategies, you'll build a strong foundation for sustainable organic growth.
     `,
-    author: authors[1],
+    author: authors[6],  // Sushma Pal
     category: "SEO",
     tags: ["SEO", "Digital Marketing", "Organic Growth", "Keywords"],
     image: "/images/blog/blog_image.png",
@@ -556,7 +591,7 @@ Users expect fast, responsive apps:
 
 The mobile app landscape is more exciting than ever. By staying updated with these trends, you'll build apps that meet user expectations and drive business success.
     `,
-    author: authors[3],
+    author: authors[4],  // Harsh Mishra
     category: "Mobile Apps",
     tags: ["Mobile Development", "React Native", "Flutter", "Technology"],
     image: "/images/blog/blog_image.png",
@@ -667,7 +702,7 @@ Design for all screen sizes:
 
 Great design is a balance of aesthetics and functionality. By following these principles, you'll create designs that users love and that drive business results.
     `,
-    author: authors[2],
+    author: authors[1],  // Shravan More
     category: "UI/UX Design",
     tags: ["Design", "UI/UX", "User Experience", "Best Practices"],
     image: "/images/blog/blog_image.png",
@@ -770,7 +805,7 @@ Track performance metrics and continuously improve your workflows.
 
 AI workflows are no longer a luxury—they're a necessity for competitive businesses. By strategically implementing AI automation, you can focus on high-value activities while AI handles routine tasks.
     `,
-    author: authors[3],
+    author: authors[0],  // Prakash Mishra
     category: "AI & Automation",
     tags: ["AI", "Automation", "Business Process", "Efficiency"],
     image: "/images/blog/blog_image.png",
@@ -902,7 +937,7 @@ Use analytics to understand what works:
 
 A successful digital marketing strategy requires planning, execution, and continuous optimization. By following these steps, you'll build a strategy that drives real business results.
     `,
-    author: authors[1],
+    author: authors[5],  // Saurabh Parave
     category: "Digital Marketing",
     tags: ["Marketing", "Strategy", "Digital", "Business Growth"],
     image: "/images/blog/blog_image.png",
@@ -995,7 +1030,7 @@ After 6 months of implementation:
 
 This case study demonstrates the power of strategic digital transformation. By combining modern technology with effective marketing strategies, businesses can achieve remarkable growth regardless of their size.
     `,
-    author: authors[0],
+    author: authors[0],  // Prakash Mishra
     category: "Case Studies",
     tags: ["Case Study", "Digital Transformation", "Business Growth", "Success"],
     image: "/images/blog/blog_image.png",
@@ -1099,7 +1134,7 @@ Measures visual stability. Aim for CLS < 0.1.
 
 Website performance optimization is an ongoing process. By implementing these techniques and regularly monitoring performance, you'll create a fast, user-friendly experience that drives results.
     `,
-    author: authors[0],
+    author: authors[1],  // Shravan More
     category: "Web Development",
     tags: ["Performance", "Optimization", "Web Development", "Speed"],
     image: "/images/blog/blog_image.png",
@@ -1199,7 +1234,7 @@ Build customer confidence through:
 
 E-commerce UX is about removing friction from the buying journey. By focusing on customer needs, building trust, and optimizing every touchpoint, you can significantly increase your conversion rates and build lasting customer relationships.
     `,
-    author: authors[2],
+    author: authors[2],  // Adnan Khan
     category: "UI/UX Design",
     tags: ["E-commerce", "UX Design", "Conversion", "Online Shopping"],
     image: "/images/blog/blog_image.png",
@@ -1325,7 +1360,7 @@ Track these key metrics:
 
 Social media success requires consistency, authenticity, and strategic thinking. By understanding your audience, creating valuable content, and measuring results, you can build a powerful social media presence that drives real business growth.
     `,
-    author: authors[1],
+    author: authors[6],  // Sushma Pal
     category: "Digital Marketing",
     tags: ["Social Media", "Branding", "Marketing Strategy", "Content"],
     image: "/images/blog/blog_image.png",
@@ -1462,7 +1497,7 @@ Focus on critical paths:
 
 Modern React development is about leveraging the right tools and patterns for each situation. By following these best practices, you'll build applications that are performant, maintainable, and enjoyable to work with.
     `,
-    author: authors[0],
+    author: authors[2],  // Adnan Khan
     category: "Web Development",
     tags: ["React", "JavaScript", "Frontend", "Best Practices"],
     image: "/images/blog/blog_image.png",
@@ -1599,7 +1634,7 @@ Maximize your content investment:
 
 Effective content marketing requires a strategic approach focused on providing genuine value to your audience. By creating high-quality content, distributing it effectively, and measuring results, you can build a content engine that drives sustainable business growth.
     `,
-    author: authors[1],
+    author: authors[5],  // Saurabh Parave
     category: "Digital Marketing",
     tags: ["Content Marketing", "Strategy", "SEO", "Lead Generation"],
     image: "/images/blog/blog_image.png",
@@ -1726,7 +1761,7 @@ Security doesn't have to break the bank:
 
 Cybersecurity is no longer optional for small businesses. By implementing these fundamental security measures, you can significantly reduce your risk and protect your business, customers, and reputation from cyber threats.
     `,
-    author: authors[3],
+    author: authors[3],  // Jayesh Mistry
     category: "Business Strategy",
     tags: ["Cybersecurity", "Small Business", "Security", "Risk Management"],
     image: "/images/blog/blog_image.png",
@@ -1881,7 +1916,7 @@ Show complexity gradually:
 
 Mobile UX in 2024 is about creating intuitive, personalized, and accessible experiences. By embracing these trends thoughtfully, you can build mobile experiences that delight users and stand out in a crowded marketplace.
     `,
-    author: authors[2],
+    author: authors[3],  // Jayesh Mistry
     category: "UI/UX Design",
     tags: ["Mobile UX", "Design Trends", "UX Design", "Mobile Apps"],
     image: "/images/blog/blog_image.png",
@@ -2031,7 +2066,7 @@ Ensure your emails reach the inbox:
 
 Email marketing automation is one of the highest-ROI marketing activities available. By implementing strategic automation sequences and continuously optimizing, you can build a powerful email program that nurtures relationships and drives revenue.
     `,
-    author: authors[1],
+    author: authors[6],  // Sushma Pal
     category: "Digital Marketing",
     tags: ["Email Marketing", "Automation", "Lead Nurturing", "Marketing"],
     image: "/images/blog/blog_image.png",
@@ -2183,7 +2218,7 @@ Create feedback loops:
 
 Effective data analytics is about asking the right questions, finding meaningful answers, and taking action. By building a data-driven culture and implementing proper analytics practices, you can make decisions that lead to measurable business improvement.
     `,
-    author: authors[3],
+    author: authors[5],  // Saurabh Parave
     category: "Business Strategy",
     tags: ["Data Analytics", "Business Intelligence", "Decision Making", "Growth"],
     image: "/images/blog/blog_image.png",

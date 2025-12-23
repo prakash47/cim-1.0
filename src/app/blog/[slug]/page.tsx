@@ -3,11 +3,12 @@
 import { getBlogPostBySlug, getBlogPostsByCategory, getAuthorById, getCategorySlug } from "@/data/blog";
 import BlogCard from "@/components/blog/BlogCard";
 import BlogSidebar from "@/components/blog/BlogSidebar";
+import BlogContentRenderer from "@/components/blog/BlogContentRenderer";
 import { Calendar, Clock, User, Share2, ArrowLeft, List, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useMemo, useState, useEffect, JSX } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 // Type for table of contents items
 interface TocItem {
@@ -161,97 +162,6 @@ export default function BlogDetailPage() {
 
   const authorSlug = post.author.name.toLowerCase().replace(/\s+/g, "-");
 
-  // Function to convert markdown content to HTML with proper heading IDs
-  const renderContent = (content: string) => {
-    const lines = content.split("\n");
-    const elements: JSX.Element[] = [];
-    let currentList: string[] = [];
-    let isInList = false;
-    let key = 0;
-
-    const flushList = () => {
-      if (currentList.length > 0) {
-        elements.push(
-          <ul key={key++} className="list-disc list-inside mb-4 space-y-2" style={{ color: "var(--secondary-text)" }}>
-            {currentList.map((item, i) => (
-              <li key={i} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>") }} />
-            ))}
-          </ul>
-        );
-        currentList = [];
-        isInList = false;
-      }
-    };
-
-    for (const line of lines) {
-      const trimmedLine = line.trim();
-
-      if (!trimmedLine) {
-        flushList();
-        continue;
-      }
-
-      const h1Match = trimmedLine.match(/^#\s+(.+)$/);
-      const h2Match = trimmedLine.match(/^##\s+(.+)$/);
-      const h3Match = trimmedLine.match(/^###\s+(.+)$/);
-
-      if (h1Match) {
-        flushList();
-        const text = h1Match[1];
-        const id = text.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-");
-        elements.push(
-          <h1 key={key++} id={id} className="text-3xl font-bold mb-6 mt-8 scroll-mt-24">
-            {text}
-          </h1>
-        );
-        continue;
-      }
-
-      if (h2Match) {
-        flushList();
-        const text = h2Match[1];
-        const id = text.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-");
-        elements.push(
-          <h2 key={key++} id={id} className="text-2xl font-bold mb-4 mt-8 scroll-mt-24">
-            {text}
-          </h2>
-        );
-        continue;
-      }
-
-      if (h3Match) {
-        flushList();
-        const text = h3Match[1];
-        const id = text.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-");
-        elements.push(
-          <h3 key={key++} id={id} className="text-xl font-bold mb-3 mt-6 scroll-mt-24">
-            {text}
-          </h3>
-        );
-        continue;
-      }
-
-      if (trimmedLine.startsWith("- ")) {
-        isInList = true;
-        currentList.push(trimmedLine.substring(2));
-        continue;
-      }
-
-      flushList();
-      elements.push(
-        <p
-          key={key++}
-          className="mb-4 leading-relaxed"
-          style={{ color: "var(--secondary-text)" }}
-          dangerouslySetInnerHTML={{ __html: trimmedLine.replace(/\*\*(.+?)\*\*/g, "<strong style='color: var(--foreground)'>$1</strong>") }}
-        />
-      );
-    }
-
-    flushList();
-    return elements;
-  };
-
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -293,7 +203,7 @@ export default function BlogDetailPage() {
 
         <div className="relative px-6 md:px-12 xl:px-16 py-8 md:py-12">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm mb-8" style={{ color: "var(--secondary-text)" }}>
+          <nav className="hidden md:flex items-center gap-2 text-sm mb-8" style={{ color: "var(--secondary-text)" }}>
             <Link href="/blog" className="hover:text-[var(--brand-purple)] transition-colors">
               Blog
             </Link>
@@ -401,60 +311,71 @@ export default function BlogDetailPage() {
 
       {/* Content Section */}
       <div className="px-6 md:px-12 xl:px-16 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {/* Main Content */}
-          <article className="lg:col-span-2">
-            {/* Article Content */}
-            <div
-              className="prose prose-lg max-w-none rounded-2xl border p-6 md:p-10"
-              style={{
-                backgroundColor: "var(--card-bg)",
-                borderColor: "var(--border-color)",
-              }}
-            >
-              {renderContent(post.content)}
-            </div>
+        <div className="max-w-7xl mx-auto">
+          {/* 👇 THIS defines the sticky boundary */}
+          <div className="relative grid grid-cols-1 xl:grid-cols-3 gap-8">
 
-            {/* Tags */}
-            <div className="mt-8 pt-8 border-t" style={{ borderColor: "var(--border-color)" }}>
-              <div className="flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1.5 rounded-full text-sm font-medium border transition-all duration-200 hover:border-[var(--brand-purple)]"
-                    style={{
-                      backgroundColor: "color-mix(in srgb, var(--brand-purple) 10%, transparent)",
-                      color: "var(--brand-purple)",
-                      borderColor: "var(--border-color)",
-                    }}
-                  >
-                    #{tag}
-                  </span>
-                ))}
+            {/* Main Content */}
+            <article className="xl:col-span-2">
+              {/* Mobile Table of Contents - visible on screens < xl */}
+              <div className="xl:hidden mb-8">
+                <TableOfContents content={post.content} />
               </div>
-            </div>
+              {/* Article Content */}
+              <div
+                className="prose prose-lg max-w-none rounded-2xl border p-6 md:p-10"
+                style={{
+                  backgroundColor: "var(--card-bg)",
+                  borderColor: "var(--border-color)",
+                }}
+              >
+                <BlogContentRenderer post={post} />
+              </div>
 
-            {/* Related Posts */}
-            {relatedPosts.length > 0 && (
-              <div className="mt-16">
-                <h2 className="text-2xl font-bold mb-8">Related Articles</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {relatedPosts.map((relatedPost) => (
-                    <BlogCard key={relatedPost.id} post={relatedPost} />
+              {/* Tags */}
+              <div className="mt-8 pt-8 border-t" style={{ borderColor: "var(--border-color)" }}>
+                <div className="flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1.5 rounded-full text-sm font-medium border"
+                      style={{
+                        backgroundColor: "color-mix(in srgb, var(--brand-purple) 10%, transparent)",
+                        color: "var(--brand-purple)",
+                        borderColor: "var(--border-color)",
+                      }}
+                    >
+                      #{tag}
+                    </span>
                   ))}
                 </div>
               </div>
-            )}
-          </article>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <TableOfContents content={post.content} />
-              <BlogSidebar currentPostSlug={slug} />
-            </div>
+              {/* Related Posts */}
+              {relatedPosts.length > 0 && (
+                <div className="mt-16">
+                  <h2 className="text-2xl font-bold mb-8">Related Articles</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {relatedPosts.map((relatedPost) => (
+                      <BlogCard key={relatedPost.id} post={relatedPost} />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </article>
+
+            {/* Sidebar - visible only on xl+ screens */}
+            <aside className="hidden xl:block xl:col-span-1">
+              {/* 👇 Sticky applies to FULL article height */}
+              <div className="sticky top-24">
+                <TableOfContents content={post.content} />
+                <BlogSidebar currentPostSlug={slug} />
+              </div>
+            </aside>
+
           </div>
         </div>
+
       </div>
     </main>
   );

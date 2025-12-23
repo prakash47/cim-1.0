@@ -82,71 +82,203 @@ function CategoriesContent() {
             <span className="text-[var(--foreground)]">Categories</span>
           </nav>
 
-          <div className="max-w-4xl">
-            <div className="flex items-center gap-3 mb-4">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{
-                  backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)",
-                }}
-              >
-                <Sparkles className="w-6 h-6 text-[var(--brand-purple)]" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Content */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center"
+                  style={{
+                    backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)",
+                  }}
+                >
+                  <Sparkles className="w-6 h-6 text-[var(--brand-purple)]" />
+                </div>
+                <span
+                  className="px-3 py-1 rounded-full text-xs font-semibold"
+                  style={{
+                    backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)",
+                    color: "var(--brand-purple)",
+                  }}
+                >
+                  {categories.length} CATEGORIES
+                </span>
               </div>
-              <span
-                className="px-3 py-1 rounded-full text-xs font-semibold"
-                style={{
-                  backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)",
-                  color: "var(--brand-purple)",
-                }}
-              >
-                {categories.length} CATEGORIES
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Explore All Categories
-            </h1>
-            <p className="text-lg md:text-xl leading-relaxed mb-8" style={{ color: "var(--secondary-text)" }}>
-              Discover our comprehensive collection of articles organized by topic.
-              From web development to business strategy, we cover everything you need to succeed in the digital world.
-            </p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Explore All Categories
+              </h1>
+              <p className="text-lg md:text-xl leading-relaxed mb-8" style={{ color: "var(--secondary-text)" }}>
+                Discover our comprehensive collection of articles organized by topic.
+                From web development to business strategy, we cover everything you need to succeed in the digital world.
+              </p>
 
-            {/* Stats */}
-            <div className="flex flex-wrap gap-6">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)" }}
-                >
-                  <BookOpen className="w-5 h-5 text-[var(--brand-purple)]" />
+              {/* Stats */}
+              <div className="flex flex-wrap gap-6">
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)" }}
+                  >
+                    <BookOpen className="w-5 h-5 text-[var(--brand-purple)]" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{totalArticles}</p>
+                    <p className="text-sm" style={{ color: "var(--secondary-text)" }}>Total Articles</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-2xl font-bold">{totalArticles}</p>
-                  <p className="text-sm" style={{ color: "var(--secondary-text)" }}>Total Articles</p>
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: "color-mix(in srgb, var(--brand-cyan) 15%, transparent)" }}
+                  >
+                    <Clock className="w-5 h-5 text-[var(--brand-cyan)]" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{totalReadTime}</p>
+                    <p className="text-sm" style={{ color: "var(--secondary-text)" }}>Min Total Read</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)" }}
+                  >
+                    <Users className="w-5 h-5 text-[var(--brand-purple)]" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{categories.length}</p>
+                    <p className="text-sm" style={{ color: "var(--secondary-text)" }}>Categories</p>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: "color-mix(in srgb, var(--brand-cyan) 15%, transparent)" }}
+            </div>
+
+            {/* Right Side - Illustration */}
+            <div className="hidden lg:block relative">
+              <div className="relative flex justify-center items-center">
+                <svg
+                  viewBox="0 0 320 240"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-[80%] h-[80%]"
                 >
-                  <Clock className="w-5 h-5 text-[var(--brand-cyan)]" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">{totalReadTime}</p>
-                  <p className="text-sm" style={{ color: "var(--secondary-text)" }}>Min Total Read</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: "color-mix(in srgb, var(--brand-purple) 15%, transparent)" }}
-                >
-                  <Users className="w-5 h-5 text-[var(--brand-purple)]" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">{categories.length}</p>
-                  <p className="text-sm" style={{ color: "var(--secondary-text)" }}>Categories</p>
-                </div>
+                  {/* Row 1 */}
+                  {/* Code Icon */}
+                  <g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0,0; 0,-4; 0,0"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                    <circle cx="80" cy="55" r="30" fill="none" stroke="#6B00D7" strokeWidth="2" />
+                    <path d="M68 55 L60 63 L68 71 M92 55 L100 63 L92 71" stroke="#6B00D7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  </g>
+
+                  {/* Mobile Icon */}
+                  <g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0,0; 0,-5; 0,0"
+                      dur="3.5s"
+                      repeatCount="indefinite"
+                    />
+                    <circle cx="160" cy="40" r="30" fill="none" stroke="#00B5CA" strokeWidth="2" />
+                    <rect x="149" y="26" width="22" height="36" rx="3" stroke="#00B5CA" strokeWidth="2" fill="none" />
+                    <circle cx="160" cy="56" r="2" fill="#00B5CA" />
+                  </g>
+
+                  {/* Chart Icon */}
+                  <g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0,0; 0,-4; 0,0"
+                      dur="4s"
+                      repeatCount="indefinite"
+                    />
+                    <circle cx="240" cy="55" r="30" fill="none" stroke="#FF6B35" strokeWidth="2" />
+                    <path d="M220 70 L228 58 L236 64 L244 48 L252 54" stroke="#FF6B35" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  </g>
+
+                  {/* Row 2 */}
+                  {/* AI/Bot Icon */}
+                  <g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0,0; 0,-5; 0,0"
+                      dur="3.8s"
+                      repeatCount="indefinite"
+                    />
+                    <circle cx="60" cy="135" r="30" fill="none" stroke="#9B59B6" strokeWidth="2" />
+                    <circle cx="60" cy="128" r="9" stroke="#9B59B6" strokeWidth="2" fill="none" />
+                    <circle cx="60" cy="143" r="6" stroke="#9B59B6" strokeWidth="1.5" fill="none" />
+                  </g>
+
+                  {/* Design/Palette Icon */}
+                  <g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0,0; 0,-4; 0,0"
+                      dur="3.2s"
+                      repeatCount="indefinite"
+                    />
+                    <circle cx="160" cy="125" r="30" fill="none" stroke="#E91E63" strokeWidth="2" />
+                    <circle cx="151" cy="118" r="4" fill="#6B00D7" />
+                    <circle cx="169" cy="118" r="4" fill="#00B5CA" />
+                    <circle cx="151" cy="132" r="4" fill="#FF6B35" />
+                    <circle cx="169" cy="132" r="4" fill="#27AE60" />
+                  </g>
+
+                  {/* Search/SEO Icon */}
+                  <g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0,0; 0,-5; 0,0"
+                      dur="4.2s"
+                      repeatCount="indefinite"
+                    />
+                    <circle cx="260" cy="135" r="30" fill="none" stroke="#27AE60" strokeWidth="2" />
+                    <circle cx="254" cy="129" r="10" stroke="#27AE60" strokeWidth="2" fill="none" />
+                    <line x1="262" y1="137" x2="272" y2="147" stroke="#27AE60" strokeWidth="2.5" strokeLinecap="round" />
+                  </g>
+
+                  {/* Row 3 - Centered */}
+                  {/* Target/Strategy Icon */}
+                  <g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0,0; 0,-4; 0,0"
+                      dur="3.6s"
+                      repeatCount="indefinite"
+                    />
+                    <circle cx="110" cy="205" r="30" fill="none" stroke="#3498DB" strokeWidth="2" />
+                    <circle cx="110" cy="205" r="14" stroke="#3498DB" strokeWidth="1.5" fill="none" />
+                    <circle cx="110" cy="205" r="5" fill="#3498DB" />
+                  </g>
+
+                  {/* Document/Case Study Icon */}
+                  <g>
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0,0; 0,-5; 0,0"
+                      dur="4s"
+                      repeatCount="indefinite"
+                    />
+                    <circle cx="210" cy="205" r="30" fill="none" stroke="#F39C12" strokeWidth="2" />
+                    <rect x="196" y="188" width="28" height="34" rx="2" stroke="#F39C12" strokeWidth="1.5" fill="none" />
+                    <line x1="202" y1="197" x2="218" y2="197" stroke="#F39C12" strokeWidth="1.5" strokeLinecap="round" />
+                    <line x1="202" y1="205" x2="218" y2="205" stroke="#F39C12" strokeWidth="1.5" strokeLinecap="round" />
+                    <line x1="202" y1="213" x2="212" y2="213" stroke="#F39C12" strokeWidth="1.5" strokeLinecap="round" />
+                  </g>
+                </svg>
               </div>
             </div>
           </div>

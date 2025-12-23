@@ -74,7 +74,7 @@ export default function Footer() {
                         {/* Brand Column */}
                         <div className="lg:col-span-1">
                             <Link href="/" className="inline-block mb-4">
-                                <Image src={isDark ? "/images/cim_Logo_white.png" : "/images/cim_Logo.png"} alt="CIM Logo" height={80} width={180} className="lg:h-[75px] lg:w-[175px]" />
+                                <Image src={isDark ? "/images/CIM-LOGO-White.png" : "/images/CIM-LOGO-Black.png"} alt="CIM Logo" height={80} width={180} className="lg:h-[75px] lg:w-[175px]" />
                             </Link>
                             <p className="text-sm leading-relaxed mb-6" style={styles.text}>
                                 Empowering businesses with cutting-edge digital solutions. From web design to AI automation, we are your partner in growth.
@@ -84,7 +84,7 @@ export default function Footer() {
                             <div className="flex space-x-4">
                                 {/* LinkedIn */}
                                 <Link
-                                    href="#"
+                                    href="/contact"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
         hover:bg-[linear-gradient(135deg,#0A66C2,#004182)]
@@ -97,7 +97,7 @@ export default function Footer() {
 
                                 {/* Instagram */}
                                 <Link
-                                    href="#"
+                                    href="/contact"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
         hover:bg-[linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)]
@@ -110,7 +110,7 @@ export default function Footer() {
 
                                 {/* Twitter */}
                                 <Link
-                                    href="#"
+                                    href="/contact"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
         hover:bg-[linear-gradient(135deg,#000000,#333333)]
@@ -124,7 +124,7 @@ export default function Footer() {
 
                                 {/* Facebook */}
                                 <Link
-                                    href="#"
+                                    href="/contact"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
         hover:bg-[linear-gradient(135deg,#1877F2,#0F68D8)]

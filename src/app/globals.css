@@ -39,6 +39,23 @@
     font-family: Arial, Helvetica, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
+
+  /* Cursor pointer for all interactive elements */
+  a,
+  button,
+  [role="button"],
+  [type="button"],
+  [type="submit"],
+  [type="reset"],
+  input[type="checkbox"],
+  input[type="radio"],
+  select,
+  label[for],
+  summary,
+  [onclick],
+  [tabindex]:not([tabindex="-1"]) {
+    cursor: pointer;
+  }
 }
 
 /* Connect CSS vars to Tailwind tokens (Tailwind v4 style) */

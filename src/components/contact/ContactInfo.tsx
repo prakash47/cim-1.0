@@ -21,14 +21,14 @@ export default function ContactInfo() {
             icon: MapPin,
             title: 'Visit Us',
             content: 'Office #3, 2nd Floor, Ashley Tower, Kanakia Road, Vagad Nagar, Beverly Park, Mira Road, Mira Bhayandar, Mumbai, Maharashtra 401107',
-            link: '#',
+            link: 'https://maps.google.com/?q=Office+3+2nd+Floor+Ashley+Tower+Kanakia+Road+Mira+Road+Mumbai+Maharashtra+401107',
             color: 'from-[#00efd6] to-[#00b5ca]'
         },
         {
             icon: Clock,
             title: 'Working Hours',
             content: 'Mon - Fri: 9:00 AM - 6:00 PM',
-            link: '#',
+            link: '/contact',
             color: 'from-[#fab900] to-[#ee6500]'
         }
     ];
@@ -75,7 +75,7 @@ export default function ContactInfo() {
                             return (
                                 <Link
                                     key={index}
-                                    href="#"
+                                    href="/contact"
                                     className={`w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 ${social.color} transition-all hover:scale-110 hover:shadow-md`}
                                     aria-label={`Visit our social profile`}
                                 >

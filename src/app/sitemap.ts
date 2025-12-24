@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://www.cinuteinfomedia.com';
+    const baseUrl = 'https://cim-10.vercel.app';
 
     // Static routes
     const routes = [

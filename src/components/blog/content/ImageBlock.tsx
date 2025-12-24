@@ -10,13 +10,13 @@ interface ImageBlockProps {
 export default function ImageBlock({ block }: ImageBlockProps) {
     return (
         <figure className="my-8">
-            <div className="relative w-full rounded-xl overflow-hidden border" style={{ borderColor: "var(--border-color)" }}>
+            <div className="relative w-full md:w-3/4 mx-auto aspect-video rounded-xl overflow-hidden border" style={{ borderColor: "var(--border-color)" }}>
                 <Image
                     src={block.src}
                     alt={block.alt}
                     width={800}
                     height={450}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-fill"
                 />
             </div>
             {block.caption && (

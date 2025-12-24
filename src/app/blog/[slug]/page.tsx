@@ -300,7 +300,7 @@ export default function BlogDetailPage() {
                   src={post.image}
                   alt={post.title}
                   fill
-                  className="object-cover"
+                  className="object-fit"
                   priority
                 />
               </div>

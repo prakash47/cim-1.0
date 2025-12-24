@@ -23,6 +23,20 @@ import {
     CheckCircle2,
 } from "lucide-react";
 
+// Phone input with country codes
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+
+// Validation utilities
+import {
+    validateFullName,
+    validateEmail,
+    validatePhoneOptional,
+    validateMessage,
+    validateRequired
+} from '@/lib/formValidation';
+import { useFormErrorReset } from '@/hooks/useFormErrorReset';
+
 export default function Hero() {
     // small helpers & state used by hero animations
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -135,42 +149,106 @@ export default function Hero() {
         consent: false,
         fileName: null as string | null,
     });
+
+    // Individual error states for each field (like the reference code)
+    const [nameError, setNameError] = useState<string | null>(null);
+    const [emailError, setEmailError] = useState<string | null>(null);
+    const [phoneError, setPhoneError] = useState<string | null>(null);
+    const [subjectError, setSubjectError] = useState<string | null>(null);
+    const [messageError, setMessageError] = useState<string | null>(null);
+    const [consentError, setConsentError] = useState<string | null>(null);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
-    const [errors, setErrors] = useState<Record<string, string>>({});
     const [charCount, setCharCount] = useState(0);
     const fileRef = useRef<HTMLInputElement | null>(null);
+    const formRef = useRef<HTMLDivElement | null>(null);
 
-    const validate = () => {
-        const e: Record<string, string> = {};
-        if (!form.name.trim()) e.name = "Name is required.";
-        if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Valid email is required.";
-        if (!form.subject) e.subject = "Please select a topic.";
-        if (!form.message.trim() || form.message.trim().length < 20) e.message = "Please enter at least 20 characters.";
-        if (!form.consent) e.consent = "Please allow us to contact you.";
-        setErrors(e);
-        return Object.keys(e).length === 0;
+    // Clear errors when clicking outside the form
+    useFormErrorReset([formRef], [
+        setNameError,
+        setEmailError,
+        setPhoneError,
+        setSubjectError,
+        setMessageError,
+        setConsentError
+    ]);
+
+    // Real-time validation functions
+    const validateNameField = (value: string): boolean => {
+        const error = validateFullName(value);
+        setNameError(error);
+        return error === null;
     };
 
+    const validateEmailField = (value: string): boolean => {
+        const error = validateEmail(value);
+        setEmailError(error);
+        return error === null;
+    };
+
+    const validatePhoneField = (value: string | undefined): boolean => {
+        const error = validatePhoneOptional(value);
+        setPhoneError(error);
+        return error === null;
+    };
+
+    const validateSubjectField = (value: string): boolean => {
+        const error = validateRequired(value, 'Topic');
+        setSubjectError(error);
+        return error === null;
+    };
+
+    const validateMessageField = (value: string): boolean => {
+        const error = validateMessage(value, 20);
+        setMessageError(error);
+        return error === null;
+    };
+
+    // Full form validation
+    const validate = (): boolean => {
+        const isNameValid = validateNameField(form.name);
+        const isEmailValid = validateEmailField(form.email);
+        const isPhoneValid = validatePhoneField(form.phone);
+        const isSubjectValid = validateSubjectField(form.subject);
+        const isMessageValid = validateMessageField(form.message);
+
+        return isNameValid && isEmailValid && isPhoneValid && isSubjectValid && isMessageValid;
+    };
+
+    // Handle input changes with real-time validation
     const handleChange = (k: string, v: any) => {
         setForm((prev) => ({ ...prev, [k]: v }));
-        if (k === "message") setCharCount(String(v ?? "").length);
-        setErrors((prev) => ({ ...prev, [k]: "" }));
+
+        // Real-time validation based on field
+        if (k === "name") validateNameField(v);
+        if (k === "email") validateEmailField(v);
+        if (k === "subject") validateSubjectField(v);
+        if (k === "message") {
+            setCharCount(String(v ?? "").length);
+            validateMessageField(v);
+        }
+        if (k === "consent" && v) setConsentError(null);
+    };
+
+    // Handle phone change separately due to PhoneInput component
+    const handlePhoneChange = (value: string | undefined) => {
+        setForm((prev) => ({ ...prev, phone: value || "" }));
+        if (value) validatePhoneField(value);
     };
 
     const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             if (file.size > 5 * 1024 * 1024) {
-                setErrors((prev) => ({ ...prev, file: "File must be smaller than 5MB." }));
+                // File size error
                 return;
             }
             handleChange("fileName", file.name);
-            setErrors((prev) => ({ ...prev, file: "" }));
         }
     };
 
-    const resetForm = () =>
+    const resetForm = () => {
         setForm({
             name: "",
             email: "",
@@ -183,14 +261,42 @@ export default function Hero() {
             consent: false,
             fileName: null,
         });
+        // Clear all errors
+        setNameError(null);
+        setEmailError(null);
+        setPhoneError(null);
+        setSubjectError(null);
+        setMessageError(null);
+        setConsentError(null);
+        setCharCount(0);
+    };
 
     const submitForm = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!validate()) return;
         setIsSubmitting(true);
-        await new Promise((res) => setTimeout(res, 1400));
-        setIsSubmitting(false);
-        setIsSuccess(true);
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(form),
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || 'Failed to send message');
+            }
+
+            setIsSuccess(true);
+        } catch (error: any) {
+            console.error('Error submitting form:', error);
+            alert(`Error: ${error.message || 'Something went wrong. Please try again later.'}`);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Render
@@ -384,11 +490,11 @@ export default function Hero() {
 
                     {/* RIGHT: <--- NEW: Contact Form from ContactForm.tsx (swapped in here) */}
                     <div className="animate-fadeInUp">
-                        <div style={{ background: "var(--card-bg)", border: `1px solid var(--border-color)` }} className="rounded-3xl shadow-2xl overflow-hidden">
+                        <div ref={formRef} style={{ background: "var(--card-bg)", border: `1px solid var(--border-color)` }} className="rounded-3xl shadow-2xl overflow-hidden">
                             <div className="p-8 md:p-10">
                                 {/* success UI */}
                                 {isSuccess ? (
-                                    <div className="text-center">
+                                    <div className="text-center flex flex-col items-center justify-center min-h-[600px]">
                                         <div className="mx-auto w-24 h-24 rounded-full flex items-center justify-center mb-6" style={{ background: gradient("--brand-teal", "--brand-blue") }}>
                                             <CheckCircle2 className="w-12 h-12" style={{ color: "white" }} />
                                         </div>
@@ -440,14 +546,15 @@ export default function Hero() {
                                                         value={form.name}
                                                         onChange={(e) => handleChange("name", e.target.value)}
                                                         type="text"
+                                                        maxLength={35}
                                                         required
-                                                        aria-invalid={!!errors.name}
-                                                        aria-describedby={errors.name ? "name-error" : undefined}
+                                                        aria-invalid={!!nameError}
+                                                        aria-describedby={nameError ? "name-error" : undefined}
                                                         className={`w-full mt-2 px-4 py-3 rounded-xl border focus:ring-2 outline-none transition`}
                                                         placeholder="John Doe"
-                                                        style={{ borderColor: errors.name ? "var(--brand-orange)" : "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
+                                                        style={{ borderColor: nameError ? "var(--brand-orange)" : "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
                                                     />
-                                                    {errors.name && <p id="name-error" className="text-sm mt-2" style={{ color: "var(--brand-orange)" }}>{errors.name}</p>}
+                                                    {nameError && <p id="name-error" className="text-sm mt-2" style={{ color: "var(--brand-orange)" }}>{nameError}</p>}
                                                 </div>
 
                                                 <div>
@@ -461,13 +568,13 @@ export default function Hero() {
                                                         onChange={(e) => handleChange("email", e.target.value)}
                                                         type="email"
                                                         required
-                                                        aria-invalid={!!errors.email}
-                                                        aria-describedby={errors.email ? "email-error" : undefined}
+                                                        aria-invalid={!!emailError}
+                                                        aria-describedby={emailError ? "email-error" : undefined}
                                                         className={`w-full mt-2 px-4 py-3 rounded-xl border focus:ring-2 outline-none transition`}
                                                         placeholder="john@example.com"
-                                                        style={{ borderColor: errors.email ? "var(--brand-orange)" : "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
+                                                        style={{ borderColor: emailError ? "var(--brand-orange)" : "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
                                                     />
-                                                    {errors.email && <p id="email-error" className="text-sm mt-2" style={{ color: "var(--brand-orange)" }}>{errors.email}</p>}
+                                                    {emailError && <p id="email-error" className="text-sm mt-2" style={{ color: "var(--brand-orange)" }}>{emailError}</p>}
                                                 </div>
                                             </div>
 
@@ -477,17 +584,23 @@ export default function Hero() {
                                                     <label htmlFor="phone" className="text-sm font-medium" style={{ color: "var(--secondary-text)" }}>
                                                         Phone (optional)
                                                     </label>
-                                                    <input
-                                                        id="phone"
-                                                        name="phone"
-                                                        value={form.phone}
-                                                        onChange={(e) => handleChange("phone", e.target.value)}
-                                                        type="tel"
-                                                        className="w-full mt-2 px-4 py-3 rounded-xl border focus:ring-2 outline-none transition"
-                                                        placeholder="+91 98765 43210"
-                                                        aria-label="phone number"
-                                                        style={{ borderColor: "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
-                                                    />
+                                                    <div
+                                                        className="phone-input-wrapper mt-2"
+                                                        style={{
+                                                            borderColor: phoneError ? "var(--brand-orange)" : "var(--border-color)",
+                                                            background: "var(--hover-bg)"
+                                                        }}
+                                                    >
+                                                        <PhoneInput
+                                                            international
+                                                            defaultCountry="IN"
+                                                            value={form.phone}
+                                                            onChange={handlePhoneChange}
+                                                            placeholder="Enter phone number"
+                                                            className="phone-input-field"
+                                                        />
+                                                    </div>
+                                                    {phoneError && <p className="text-sm mt-2" style={{ color: "var(--brand-orange)" }}>{phoneError}</p>}
                                                 </div>
 
                                                 <div>
@@ -500,19 +613,23 @@ export default function Hero() {
                                                         value={form.subject}
                                                         onChange={(e) => handleChange("subject", e.target.value)}
                                                         required
-                                                        aria-invalid={!!errors.subject}
+                                                        aria-invalid={!!subjectError}
                                                         className="w-full mt-2 px-4 py-3 rounded-xl border focus:ring-2 outline-none transition"
-                                                        style={{ borderColor: errors.subject ? "var(--brand-orange)" : "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
+                                                        style={{ borderColor: subjectError ? "var(--brand-orange)" : "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
                                                     >
                                                         <option value="">Select topic</option>
-                                                        <option value="web">Website / Web App</option>
-                                                        <option value="app">Mobile App</option>
-                                                        <option value="marketing">Digital Marketing</option>
-                                                        <option value="seo">SEO & Growth</option>
-                                                        <option value="ai">AI / Automation</option>
-                                                        <option value="other">Other</option>
+                                                        <option value="Web Design & Development">Web Design & Development</option>
+                                                        <option value="Mobile App Development">Mobile App Development</option>
+                                                        <option value="Social Media Marketing">Social Media Marketing</option>
+                                                        <option value="AI Workflows & Automations">AI Workflows & Automations</option>
+                                                        <option value="AI-Powered Chatbots">AI-Powered Chatbots</option>
+                                                        <option value="Organic Growth & SEO">Organic Growth & SEO</option>
+                                                        <option value="Performance Marketing">Performance Marketing</option>
+                                                        <option value="Brand Identity & Design">Brand Identity & Design</option>
+                                                        <option value="Additional Support Services">Additional Support Services</option>
+                                                        <option value="Other">Other</option>
                                                     </select>
-                                                    {errors.subject && <p className="text-sm mt-2" style={{ color: "var(--brand-orange)" }}>{errors.subject}</p>}
+                                                    {subjectError && <p className="text-sm mt-2" style={{ color: "var(--brand-orange)" }}>{subjectError}</p>}
                                                 </div>
                                             </div>
 
@@ -532,8 +649,8 @@ export default function Hero() {
                                                             <option value="">Select budget</option>
                                                             <option value="under-5k">Under ₹5,000</option>
                                                             <option value="5k-25k">₹5k - ₹25k</option>
-                                                            <option value="25k-1l">₹25k - ₹1L</option>
-                                                            <option value="1l-plus">₹1L+</option>
+                                                            <option value="25k-1L">₹25k - ₹1L</option>
+                                                            <option value="1L plus">₹1L+</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -550,9 +667,9 @@ export default function Hero() {
                                                             style={{ borderColor: "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
                                                         >
                                                             <option value="">Select timeframe</option>
-                                                            <option value="1-2w">1 - 2 weeks</option>
-                                                            <option value="1-2m">1 - 2 months</option>
-                                                            <option value="2-6m">2 - 6 months</option>
+                                                            <option value="1-2 weeks">1 - 2 weeks</option>
+                                                            <option value="1-2 months">1 - 2 months</option>
+                                                            <option value="2-6 months">2 - 6 months</option>
                                                             <option value="ongoing">Ongoing / Retainer</option>
                                                         </select>
                                                     </div>
@@ -571,11 +688,11 @@ export default function Hero() {
                                                     onChange={(e) => handleChange("message", e.target.value)}
                                                     rows={6}
                                                     required
-                                                    aria-invalid={!!errors.message}
-                                                    aria-describedby={errors.message ? "msg-error" : undefined}
+                                                    aria-invalid={!!messageError}
+                                                    aria-describedby={messageError ? "msg-error" : undefined}
                                                     className="w-full h-[120px] mt-2 px-4 py-3 rounded-xl border focus:ring-2 outline-none transition resize-none"
                                                     placeholder="Tell us about your project, goals and timeline..."
-                                                    style={{ borderColor: errors.message ? "var(--brand-orange)" : "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
+                                                    style={{ borderColor: messageError ? "var(--brand-orange)" : "var(--border-color)", background: "var(--hover-bg)", color: "var(--foreground)" }}
                                                 />
                                                 <div className="flex justify-between items-center mt-2 text-xs" style={{ color: "var(--secondary-text)" }}>
                                                     <div className="inline-flex items-center gap-1">
@@ -584,7 +701,7 @@ export default function Hero() {
                                                     </div>
                                                     <div>{charCount}/1000</div>
                                                 </div>
-                                                {errors.message && <p id="msg-error" className="text-sm mt-2" style={{ color: "var(--brand-orange)" }}>{errors.message}</p>}
+                                                {messageError && <p id="msg-error" className="text-sm mt-2" style={{ color: "var(--brand-orange)" }}>{messageError}</p>}
                                             </div>
 
                                             <div>
@@ -607,7 +724,56 @@ export default function Hero() {
                 </div>
             </div>
 
-            <style jsx>{`
+            <style jsx global>{`
+        /* Phone Input Styles */
+        .phone-input-wrapper {
+          border: 1px solid var(--border-color);
+          border-radius: 0.75rem;
+          padding: 0.65rem 1rem;
+          transition: all 0.2s ease;
+        }
+        .phone-input-wrapper:focus-within {
+          border-color: var(--brand-blue);
+          box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand-blue) 20%, transparent);
+        }
+        .phone-input-field {
+          width: 100%;
+          display: flex;
+          align-items: center;
+        }
+        .phone-input-field .PhoneInputInput {
+          flex: 1;
+          border: none;
+          background: transparent;
+          outline: none;
+          font-size: 1rem;
+          color: var(--foreground);
+          padding: 0.25rem 0;
+        }
+        .phone-input-field .PhoneInputInput::placeholder {
+          color: var(--secondary-text);
+          opacity: 0.7;
+        }
+        .phone-input-field .PhoneInputCountry {
+          margin-right: 0.75rem;
+        }
+        .phone-input-field .PhoneInputCountryIcon {
+          width: 1.5rem;
+          height: 1.125rem;
+          border-radius: 0.125rem;
+          overflow: hidden;
+        }
+        .phone-input-field .PhoneInputCountrySelectArrow {
+          margin-left: 0.25rem;
+          color: var(--secondary-text);
+        }
+        .phone-input-field .PhoneInputCountrySelect {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+        }
+        
+        /* Animations */
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); }
         }

@@ -376,7 +376,7 @@ Next.js continues to evolve, bringing new features and improvements with each re
     category: "Web Development",
     tags: ["Next.js", "React", "Web Development", "JavaScript"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-12-15",
+    publishedAt: "2025-12-24",
     readTime: 8,
     featured: true,
     contentBlocks: [
@@ -491,7 +491,7 @@ SEO is a long-term investment that requires patience and consistency. By impleme
     category: "SEO",
     tags: ["SEO", "Digital Marketing", "Organic Growth", "Keywords"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-12-10",
+    publishedAt: "2025-12-22",
     readTime: 10,
     featured: true,
     contentBlocks: [
@@ -595,7 +595,7 @@ The mobile app landscape is more exciting than ever. By staying updated with the
     category: "Mobile Apps",
     tags: ["Mobile Development", "React Native", "Flutter", "Technology"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-12-05",
+    publishedAt: "2025-12-20",
     readTime: 7,
     contentBlocks: [
       { id: "mob-h1", type: "text", variant: "h1", content: "Mobile App Development Trends in 2024" },
@@ -706,7 +706,7 @@ Great design is a balance of aesthetics and functionality. By following these pr
     category: "UI/UX Design",
     tags: ["Design", "UI/UX", "User Experience", "Best Practices"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-11-28",
+    publishedAt: "2025-12-18",
     readTime: 9,
     featured: true,
     contentBlocks: [
@@ -809,7 +809,7 @@ AI workflows are no longer a luxury—they're a necessity for competitive busine
     category: "AI & Automation",
     tags: ["AI", "Automation", "Business Process", "Efficiency"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-11-20",
+    publishedAt: "2025-12-16",
     readTime: 8,
     contentBlocks: [
       { id: "ai-h1", type: "text", variant: "h1", content: "AI Workflows: Automating Your Business Processes" },
@@ -941,7 +941,7 @@ A successful digital marketing strategy requires planning, execution, and contin
     category: "Digital Marketing",
     tags: ["Marketing", "Strategy", "Digital", "Business Growth"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-11-15",
+    publishedAt: "2025-12-14",
     readTime: 10,
     contentBlocks: [
       { id: "dm-h1", type: "text", variant: "h1", content: "Digital Marketing Strategy: From Planning to Execution" },
@@ -1034,7 +1034,7 @@ This case study demonstrates the power of strategic digital transformation. By c
     category: "Case Studies",
     tags: ["Case Study", "Digital Transformation", "Business Growth", "Success"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-11-10",
+    publishedAt: "2025-12-12",
     readTime: 6,
     contentBlocks: [
       { id: "cs-h1", type: "text", variant: "h1", content: "Case Study: Transforming a Local Business with Digital Solutions" },
@@ -1138,7 +1138,7 @@ Website performance optimization is an ongoing process. By implementing these te
     category: "Web Development",
     tags: ["Performance", "Optimization", "Web Development", "Speed"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-11-05",
+    publishedAt: "2025-12-10",
     readTime: 8,
     contentBlocks: [
       { id: "perf-h1", type: "text", variant: "h1", content: "Web Performance Optimization: Speed Up Your Website" },
@@ -1238,7 +1238,7 @@ E-commerce UX is about removing friction from the buying journey. By focusing on
     category: "UI/UX Design",
     tags: ["E-commerce", "UX Design", "Conversion", "Online Shopping"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-10-28",
+    publishedAt: "2025-12-08",
     readTime: 9,
     contentBlocks: [
       { id: "ecom-h1", type: "text", variant: "h1", content: "E-commerce UX: Designing for Conversion" },
@@ -1364,7 +1364,7 @@ Social media success requires consistency, authenticity, and strategic thinking.
     category: "Digital Marketing",
     tags: ["Social Media", "Branding", "Marketing Strategy", "Content"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-10-20",
+    publishedAt: "2025-12-06",
     readTime: 10,
     contentBlocks: [
       { id: "sm-h1", type: "text", variant: "h1", content: "Social Media Strategy: Building Your Brand Online" },
@@ -1501,7 +1501,7 @@ Modern React development is about leveraging the right tools and patterns for ea
     category: "Web Development",
     tags: ["React", "JavaScript", "Frontend", "Best Practices"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-10-15",
+    publishedAt: "2025-12-04",
     readTime: 11,
     featured: true,
     contentBlocks: [
@@ -1638,7 +1638,7 @@ Effective content marketing requires a strategic approach focused on providing g
     category: "Digital Marketing",
     tags: ["Content Marketing", "Strategy", "SEO", "Lead Generation"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-10-10",
+    publishedAt: "2025-12-02",
     readTime: 9,
     contentBlocks: [
       { id: "cm-h1", type: "text", variant: "h1", content: "Content Marketing: Strategies That Actually Work" },
@@ -1765,7 +1765,7 @@ Cybersecurity is no longer optional for small businesses. By implementing these 
     category: "Business Strategy",
     tags: ["Cybersecurity", "Small Business", "Security", "Risk Management"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-10-05",
+    publishedAt: "2025-11-30",
     readTime: 10,
     contentBlocks: [
       { id: "cyber-h1", type: "text", variant: "h1", content: "Cybersecurity for Small Businesses" },
@@ -1920,7 +1920,7 @@ Mobile UX in 2024 is about creating intuitive, personalized, and accessible expe
     category: "UI/UX Design",
     tags: ["Mobile UX", "Design Trends", "UX Design", "Mobile Apps"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-09-28",
+    publishedAt: "2025-11-28",
     readTime: 8,
     contentBlocks: [
       { id: "mux-h1", type: "text", variant: "h1", content: "Mobile UX Trends to Watch in 2024" },
@@ -2070,7 +2070,7 @@ Email marketing automation is one of the highest-ROI marketing activities availa
     category: "Digital Marketing",
     tags: ["Email Marketing", "Automation", "Lead Nurturing", "Marketing"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-09-20",
+    publishedAt: "2025-11-26",
     readTime: 11,
     contentBlocks: [
       { id: "email-h1", type: "text", variant: "h1", content: "Email Marketing Automation: A Complete Guide" },
@@ -2222,7 +2222,7 @@ Effective data analytics is about asking the right questions, finding meaningful
     category: "Business Strategy",
     tags: ["Data Analytics", "Business Intelligence", "Decision Making", "Growth"],
     image: "/images/blog/blog_image.png",
-    publishedAt: "2024-09-15",
+    publishedAt: "2025-11-24",
     readTime: 10,
     contentBlocks: [
       { id: "data-h1", type: "text", variant: "h1", content: "Data Analytics: Turning Insights into Action" },

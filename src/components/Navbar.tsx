@@ -360,7 +360,7 @@ export default function Navbar() {
               </div>
 
               <Link href="/contact" className="ml-2 bg-gradient-to-r from-[#008ac1] to-[#00b5ca] hover:from-[#008ac1] hover:to-[#008ac1] text-white px-6 py-2.5 rounded-full text-md font-medium transition-all shadow-lg shadow-[#008ac1]/30 hover:shadow-xl hover:shadow-[#008ac1]/40 hover:scale-105">
-                Get Started
+                Let’s Talk
               </Link>
             </div>
           </div>
@@ -507,7 +507,7 @@ export default function Navbar() {
               Contact
             </Link>
             <Link href="/contact" onClick={toggleMobileMenu} className="block w-full text-center bg-gradient-to-r from-[#008ac1] to-[#00b5ca] hover:from-[#008ac1] hover:to-[#008ac1] text-white px-6 py-3 rounded-full text-base font-medium transition-all shadow-lg">
-              Get Started
+              Let’s Talk
             </Link>
           </div>
         </div>

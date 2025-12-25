@@ -292,10 +292,10 @@ export default function ServiceOverview() {
                                     </div>
                                 </div>
 
-                                <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 group/button">
+                                {/* <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 group/button">
                                     <span>Learn More</span>
                                     <ArrowRight className="w-5 h-5 group-hover/button:translate-x-1 transition-transform duration-300" />
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

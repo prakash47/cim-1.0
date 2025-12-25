@@ -130,7 +130,7 @@ function BlogPageContent() {
                         }}
                       >
                         <div className="text-2xl lg:text-3xl font-bold" style={{ color: "var(--brand-cyan)" }}>
-                          4
+                          8
                         </div>
                         <div className="text-xs font-medium" style={{ color: "var(--secondary-text)" }}>
                           Categories
@@ -181,7 +181,7 @@ function BlogPageContent() {
 
                     {/* Quick Category Links */}
                     <div className="flex flex-wrap gap-2 mb-6">
-                      {["Web Development", "Digital Marketing", "Business", "Design"].map((cat) => (
+                      {["Web Development", "Mobile Apps", "Digital Marketing", "AI & Automation", "UI/UX Design", "SEO", "Business Strategy", "Case Studies"].map((cat) => (
                         <Link
                           key={cat}
                           href={`/blog/category/${getCategorySlug(cat)}`}
@@ -196,25 +196,15 @@ function BlogPageContent() {
                       ))}
                     </div>
 
-                    {/* CTA Buttons */}
+                    {/* CTA Button */}
                     <div className="flex flex-wrap gap-3">
                       <Link
-                        href="#posts"
+                        href="#more-articles"
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white text-sm transition-all duration-300 hover:shadow-lg hover:scale-105"
                         style={{ backgroundColor: "var(--brand-purple)" }}
                       >
                         Explore All Articles
                         <ArrowRight className="w-4 h-4" />
-                      </Link>
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border transition-all duration-200 hover:border-[var(--brand-purple)]"
-                        style={{
-                          borderColor: "var(--border-color)",
-                          color: "var(--foreground)",
-                        }}
-                      >
-                        Subscribe
                       </Link>
                     </div>
                   </div>
@@ -356,7 +346,7 @@ function BlogPageContent() {
               {/* Posts */}
               <div className="lg:col-span-2">
                 {!hasActiveSearch && (
-                  <h2 className="text-2xl font-bold mb-8">More Articles</h2>
+                  <h2 id="more-articles" className="text-2xl font-bold mb-8 scroll-mt-32">More Articles</h2>
                 )}
 
                 {(hasActiveSearch ? filteredPosts : remainingPosts).length > 0 ? (

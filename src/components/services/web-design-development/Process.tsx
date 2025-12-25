@@ -1,6 +1,7 @@
 "use client";
 
 import { Compass, Palette, Code, CheckCircle, Rocket, Wrench } from "lucide-react";
+import Link from "next/link";
 
 export default function Process() {
     const steps = [
@@ -330,14 +331,18 @@ export default function Process() {
                         Throughout every step, we maintain transparent communication and keep you informed of progress.
                     </p>
 
-                    <button
-                        className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-2xl text-sm md:text-base font-semibold bg-gradient-to-r from-[#008ac1] to-[#00b5ca] text-white hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                    >
-                        Start Your Project
-                        <span>→</span>
-                    </button>
+                    <div className="inline-block">
+                        <Link
+                            href="/contact"
+                            className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-2xl text-sm md:text-base font-semibold bg-gradient-to-r from-[#008ac1] to-[#00b5ca] text-white hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                        >
+                            Start Your Project
+                            <span>→</span>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </section>
+        // End of Process section
     );
 }

@@ -263,13 +263,13 @@ export default function Analytics() {
                                     </div>
 
                                     {/* View Details CTA */}
-                                    <div className="flex items-center gap-2 mt-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 delay-400">
+                                    {/* <div className="flex items-center gap-2 mt-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 delay-400">
                                         <Eye className="w-4 h-4" style={{ color: metric.accentColor }} />
                                         <span className="text-sm font-semibold" style={{ color: metric.accentColor }}>
                                             View Analytics
                                         </span>
                                         <MousePointerClick className="w-3 h-3" style={{ color: metric.accentColor }} />
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 {/* Corner data visualization accent */}

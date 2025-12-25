@@ -1,6 +1,7 @@
 "use client";
 
-import { Heart, DollarSign, ShoppingBag, GraduationCap, Factory, Briefcase, CheckCircle2, TrendingUp, Users, Award } from "lucide-react";
+import { Heart, DollarSign, ShoppingBag, GraduationCap, Factory, Briefcase, CheckCircle2, TrendingUp, Users, Award, Lightbulb, GitBranch } from "lucide-react";
+import Link from "next/link";
 
 export default function IndustriesAndUseCases() {
     const industries = [
@@ -247,7 +248,7 @@ export default function IndustriesAndUseCases() {
                             },
                             {
                                 icon: Users,
-                                metric: "$100M+",
+                                metric: "$10M+",
                                 label: "Client Savings Generated",
                                 gradient: "from-green-500 to-emerald-500",
                                 delay: "1.4s",
@@ -304,6 +305,46 @@ export default function IndustriesAndUseCases() {
                                 </div>
                             );
                         })}
+                    </div>
+
+                    {/* Custom Solutions CTA */}
+                    <div
+                        className="mt-16 p-8 md:p-10 rounded-2xl border text-center animate-fadeIn relative overflow-hidden group"
+                        style={{
+                            backgroundColor: "color-mix(in srgb, var(--card-bg) 50%, transparent)",
+                            borderColor: "var(--border-color)",
+                            animationDelay: "1.2s",
+                            animationFillMode: "both",
+                        }}
+                    >
+                        {/* Animated gradient background */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-amber-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                        {/* Decorative elements */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div className="absolute top-10 left-10 w-2 h-2 rounded-full bg-orange-500/30 animate-ping" />
+                            <div className="absolute top-20 right-20 w-2 h-2 rounded-full bg-amber-500/30 animate-ping" style={{ animationDelay: "0.5s" }} />
+                            <div className="absolute bottom-10 left-1/4 w-2 h-2 rounded-full bg-orange-500/30 animate-ping" style={{ animationDelay: "1s" }} />
+                        </div>
+
+                        <div className="relative z-10 flex flex-col items-center">
+                            <div className="flex justify-center mb-4">
+                                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center animate-pulse">
+                                    <Lightbulb className="w-8 h-8 text-white" />
+                                </div>
+                            </div>
+                            <h3 className="text-3xl font-bold mb-4" style={{ color: "var(--foreground)" }}>Don't See Your Use Case?</h3>
+                            <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: "var(--secondary-text)" }}>
+                                We specialize in custom AI workflow solutions tailored to your unique business requirements. Whether it's a complex integration, predictive analytics, or a completely novel automation, our team can build it.
+                            </p>
+                            <Link
+                                href="/contact"
+                                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#fab900] to-[#ee6500] hover:from-[#ee6500] hover:to-[#fab900] text-white font-bold rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 group/button"
+                            >
+                                <span>Discuss Your Custom Solution</span>
+                                <GitBranch className="w-5 h-5 group-hover/button:rotate-12 transition-transform duration-300" />
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>

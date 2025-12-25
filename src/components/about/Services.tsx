@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import {
     Globe,
     Palette,
@@ -16,6 +17,25 @@ import {
 
 export default function Services() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [gridCols, setGridCols] = useState(1);
+
+    useEffect(() => {
+        const updateGridCols = () => {
+            if (window.innerWidth >= 1024) {
+                setGridCols(3); // lg:grid-cols-3
+            } else if (window.innerWidth >= 768) {
+                setGridCols(2); // md:grid-cols-2
+            } else {
+                setGridCols(1); // grid-cols-1
+            }
+        };
+
+        // Initial check
+        updateGridCols();
+
+        window.addEventListener("resize", updateGridCols);
+        return () => window.removeEventListener("resize", updateGridCols);
+    }, []);
 
     const services = [
         {
@@ -24,6 +44,7 @@ export default function Services() {
             description: "Fast, conversion-ready, and responsive digital experiences",
             badgeGrad: "from-[var(--brand-blue)] to-[var(--brand-teal)]",
             brandText: "var(--brand-blue)",
+            href: "/services/web-design-development",
             details: [
                 "Custom Web Development",
                 "High-Converting Landing Pages",
@@ -39,6 +60,7 @@ export default function Services() {
             description: "Designs that help brands stand out and communicate value",
             badgeGrad: "from-[var(--brand-purple)] to-[var(--brand-yellow)]",
             brandText: "var(--brand-purple)",
+            href: "/services/brand-identity-design",
             details: [
                 "Logo & Brand Kits",
                 "UI/UX Design",
@@ -54,6 +76,7 @@ export default function Services() {
             description: "Content, community-building, and brand presence",
             badgeGrad: "from-[var(--brand-cyan)] to-[var(--brand-teal)]",
             brandText: "var(--brand-cyan)",
+            href: "/services/social-media-marketing",
             details: [
                 "Social Strategy & Content Calendar",
                 "Short/Long Form Video Planning",
@@ -69,6 +92,7 @@ export default function Services() {
             description: "Data-driven strategies to improve visibility and ranking",
             badgeGrad: "from-[var(--brand-blue)] to-[var(--brand-purple)]",
             brandText: "var(--brand-blue)",
+            href: "/services/organic-growth-seo",
             details: [
                 "Website Audits",
                 "On-Page Optimization",
@@ -84,6 +108,7 @@ export default function Services() {
             description: "Meta, Google & LinkedIn campaigns focused on leads",
             badgeGrad: "from-[var(--brand-orange)] to-[var(--brand-yellow)]",
             brandText: "var(--brand-orange)",
+            href: "/services/performance-marketing",
             details: [
                 "Meta, Google, LinkedIn Ads",
                 "Retargeting",
@@ -99,6 +124,7 @@ export default function Services() {
             description: "CRM, reporting, nurturing & operational automation",
             badgeGrad: "from-[var(--brand-yellow)] to-[var(--brand-orange)]",
             brandText: "var(--brand-yellow)",
+            href: "/services/ai-workflows-automations",
             details: [
                 "Setup & Integration",
                 "Full-Funnel Lead Nurturing",
@@ -114,6 +140,7 @@ export default function Services() {
             description: "24/7 smart assistants for lead generation & support",
             badgeGrad: "from-[var(--brand-teal)] to-[var(--brand-cyan)]",
             brandText: "var(--brand-teal)",
+            href: "/services/ai-powered-chatbots",
             details: [
                 "AI Sales Agents",
                 "Multilingual Chatbots",
@@ -129,6 +156,7 @@ export default function Services() {
             description: "Analytics, virtual assistance & backend operations",
             badgeGrad: "from-[var(--brand-cyan)] to-[var(--brand-purple)]",
             brandText: "var(--brand-cyan)",
+            href: "/services/additional-support-services",
             details: [
                 "Data Processing & Analysis",
                 "Virtual Assistance",
@@ -173,7 +201,14 @@ export default function Services() {
                 {/* Services Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((svc, idx) => {
-                        const { Icon, title, description, badgeGrad, brandText, details } = svc;
+                        const { Icon, title, description, badgeGrad, brandText, details, href } = svc;
+
+                        // Calculate active row
+                        const hoveredRow = hoveredIndex !== null ? Math.floor(hoveredIndex / gridCols) : null;
+                        const currentRow = Math.floor(idx / gridCols);
+
+                        // Expand if any card in the same row is hovered
+                        const isExpanded = hoveredRow === currentRow;
                         const isHovered = hoveredIndex === idx;
 
                         return (
@@ -182,14 +217,14 @@ export default function Services() {
                                 className={`
                   group relative rounded-3xl overflow-hidden border transition-all duration-400
                   bg-[var(--card-bg)] border-[var(--border-color)]
-                  ${isHovered ? "shadow-2xl -translate-y-2 scale-[1.02] z-20 min-h-[420px]" : "shadow-sm min-h-[220px]"}
+                  ${isExpanded ? "shadow-2xl -translate-y-2 scale-[1.02] z-20 min-h-[420px]" : "shadow-sm min-h-[220px]"}
                 `}
                                 onMouseEnter={() => setHoveredIndex(idx)}
                                 onMouseLeave={() => setHoveredIndex(null)}
                                 aria-labelledby={`svc-${idx}`}
                             >
-                                {/* subtle color glow on hover */}
-                                <div className={`absolute inset-0 pointer-events-none transition-opacity duration-200 ${isHovered ? "opacity-12" : "opacity-0"} bg-gradient-to-br ${badgeGrad}`} />
+                                {/* subtle color glow on hover/expanded */}
+                                <div className={`absolute inset-0 pointer-events-none transition-opacity duration-200 ${isExpanded ? "opacity-12" : "opacity-0"} bg-gradient-to-br ${badgeGrad}`} />
 
                                 {/* Card content */}
                                 <div className="relative p-8 h-full flex flex-col">
@@ -215,8 +250,8 @@ export default function Services() {
                                     {/* spacer */}
                                     <div className="flex-1" />
 
-                                    {/* details container - collapsed by default, expands on hover */}
-                                    <div className={`mt-4 overflow-hidden transition-all duration-400 ${isHovered ? "max-h-[320px]" : "max-h-0"}`}>
+                                    {/* details container - collapsed by default, expands on row hover */}
+                                    <div className={`mt-4 overflow-hidden transition-all duration-400 ${isExpanded ? "max-h-[320px]" : "max-h-0"}`}>
                                         <ul className="space-y-2">
                                             {details.map((d, i) => (
                                                 <li key={i} className="flex items-start gap-3 text-sm text-[var(--secondary-text)]">
@@ -229,16 +264,16 @@ export default function Services() {
                                         </ul>
 
                                         <div className="mt-4">
-                                            <button className={`w-full py-2.5 px-4 rounded-xl text-white font-semibold text-sm bg-gradient-to-r ${badgeGrad} hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2`}>
+                                            <Link href={href} className={`w-full py-2.5 px-4 rounded-xl text-white font-semibold text-sm bg-gradient-to-r ${badgeGrad} hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2`}>
                                                 View Details
                                                 <ArrowRight className="w-4 h-4" />
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* floating glow behind (for depth) */}
-                                <div className={`absolute -inset-1 rounded-3xl blur-xl -z-10 transition-opacity duration-400 ${isHovered ? "opacity-30" : "opacity-0"} bg-gradient-to-r ${badgeGrad}`} />
+                                <div className={`absolute -inset-1 rounded-3xl blur-xl -z-10 transition-opacity duration-400 ${isExpanded ? "opacity-30" : "opacity-0"} bg-gradient-to-r ${badgeGrad}`} />
                             </article>
                         );
                     })}
@@ -248,10 +283,10 @@ export default function Services() {
                 <div className="mt-16 text-center">
                     <p className="text-[var(--secondary-text)] mb-6">Need a custom solution? We'd love to help.</p>
 
-                    <button className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-2xl text-sm md:text-base font-semibold bg-[linear-gradient(90deg,var(--brand-blue),var(--brand-teal))] text-white hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-2xl text-sm md:text-base font-semibold bg-[linear-gradient(90deg,var(--brand-blue),var(--brand-teal))] text-white hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                         Get Started
                         <ArrowRight className="w-5 h-5" />
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

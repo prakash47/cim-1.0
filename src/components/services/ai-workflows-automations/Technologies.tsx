@@ -2,6 +2,7 @@
 
 import { Cloud, Zap, Database, Shield, Brain, Sparkles, Lock, Activity, Server, CheckCircle2, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Technologies() {
     // Technology logos mapping
@@ -397,10 +398,10 @@ export default function Technologies() {
                             <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: "var(--secondary-text)" }}>
                                 Our team can integrate with virtually any system, API, or platform. Let's discuss your specific requirements.
                             </p>
-                            <button className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#fab900] to-[#ee6500] hover:from-[#ee6500] hover:to-[#fab900] text-white text-sm md:text-base font-bold rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2 md:gap-3 mx-auto group/button">
+                            <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#fab900] to-[#ee6500] hover:from-[#ee6500] hover:to-[#fab900] text-white font-bold rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 group/button mx-auto">
                                 <span>Discuss Integration Options</span>
                                 <ArrowRight className="w-5 h-5 group-hover/button:translate-x-1 transition-transform duration-300" />
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

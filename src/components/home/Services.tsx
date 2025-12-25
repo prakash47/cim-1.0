@@ -11,6 +11,7 @@ export default function Services() {
         {
             icon: <Globe className="w-6 h-6" />,
             title: "Websites & Web Apps",
+            slug: "web-design-development",
             bullets: [
                 "Fast, accessible, SEO-friendly",
                 "Conversion-first UX & analytics",
@@ -21,12 +22,14 @@ export default function Services() {
         {
             icon: <Palette className="w-6 h-6" />,
             title: "Brand & Creative Design",
+            slug: "brand-identity-design",
             bullets: ["Visual identity systems", "Design systems & guidelines", "Content & tone of voice"],
             gradientStyle: { background: "linear-gradient(90deg, var(--brand-purple), var(--brand-orange))" },
         },
         {
             icon: <Search className="w-6 h-6" />,
             title: "SEO & Content",
+            slug: "organic-growth-seo",
             bullets: [
                 "Keyword strategy & content plan",
                 "On-page technical SEO & audits",
@@ -37,30 +40,35 @@ export default function Services() {
         {
             icon: <Target className="w-6 h-6" />,
             title: "Performance Marketing",
+            slug: "performance-marketing",
             bullets: ["Google & Meta ads", "Funnel optimisation", "CRO and tracking"],
             gradientStyle: { background: "linear-gradient(90deg, var(--brand-orange), var(--brand-purple))" },
         },
         {
             icon: <Share2 className="w-6 h-6" />,
             title: "Social & Community",
+            slug: "social-media-marketing",
             bullets: ["Content calendar", "Community moderation", "Campaign creative"],
             gradientStyle: { background: "linear-gradient(90deg, var(--brand-teal), var(--brand-cyan))" },
         },
         {
             icon: <Bot className="w-6 h-6" />,
             title: "AI Chatbots & Automations",
+            slug: "ai-powered-chatbots",
             bullets: ["Lead qualification flows", "CRM integrations", "Conversational UX"],
             gradientStyle: { background: "linear-gradient(90deg, var(--brand-cyan), var(--brand-purple))" },
         },
         {
             icon: <Workflow className="w-6 h-6" />,
             title: "Workflows & Integrations",
+            slug: "ai-workflows-automations",
             bullets: ["Zapier / n8n / Custom APIs", "Data pipelines & reporting", "Event-driven automation"],
             gradientStyle: { background: "linear-gradient(90deg, var(--brand-purple), var(--brand-yellow))" },
         },
         {
             icon: <Code className="w-6 h-6" />,
             title: "Maintenance & Support",
+            slug: "additional-support-services",
             bullets: ["Monitoring & backups", "A/B testing & experiments", "SLA-backed support"],
             gradientStyle: { background: "linear-gradient(90deg, var(--brand-blue), var(--brand-teal))" },
         },
@@ -110,7 +118,7 @@ export default function Services() {
                                 </ul>
 
                                 <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 12, borderTop: "1px solid var(--border-color)" }}>
-                                    <Link href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`} style={{ color: "var(--brand-blue)", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 8 }}>
+                                    <Link href={`/services/${service.slug}`} style={{ color: "var(--brand-blue)", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 8 }}>
                                         Learn more <ArrowRight className="w-4 h-4" />
                                     </Link>
                                     <Link href="/contact" style={{ color: "var(--secondary-text)" }}>Get quote</Link>

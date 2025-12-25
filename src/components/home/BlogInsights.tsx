@@ -161,7 +161,7 @@ export default function BlogInsights() {
                                                 </div>
                                                 <div>
                                                     <p className="text-sm font-medium">{post.author.name}</p>
-                                                    <p className="text-xs" style={{ color: "var(--secondary-text)" }}>{post.author.title.split(" ")[0]}</p>
+                                                    <p className="text-xs" style={{ color: "var(--secondary-text)" }}>{post.author.title}</p>
                                                 </div>
                                             </div>
                                             <div

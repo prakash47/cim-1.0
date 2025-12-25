@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Headphones, TrendingUp, FileText, Smartphone, MessageSquare, Building2, Sparkles, CheckCircle2, ArrowRight, Zap, Users, Search, Target } from "lucide-react";
+import Link from "next/link";
 
 export default function TypesOfChatbots() {
     const chatbotTypes = [
@@ -337,12 +338,13 @@ export default function TypesOfChatbots() {
                                             </div>
 
                                             {/* Explore button */}
-                                            <div className="mt-5 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                            {/* Explore button */}
+                                            {/* <div className="mt-5 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                                                 <span className="text-sm font-semibold" style={{ color: "var(--brand-chatbot)" }}>
                                                     Explore
                                                 </span>
                                                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" style={{ color: "var(--brand-chatbot)" }} />
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                         {/* Bottom gradient line */}
@@ -396,10 +398,10 @@ export default function TypesOfChatbots() {
                                     </div>
                                 </div>
 
-                                <button className="group/button px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                                <Link href="/contact" className="group/button px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
                                     <span>Get Started</span>
                                     <ArrowRight className="w-5 h-5 group-hover/button:translate-x-1 transition-transform duration-300" />
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

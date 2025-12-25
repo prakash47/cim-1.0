@@ -227,10 +227,10 @@ export default function Platforms() {
                                     </p>
 
                                     {/* Explore CTA */}
-                                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500 delay-100" style={{ color: "var(--secondary-text)" }}>
+                                    {/* <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500 delay-100" style={{ color: "var(--secondary-text)" }}>
                                         <span className="text-sm font-semibold">Explore Strategy</span>
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 {/* Decorative corner elements */}

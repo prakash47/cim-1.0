@@ -251,7 +251,8 @@ export default function IndustriesAndUseCases() {
                                     </ul>
 
                                     {/* Learn More Button */}
-                                    <div
+                                    {/* Learn More Button */}
+                                    {/* <div
                                         className="flex items-center gap-2 text-sm font-medium mt-6 cursor-pointer"
                                         style={{
                                             color: industry.accentColor,
@@ -268,7 +269,7 @@ export default function IndustriesAndUseCases() {
                                                 transition: "transform 0.3s ease",
                                             }}
                                         />
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 {/* Glow effect on hover */}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRight, Mail, Phone, MessageSquare, Calendar, Sparkles, Send, CheckCircle } from "lucide-react";
+import Link from "next/link";
 
 export default function CTA() {
     const [formState, setFormState] = useState({
@@ -26,6 +27,7 @@ export default function CTA() {
             description: "Speak directly with our support team",
             action: "+91 9004988859",
             color: "#4b277a",
+            href: "tel:+919004988859"
         },
         {
             icon: Mail,
@@ -33,6 +35,7 @@ export default function CTA() {
             description: "Get a response within 24 hours",
             action: "contact@cinuteinfomedia.com",
             color: "#fab900",
+            href: "mailto:contact@cinuteinfomedia.com"
         },
         {
             icon: Phone,
@@ -40,6 +43,7 @@ export default function CTA() {
             description: "Another way to reach us",
             action: "+91 7700995410",
             color: "#97288e",
+            href: "tel:+917700995410"
         },
         {
             icon: Calendar,
@@ -47,6 +51,7 @@ export default function CTA() {
             description: "Schedule a consultation",
             action: "Schedule Now",
             color: "#4b277a",
+            href: "/contact"
         },
     ];
 
@@ -86,18 +91,22 @@ export default function CTA() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                    {/* Left: Contact Methods */}
-                    <div className="space-y-6">
+                <div className="flex flex-col items-center max-w-4xl mx-auto">
+                    {/* Contact Methods */}
+                    <div className="space-y-6 w-full">
                         <h3 className="text-xl md:text-2xl font-bold mb-6" style={{ color: "#4b277a" }}>Choose Your Preferred Way to Connect</h3>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {contactMethods.map((method, index) => {
                                 const Icon = method.icon;
+                                const isInternal = method.href.startsWith("/");
+                                const Wrapper = isInternal ? Link : "a";
+
                                 return (
-                                    <div
+                                    <Wrapper
                                         key={index}
-                                        className="group p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-pointer hover:scale-[1.02] md:hover:scale-105 overflow-hidden"
+                                        href={method.href}
+                                        className="group p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-pointer hover:scale-[1.02] md:hover:scale-105 overflow-hidden block"
                                         style={{
                                             backgroundColor: "var(--card-bg)",
                                             borderColor: "var(--border-color)",
@@ -122,7 +131,7 @@ export default function CTA() {
                                         <span className="text-xs md:text-sm font-semibold break-all" style={{ color: method.color }}>
                                             {method.action}
                                         </span>
-                                    </div>
+                                    </Wrapper>
                                 );
                             })}
                         </div>
@@ -148,126 +157,20 @@ export default function CTA() {
                         </div>
                     </div>
 
-                    {/* Right: Quick Contact Form */}
-                    <div
-                        className="rounded-2xl md:rounded-3xl p-6 md:p-8 border"
-                        style={{
-                            backgroundColor: "var(--card-bg)",
-                            borderColor: "var(--border-color)",
-                        }}
-                    >
-                        <h3 className="text-xl md:text-2xl font-bold mb-5 md:mb-6" style={{ color: "#97288e" }}>Send Us a Message</h3>
 
-                        {isSubmitted ? (
-                            <div className="flex flex-col items-center justify-center py-12">
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: "color-mix(in srgb, #22c55e 15%, transparent)" }}>
-                                    <CheckCircle className="w-8 h-8" style={{ color: "#22c55e" }} />
-                                </div>
-                                <h4 className="text-xl font-bold mb-2">Message Sent!</h4>
-                                <p style={{ color: "var(--secondary-text)" }}>We&apos;ll get back to you within 24 hours.</p>
-                            </div>
-                        ) : (
-                            <form onSubmit={handleSubmit} className="space-y-5">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium mb-2">Your Name</label>
-                                        <input
-                                            type="text"
-                                            value={formState.name}
-                                            onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                                            className="w-full px-4 py-3 rounded-xl border transition-all focus:outline-none"
-                                            style={{
-                                                backgroundColor: "var(--background)",
-                                                borderColor: "var(--border-color)",
-                                                color: "var(--foreground)",
-                                            }}
-                                            onFocus={(e) => e.currentTarget.style.borderColor = "#4b277a"}
-                                            onBlur={(e) => e.currentTarget.style.borderColor = "var(--border-color)"}
-                                            placeholder="John Doe"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium mb-2">Email Address</label>
-                                        <input
-                                            type="email"
-                                            value={formState.email}
-                                            onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                                            className="w-full px-4 py-3 rounded-xl border transition-all focus:outline-none"
-                                            style={{
-                                                backgroundColor: "var(--background)",
-                                                borderColor: "var(--border-color)",
-                                                color: "var(--foreground)",
-                                            }}
-                                            onFocus={(e) => e.currentTarget.style.borderColor = "#4b277a"}
-                                            onBlur={(e) => e.currentTarget.style.borderColor = "var(--border-color)"}
-                                            placeholder="john@company.com"
-                                            required
-                                        />
-                                    </div>
-                                </div>
 
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">Company Name</label>
-                                    <input
-                                        type="text"
-                                        value={formState.company}
-                                        onChange={(e) => setFormState({ ...formState, company: e.target.value })}
-                                        className="w-full px-4 py-3 rounded-xl border transition-all focus:outline-none"
-                                        style={{
-                                            backgroundColor: "var(--background)",
-                                            borderColor: "var(--border-color)",
-                                            color: "var(--foreground)",
-                                        }}
-                                        onFocus={(e) => e.currentTarget.style.borderColor = "#4b277a"}
-                                        onBlur={(e) => e.currentTarget.style.borderColor = "var(--border-color)"}
-                                        placeholder="Your Company"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-2">How Can We Help?</label>
-                                    <textarea
-                                        value={formState.message}
-                                        onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                                        rows={4}
-                                        className="w-full px-4 py-3 rounded-xl border transition-all focus:outline-none resize-none"
-                                        style={{
-                                            backgroundColor: "var(--background)",
-                                            borderColor: "var(--border-color)",
-                                            color: "var(--foreground)",
-                                        }}
-                                        onFocus={(e) => e.currentTarget.style.borderColor = "#4b277a"}
-                                        onBlur={(e) => e.currentTarget.style.borderColor = "var(--border-color)"}
-                                        placeholder="Tell us about your support needs..."
-                                        required
-                                    />
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    className="w-full flex items-center justify-center gap-2 py-4 rounded-full font-bold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                                    style={{ background: "linear-gradient(135deg, #4b277a, #97288e)" }}
-                                >
-                                    <Send className="w-5 h-5" />
-                                    Send Message
-                                </button>
-                            </form>
-                        )}
+                    {/* Bottom CTA */}
+                    <div className="mt-16 text-center">
+                        <p className="mb-4" style={{ color: "var(--secondary-text)" }}>Prefer to explore on your own?</p>
+                        <a
+                            href="/services"
+                            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold border-2 transition-all duration-300 hover:scale-105"
+                            style={{ borderColor: "#fab900", color: "#fab900" }}
+                        >
+                            View All Services
+                            <ArrowRight className="w-5 h-5" />
+                        </a>
                     </div>
-                </div>
-
-                {/* Bottom CTA */}
-                <div className="mt-16 text-center">
-                    <p className="mb-4" style={{ color: "var(--secondary-text)" }}>Prefer to explore on your own?</p>
-                    <a
-                        href="/services"
-                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold border-2 transition-all duration-300 hover:scale-105"
-                        style={{ borderColor: "#fab900", color: "#fab900" }}
-                    >
-                        View All Services
-                        <ArrowRight className="w-5 h-5" />
-                    </a>
                 </div>
             </div>
         </section>

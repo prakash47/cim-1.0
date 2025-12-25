@@ -127,7 +127,7 @@ export default function BlogSidebar({ currentPostSlug }: BlogSidebarProps) {
         </div>
       </div>
 
-      {/* Newsletter Signup */}
+      {/* Quick Links / CTA Section */}
       <div className="rounded-xl border p-6 overflow-hidden relative"
         style={{
           backgroundColor: "var(--card-bg)",
@@ -137,32 +137,32 @@ export default function BlogSidebar({ currentPostSlug }: BlogSidebarProps) {
           background: "linear-gradient(135deg, var(--brand-purple), var(--brand-cyan))",
         }} />
         <div className="relative z-10">
-          <h3 className="text-lg font-bold mb-2">Stay Updated</h3>
+          <h3 className="text-lg font-bold mb-2">Need Help?</h3>
           <p className="text-sm mb-4" style={{ color: "var(--secondary-text)" }}>
-            Subscribe to our newsletter for the latest insights and updates.
+            Let&apos;s discuss how we can help grow your business.
           </p>
-          <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 rounded-lg border text-sm transition-all duration-200 focus:outline-none focus:ring-2"
-              style={{
-                backgroundColor: "var(--background)",
-                borderColor: "var(--border-color)",
-                color: "var(--foreground)",
-                "--tw-ring-color": "var(--brand-purple)",
-              } as React.CSSProperties}
-            />
-            <button
-              type="submit"
-              className="w-full px-4 py-2 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg"
+          <div className="space-y-2">
+            <Link
+              href="/contact"
+              className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg font-semibold text-white text-sm transition-all duration-200 hover:shadow-lg"
               style={{
                 backgroundColor: "var(--brand-purple)",
               }}
             >
-              Subscribe
-            </button>
-          </form>
+              Get in Touch
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/services"
+              className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg font-semibold text-sm border transition-all duration-200 hover:border-[var(--brand-purple)] hover:text-[var(--brand-purple)]"
+              style={{
+                borderColor: "var(--border-color)",
+                color: "var(--foreground)",
+              }}
+            >
+              Explore Services
+            </Link>
+          </div>
         </div>
       </div>
     </aside>

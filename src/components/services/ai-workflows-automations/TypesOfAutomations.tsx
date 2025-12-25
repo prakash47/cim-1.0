@@ -1,6 +1,7 @@
 "use client";
 
 import { MessageSquare, BarChart3, Headphones, TrendingUp, FileText, Lightbulb, Workflow, Bot, Database, Mail, GitBranch, Sparkles, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
 
 export default function TypesOfAutomations() {
     const automationTypes = [
@@ -351,43 +352,7 @@ export default function TypesOfAutomations() {
                     </div>
 
                     {/* Custom Solutions CTA */}
-                    <div
-                        className="mt-16 p-10 rounded-2xl border text-center animate-fadeIn relative overflow-hidden group"
-                        style={{
-                            backgroundColor: "color-mix(in srgb, var(--card-bg) 50%, transparent)",
-                            borderColor: "var(--border-color)",
-                            animationDelay: "1.2s",
-                            animationFillMode: "both",
-                        }}
-                    >
-                        {/* Animated gradient background */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-amber-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-gradient" />
 
-                        {/* Decorative elements */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <div className="absolute top-10 left-10 w-2 h-2 rounded-full bg-orange-500/30 animate-ping" />
-                            <div className="absolute top-20 right-20 w-2 h-2 rounded-full bg-amber-500/30 animate-ping" style={{ animationDelay: "0.5s" }} />
-                            <div className="absolute bottom-10 left-1/4 w-2 h-2 rounded-full bg-orange-500/30 animate-ping" style={{ animationDelay: "1s" }} />
-                        </div>
-
-                        <div className="relative z-10">
-                            <div className="flex justify-center mb-4">
-                                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center animate-pulse">
-                                    <Lightbulb className="w-8 h-8 text-white" />
-                                </div>
-                            </div>
-                            <h3 className="text-3xl font-bold mb-4">Don't See Your Use Case?</h3>
-                            <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: "var(--secondary-text)" }}>
-                                We specialize in custom AI workflow solutions tailored to your unique business requirements. Whether it's a complex integration, predictive analytics, or a completely novel automation, our team can build it.
-                            </p>
-                            <button
-                                className="px-6 py-3 md:px-10 md:py-4 bg-gradient-to-r from-[#fab900] to-[#ee6500] hover:from-[#ee6500] hover:to-[#fab900] text-white text-sm md:text-base font-bold rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2 md:gap-3 mx-auto group/button"
-                            >
-                                <span>Discuss Your Custom Solution</span>
-                                <GitBranch className="w-5 h-5 group-hover/button:rotate-12 transition-transform duration-300" />
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </section >
         </>

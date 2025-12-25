@@ -275,12 +275,12 @@ export default function Industries() {
                                             transform: isHovered ? "translateY(0)" : "translateY(10px)",
                                         }}
                                     >
-                                        <span
+                                        {/* <span
                                             className="text-xs font-bold tracking-wide"
                                             style={{ color: industry.color }}
                                         >
                                             EXPLORE
-                                        </span>
+                                        </span> */}
                                         <ChevronRight
                                             className="w-4 h-4 animate-bounce-horizontal"
                                             style={{ color: industry.color }}

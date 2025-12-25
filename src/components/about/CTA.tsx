@@ -49,13 +49,13 @@ export default function CTA() {
                   transition-all shadow-xl hover:shadow-2xl hover:scale-105
                 "
                             >
-                                Start Your Project
+                                Start Your Journey
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
 
                             {/* Secondary Button */}
                             <Link
-                                href="#services"
+                                href="/services"
                                 className="
                   inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 
                   bg-white/10 hover:bg-white/20 dark:bg-white/10 dark:hover:bg-white/20 

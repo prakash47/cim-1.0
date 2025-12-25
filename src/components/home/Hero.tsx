@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Sparkles, ChevronRight, Play, BarChart3, Lightbulb, ArrowRight, Mail } from 'lucide-react';
+import Link from 'next/link';
+import { Sparkles, ChevronRight, Play, BarChart3, Lightbulb, ArrowRight } from 'lucide-react';
 
 export default function Hero() {
     const [isVisible, setIsVisible] = useState(false);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [newsletterEmail, setNewsletterEmail] = useState("");
-    const [newsletterMsg, setNewsletterMsg] = useState("");
 
     useEffect(() => {
         setIsVisible(true);
@@ -68,7 +67,8 @@ export default function Hero() {
                         </p>
 
                         <div className="flex flex-wrap gap-4 mb-12">
-                            <button
+                            <Link
+                                href="/contact"
                                 className="group relative px-6 py-3 md:px-8 md:py-4 text-sm md:text-base text-white font-bold rounded-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
                                 style={{ background: "linear-gradient(90deg, var(--brand-blue), var(--brand-cyan))" }}
                             >
@@ -76,15 +76,15 @@ export default function Hero() {
                                     Start Your Digital Audit
                                     <ChevronRight className="w-5 h-5" />
                                 </span>
-                            </button>
+                            </Link>
 
-                            <button
+                            {/* <button
                                 className="group px-6 py-3 md:px-8 md:py-4 text-sm md:text-base border rounded-full font-bold hover:border-color transition-all duration-300 flex items-center gap-2"
                                 style={{ borderColor: "var(--border-color)" }}
                             >
                                 <Play className="w-5 h-5" />
                                 Watch Success Stories
-                            </button>
+                            </button> */}
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -114,95 +114,115 @@ export default function Hero() {
                         </div>
                     </div>
 
-                    {/* Right Side (Keeping the existing visual element) */}
+                    {/* Right Side - Case Studies */}
                     <aside className={`lg:col-span-5 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <div className="relative">
+                        <div className="space-y-6">
+                            {/* Testriq Case Study Card */}
                             <div
-                                className="relative p-8 rounded-3xl"
+                                className="relative p-6 rounded-3xl overflow-hidden group hover:shadow-2xl transition-all duration-300"
                                 style={{
                                     backgroundColor: "var(--card-bg)",
                                     border: "1px solid var(--border-color)",
-                                    boxShadow: "0 8px 30px rgba(0,0,0,0.1)",
                                 }}
                             >
-                                <div style={{ position: "absolute", right: -28, top: -28, width: 96, height: 96, borderRadius: "50%", background: "linear-gradient(90deg, var(--brand-purple), var(--brand-cyan))", filter: "blur(24px)", opacity: 0.2 }} />
+                                <div style={{ position: "absolute", right: -20, top: -20, width: 80, height: 80, borderRadius: "50%", background: "linear-gradient(90deg, var(--brand-purple), var(--brand-cyan))", filter: "blur(30px)", opacity: 0.2 }} />
 
-                                <div className="flex items-center justify-between mb-6">
-                                    <div>
-                                        <div className="text-sm mb-1" style={{ color: "var(--secondary-text)" }}>Monthly growth</div>
-                                        <div className="text-4xl font-black" style={{ background: "linear-gradient(90deg, var(--brand-blue), var(--brand-cyan))", WebkitBackgroundClip: "text", color: "transparent" }}>+320%</div>
-                                    </div>
-                                    <div style={{ padding: "6px 12px", borderRadius: 999, background: "linear-gradient(90deg, var(--brand-yellow), var(--brand-orange))", color: "var(--foreground)", fontWeight: 700 }}>
-                                        Ved Solutions
-                                    </div>
-                                </div>
-
-                                <div className="relative h-40 rounded-2xl p-4 mb-6" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.02), transparent)", border: "1px solid var(--border-color)" }}>
-                                    <div className="relative flex items-end justify-around h-full gap-2">
-                                        {[40, 55, 70, 85, 95, 100].map((height, i) => (
-                                            <div
-                                                key={i}
-                                                className="w-full rounded-t-lg"
-                                                style={{
-                                                    height: `${height}%`,
-                                                    background: "linear-gradient(180deg, var(--brand-blue), var(--brand-cyan))",
-                                                    transition: "height .7s ease",
-                                                    marginLeft: 6,
-                                                }}
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center gap-3">
+                                        {/* Testriq Logo Placeholder */}
+                                        <div
+                                            className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden"
+                                            style={{ backgroundColor: "var(--background)", border: "1px solid var(--border-color)" }}
+                                        >
+                                            <img
+                                                src="/images/logos/testriq-logo.png"
+                                                alt="Testriq"
+                                                className="w-10 h-10 object-contain"
+                                                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; (e.target as HTMLImageElement).parentElement!.innerHTML = '<span style="font-weight:700;font-size:14px;">T</span>'; }}
                                             />
-                                        ))}
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold" style={{ color: "var(--foreground)" }}>Testriq</h3>
+                                            <p className="text-xs" style={{ color: "var(--secondary-text)" }}>QA & Testing Solutions</p>
+                                        </div>
+                                    </div>
+                                    <div style={{ padding: "4px 12px", borderRadius: 999, background: "linear-gradient(90deg, var(--brand-purple), var(--brand-cyan))", color: "#fff", fontWeight: 600, fontSize: 12 }}>
+                                        Case Study
                                     </div>
                                 </div>
 
-                                <div className="mt-6 flex items-center justify-between gap-3 flex-wrap">
-                                    {["Ved", "Maple", "Health+"].map((name) => (
-                                        <div key={name} style={{ padding: "8px 16px", borderRadius: 12, backgroundColor: "var(--background)", border: "1px solid var(--border-color)", fontWeight: 600 }}>
-                                            {name}
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div className="mt-6 flex items-center justify-between">
-                                    <a style={{ color: "var(--brand-blue)", fontWeight: 600 }} className="hover:underline" href="/case-studies">
-                                        Read case study <ArrowRight className="w-4 h-4 inline-block ml-1" />
-                                    </a>
-                                    <a style={{ color: "var(--secondary-text)" }} href="/contact">
-                                        Talk to expert →
-                                    </a>
+                                <div className="grid grid-cols-2 gap-4 mb-4">
+                                    <div className="p-3 rounded-xl" style={{ backgroundColor: "var(--background)", border: "1px solid var(--border-color)" }}>
+                                        <div className="text-2xl font-black" style={{ background: "linear-gradient(90deg, var(--brand-purple), var(--brand-cyan))", WebkitBackgroundClip: "text", color: "transparent" }}>+180%</div>
+                                        <div className="text-xs" style={{ color: "var(--secondary-text)" }}>Lead Generation</div>
+                                    </div>
+                                    <div className="p-3 rounded-xl" style={{ backgroundColor: "var(--background)", border: "1px solid var(--border-color)" }}>
+                                        <div className="text-2xl font-black" style={{ background: "linear-gradient(90deg, var(--brand-blue), var(--brand-cyan))", WebkitBackgroundClip: "text", color: "transparent" }}>3x</div>
+                                        <div className="text-xs" style={{ color: "var(--secondary-text)" }}>Website Traffic</div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="mt-6 p-6 rounded-2xl" style={{ background: "linear-gradient(90deg, var(--brand-purple), var(--brand-cyan))", color: "#fff", boxShadow: "0 10px 30px rgba(0,0,0,0.15)" }}>
-                                <div className="flex items-center gap-2 mb-3">
-                                    <Mail className="w-5 h-5" />
-                                    <h3 className="font-bold">Free Growth Checklist</h3>
+                            {/* CDPL Case Study Card */}
+                            <div
+                                className="relative p-6 rounded-3xl overflow-hidden group hover:shadow-2xl transition-all duration-300"
+                                style={{
+                                    backgroundColor: "var(--card-bg)",
+                                    border: "1px solid var(--border-color)",
+                                }}
+                            >
+                                <div style={{ position: "absolute", left: -20, bottom: -20, width: 80, height: 80, borderRadius: "50%", background: "linear-gradient(90deg, var(--brand-blue), var(--brand-teal))", filter: "blur(30px)", opacity: 0.2 }} />
+
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center gap-3">
+                                        {/* CDPL Logo Placeholder */}
+                                        <div
+                                            className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden"
+                                            style={{ backgroundColor: "var(--background)", border: "1px solid var(--border-color)" }}
+                                        >
+                                            <img
+                                                src="/images/logos/cdpl-logo.png"
+                                                alt="CDPL"
+                                                className="w-10 h-10 object-contain"
+                                                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; (e.target as HTMLImageElement).parentElement!.innerHTML = '<span style="font-weight:700;font-size:14px;">C</span>'; }}
+                                            />
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold" style={{ color: "var(--foreground)" }}>CDPL</h3>
+                                            <p className="text-xs" style={{ color: "var(--secondary-text)" }}>Software Training Institute</p>
+                                        </div>
+                                    </div>
+                                    <div style={{ padding: "4px 12px", borderRadius: 999, background: "linear-gradient(90deg, var(--brand-blue), var(--brand-teal))", color: "#fff", fontWeight: 600, fontSize: 12 }}>
+                                        Case Study
+                                    </div>
                                 </div>
-                                <p className="text-sm text-white text-opacity-90 mb-4">Subscribe & receive a 12-point website growth checklist.</p>
-                                <div className="flex gap-2">
-                                    <input
-                                        type="email"
-                                        placeholder="Your email address"
-                                        value={newsletterEmail}
-                                        onChange={(e) => setNewsletterEmail(e.target.value)}
-                                        style={{ padding: "12px 16px", borderRadius: 12, border: "none", flex: 1, color: "var(--foreground)" }}
-                                    />
-                                    <button
-                                        onClick={() => {
-                                            if (!newsletterEmail.includes("@")) {
-                                                setNewsletterMsg("Please enter valid email");
-                                                return;
-                                            }
-                                            setNewsletterMsg("Subscribed! Check inbox 📧");
-                                            setNewsletterEmail("");
-                                            setTimeout(() => setNewsletterMsg(""), 5000);
-                                        }}
-                                        className="font-bold"
-                                        style={{ padding: "12px 18px", borderRadius: 12, background: "white", color: "var(--brand-blue)" }}
-                                    >
-                                        Subscribe
-                                    </button>
+
+                                <div className="grid grid-cols-2 gap-4 mb-4">
+                                    <div className="p-3 rounded-xl" style={{ backgroundColor: "var(--background)", border: "1px solid var(--border-color)" }}>
+                                        <div className="text-2xl font-black" style={{ background: "linear-gradient(90deg, var(--brand-blue), var(--brand-teal))", WebkitBackgroundClip: "text", color: "transparent" }}>+250%</div>
+                                        <div className="text-xs" style={{ color: "var(--secondary-text)" }}>Online Inquiries</div>
+                                    </div>
+                                    <div className="p-3 rounded-xl" style={{ backgroundColor: "var(--background)", border: "1px solid var(--border-color)" }}>
+                                        <div className="text-2xl font-black" style={{ background: "linear-gradient(90deg, var(--brand-orange), var(--brand-yellow))", WebkitBackgroundClip: "text", color: "transparent" }}>45%</div>
+                                        <div className="text-xs" style={{ color: "var(--secondary-text)" }}>Cost Reduction</div>
+                                    </div>
                                 </div>
-                                {newsletterMsg && <div className="mt-3 text-sm" style={{ background: "rgba(255,255,255,0.1)", padding: 8, borderRadius: 8 }}>{newsletterMsg}</div>}
+                            </div>
+
+                            {/* Quick Stats */}
+                            <div className="flex items-center justify-center gap-4 text-center">
+                                <div className="flex-1 p-4 rounded-2xl" style={{ backgroundColor: "var(--card-bg)", border: "1px solid var(--border-color)" }}>
+                                    <div className="text-2xl font-black" style={{ color: "var(--foreground)" }}>50+</div>
+                                    <div className="text-xs" style={{ color: "var(--secondary-text)" }}>Projects</div>
+                                </div>
+                                <div className="flex-1 p-4 rounded-2xl" style={{ backgroundColor: "var(--card-bg)", border: "1px solid var(--border-color)" }}>
+                                    <div className="text-2xl font-black" style={{ color: "var(--foreground)" }}>98%</div>
+                                    <div className="text-xs" style={{ color: "var(--secondary-text)" }}>Satisfaction</div>
+                                </div>
+                                <div className="flex-1 p-4 rounded-2xl" style={{ backgroundColor: "var(--card-bg)", border: "1px solid var(--border-color)" }}>
+                                    <div className="text-2xl font-black" style={{ color: "var(--foreground)" }}>24/7</div>
+                                    <div className="text-xs" style={{ color: "var(--secondary-text)" }}>Support</div>
+                                </div>
                             </div>
                         </div>
                     </aside>

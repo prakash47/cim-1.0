@@ -319,10 +319,10 @@ const TermsOfService: React.FC = () => {
                     </div>
 
                     <div className="flex gap-3">
-                        <a href="mailto:contact@cinuteinfomedia.com" className="px-4 py-2 rounded-lg font-semibold transition" style={{ background: "var(--brand-blue)", color: "white" }}>
+                        <a href="mailto:contact@cinuteinfomedia.com" className="px-6 py-2.5 rounded-full font-semibold transition shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center" style={{ background: "var(--brand-blue)", color: "white" }}>
                             Email Support
                         </a>
-                        <Link href="/contact" className="px-4 py-2 rounded-lg border font-semibold transition" style={{ borderColor: "var(--border-color)", color: "var(--foreground)", background: "var(--card-bg)" }}>
+                        <Link href="/contact" className="px-6 py-2.5 rounded-full border font-semibold transition shadow-sm hover:shadow-md hover:scale-105 flex items-center justify-center" style={{ borderColor: "var(--border-color)", color: "var(--foreground)", background: "var(--card-bg)" }}>
                             Contact Sales
                         </Link>
                     </div>

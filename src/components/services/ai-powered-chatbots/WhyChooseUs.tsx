@@ -208,12 +208,13 @@ export default function WhyChooseUs() {
                                             </div>
 
                                             {/* Learn more link */}
-                                            <div className="mt-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                            {/* Learn more link */}
+                                            {/* <div className="mt-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                                                 <span className="text-sm font-semibold" style={{ color: "var(--brand-chatbot)" }}>
                                                     Learn more
                                                 </span>
                                                 <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" style={{ color: "var(--brand-chatbot)" }} />
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                         {/* Bottom gradient bar */}

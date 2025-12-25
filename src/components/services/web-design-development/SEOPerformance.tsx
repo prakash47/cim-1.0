@@ -1,6 +1,7 @@
 "use client";
 
 import { Zap, Smartphone, Eye, Lock, Gauge, Accessibility } from "lucide-react";
+import Link from "next/link";
 
 export default function SEOPerformance() {
     const features = [
@@ -187,12 +188,13 @@ export default function SEOPerformance() {
                         Ready to build a website that performs? Let's create something exceptional together.
                     </p>
 
-                    <button
+                    <Link
+                        href="/contact"
                         className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-2xl text-sm md:text-base font-semibold bg-gradient-to-r from-[#008ac1] to-[#00b5ca] text-white hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                     >
                         Get Started Today
                         <span>→</span>
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

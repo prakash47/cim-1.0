@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
     Lightbulb,
     Palette,
@@ -387,13 +388,14 @@ export default function Process() {
                 {/* CTA */}
                 <div className="mt-16 text-center">
                     <p className="text-[var(--secondary-text)] mb-6">Ready to transform your business?</p>
-                    <button
+                    <Link
+                        href="/contact"
                         className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-2xl text-sm md:text-base font-semibold text-white transform hover:scale-105 transition-all duration-300"
                         style={{ background: "linear-gradient(90deg,var(--brand-blue),var(--brand-teal))" }}
                     >
                         Start Your Journey
                         <ArrowRight className="w-5 h-5" />
-                    </button>
+                    </Link>
                 </div>
             </div>
 

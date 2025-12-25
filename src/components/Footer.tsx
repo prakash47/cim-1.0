@@ -84,7 +84,9 @@ export default function Footer() {
                             <div className="flex space-x-4">
                                 {/* LinkedIn */}
                                 <Link
-                                    href="/contact"
+                                    href="https://www.linkedin.com/company/cinute-infomedia/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
         hover:bg-[linear-gradient(135deg,#0A66C2,#004182)]
@@ -97,7 +99,9 @@ export default function Footer() {
 
                                 {/* Instagram */}
                                 <Link
-                                    href="/contact"
+                                    href="https://www.instagram.com/cinuteinfomedia/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
         hover:bg-[linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)]
@@ -110,7 +114,9 @@ export default function Footer() {
 
                                 {/* Twitter */}
                                 <Link
-                                    href="/contact"
+                                    href="https://x.com/cinute_infomedia"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
         hover:bg-[linear-gradient(135deg,#000000,#333333)]
@@ -124,7 +130,9 @@ export default function Footer() {
 
                                 {/* Facebook */}
                                 <Link
-                                    href="/contact"
+                                    href="https://www.facebook.com/cinuteinfomedia/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="
         w-12 h-12 rounded-full transition-all flex items-center justify-center group
         hover:bg-[linear-gradient(135deg,#1877F2,#0F68D8)]
@@ -231,10 +239,10 @@ export default function Footer() {
                             <Link href="/cookies-policy" className="hover:underline" style={styles.link}>
                                 Cookies Policy
                             </Link>
-                            <span className="hidden md:block" style={{ color: "var(--border-color)" }}>|</span>
+                            {/* <span className="hidden md:block" style={{ color: "var(--border-color)" }}>|</span>
                             <Link href="/sitemap" className="hover:underline" style={styles.link}>
                                 Sitemap
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 </div>

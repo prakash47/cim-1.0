@@ -1,6 +1,7 @@
 "use client";
 
 import { Globe, ShoppingCart, Zap, BookOpen, Image as ImageIcon, Layout, Code, Settings } from "lucide-react";
+import Link from "next/link";
 
 export default function WebsiteTypes() {
     const types = [
@@ -151,12 +152,13 @@ export default function WebsiteTypes() {
                         Our team of experts can help you determine the best solution for your specific business needs. Whether you need a simple landing page, a complex web application, or an e-commerce platform, we have the expertise to deliver.
                     </p>
 
-                    <button
+                    <Link
+                        href="/contact"
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-[#008ac1] to-[#00b5ca] text-white hover:shadow-lg transform hover:scale-105 transition-all duration-300"
                     >
                         Schedule a Consultation
                         <span>→</span>
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

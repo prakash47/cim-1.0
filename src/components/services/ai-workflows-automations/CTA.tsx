@@ -48,7 +48,7 @@ export default function CTA() {
                                 Book Your AI Consultation
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
-                            <button
+                            {/* <button
                                 className="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 border-2 rounded-full text-sm md:text-lg font-bold transition-all hover:scale-105"
                                 style={{
                                     borderColor: "var(--brand-orange)",
@@ -57,7 +57,7 @@ export default function CTA() {
                             >
                                 <MessageSquare className="w-5 h-5" />
                                 Chat with Our Experts
-                            </button>
+                            </button> */}
                         </div>
 
                         {/* Benefits Summary */}

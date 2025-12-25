@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Code2, Database, Cloud, Zap } from "lucide-react";
+import Link from "next/link";
 
 export default function Technologies() {
     const frontendTech = [
@@ -225,12 +226,13 @@ export default function Technologies() {
                         While we specialize in the modern web stack, we&apos;re flexible and can adapt to your specific requirements or existing infrastructure. Let&apos;s discuss the best approach for your project.
                     </p>
 
-                    <button
+                    <Link
+                        href="/contact"
                         className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-2xl text-sm md:text-base font-semibold bg-gradient-to-r from-[#008ac1] to-[#00b5ca] text-white hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                     >
                         Discuss Your Tech Stack
                         <span>→</span>
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

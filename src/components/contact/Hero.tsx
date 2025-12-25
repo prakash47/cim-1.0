@@ -338,7 +338,7 @@ export default function Hero() {
 
                 <div className="grid xl:grid-cols-2 items-start gap-16">
                     {/* LEFT: Intro + contact cards */}
-                    <div className="space-y-8 animate-fadeInUp">
+                    <div className="space-y-8 animate-fadeInUp order-2 md:order-1">
                         <div>
                             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-3">
                                 <span className="inline-block">
@@ -489,7 +489,7 @@ export default function Hero() {
                     </div>
 
                     {/* RIGHT: <--- NEW: Contact Form from ContactForm.tsx (swapped in here) */}
-                    <div className="animate-fadeInUp">
+                    <div className="animate-fadeInUp order-1 md:order-2">
                         <div ref={formRef} style={{ background: "var(--card-bg)", border: `1px solid var(--border-color)` }} className="rounded-3xl shadow-2xl overflow-hidden">
                             <div className="p-8 md:p-10">
                                 {/* success UI */}

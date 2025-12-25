@@ -195,7 +195,7 @@ export default function Navbar() {
 
                 {/* Mega Menu Dropdown */}
                 {isServicesOpen && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 xl:-translate-x-[60%] lg:-translate-x-[55%] mt-2 w-screen lg:max-w-4xl xl:max-w-5xl z-[300]">
+                  <div className="absolute left-1/2 transform -translate-x-5/3 lg:-translate-x-[45%] mt-2 w-screen lg:max-w-4xl xl:max-w-5xl z-[300]">
                     <div
                       className="rounded-2xl shadow-2xl border p-8 overflow-hidden"
                       style={{
@@ -454,6 +454,18 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="lg:hidden border-t shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto" style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--border-color)" }}>
           <div className="px-4 py-4 space-y-3">
+            {/* Home Link */}
+            <Link
+              href="/"
+              onClick={toggleMobileMenu}
+              className="block px-4 py-3 rounded-lg text-base font-medium transition-all"
+              style={getNavLinkStyle("/")}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/") ? "color-mix(in srgb, var(--brand-purple) 15%, transparent)" : "var(--hover-bg)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/") ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)" : "transparent")}
+            >
+              Home
+            </Link>
+
             {/* Mobile Services Accordion */}
             <div>
               <button onClick={toggleMobileServices} className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-medium transition-all" style={{ color: "var(--foreground)" }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--hover-bg)")} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}>
@@ -485,6 +497,17 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+
+            <Link
+              href="/blog"
+              onClick={toggleMobileMenu}
+              className="block px-4 py-3 rounded-lg text-base font-medium transition-all"
+              style={getNavLinkStyle("/blog")}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = isActive("/blog") ? "color-mix(in srgb, var(--brand-purple) 15%, transparent)" : "var(--hover-bg)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isActive("/blog") ? "color-mix(in srgb, var(--brand-purple) 10%, transparent)" : "transparent")}
+            >
+              Blog
+            </Link>
 
             <Link
               href="/about"
